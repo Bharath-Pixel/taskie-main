@@ -8,6 +8,7 @@ import Homepage from "./screens/Homepage";
 import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
+
   let [fontsLoaded] = useFonts({
     Poppins: require("./assets/fonts/Poppins-Regular.ttf"),
   });

@@ -16,11 +16,12 @@ return(
         screenOptions={{
             headerShown:false,
             showLabel: true,
-            tabBarInActiveBackgroundColor:'#212121'
+            tabBarInActiveBackgroundColor:'#212121',
+            headerTintColor:'#212121',
         }}
     >
         <Tab.Screen name="Home" component={Homepage}/>
-        <Tab.Screen name="Create" component={CreateTasks}/>
+        <Tab.Screen name="Tasks" component={CreateTasks}/>
         <Tab.Screen name="Flashcards" component={FlashCards}/>
         <Tab.Screen name="Progress" component={Progresspage}/>
         <Tab.Screen name="Manage" component={TaskManager}/>

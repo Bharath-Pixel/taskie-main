@@ -11,7 +11,7 @@ const Homepage = () => {
   return (
     
     <View style={styles.container}>
-      <View style={styles.container1}>
+      <View style={styles.buffer}>
       <Text style={[styles.sectionTitle]}>Taskie</Text>
       <View style={styles.projectbg}></View>
       <View style={styles.quizzesbg}></View>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor:"#212121",
   },
-  container1: {
+  buffer: {
     left:25,
     top:30,
     backgroundColor:"#212121",
