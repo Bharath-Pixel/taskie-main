@@ -1,20 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useCallback, useEffect, useState } from "react";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
+import Tabs from "./navigation/tabs";
+import Homepage from "./screens/Homepage";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    Poppins: require("./assets/fonts/Poppins-Regular.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tabs/>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#212121",
   },
+  tasksWrapper: {
+    paddingTop: 55,
+    paddingHorizontal: 21,
+  },
+  sectionTitle: {
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "white",
+    fontFamily: "Poppins",
+  },
+  items: {},
 });
