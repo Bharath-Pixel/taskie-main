@@ -55,8 +55,6 @@ const Homepage = () => {
       <View style={styles.upcomingDeadlinesbg}><View style={styles.verticleLine}></View></View>
       <Text style={[styles.fOP1]}>FOP</Text>
       <Text style={[styles.deadlineDate]}>22 August 2022</Text>
-      <Text style={styles.itemText}>{}</Text>
-      <View style={styles.plus}></View>
       </View>
     </View>
     

@@ -4,7 +4,7 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 const FlashCards = ({navigation}) => {
     return (
       <View style={styles.container}>
-        <Text>Flashcards Screen</Text>
+        <Text style={styles.flashcardsTxt}>Flashcards Screen</Text>
         <Button
             title="Go to details screen...again"
             onPress={() => navigation.push("Details")}
@@ -13,7 +13,7 @@ const FlashCards = ({navigation}) => {
             title="Go to home"
             onPress={() => navigation.navigate("Home")}
         />
-        <Button
+        <Button style={styles.goBack}
             title="Go back"
             onPress={() => navigation.goBack()}
         />
@@ -24,12 +24,19 @@ const FlashCards = ({navigation}) => {
 export default FlashCards;
 
 const styles = StyleSheet.create({
+  flashcardsTxt:{
+    color:'white'
+  },
   container: {
     flex: 1, 
-    alignItems: 'center', 
-    justifyContent: 'center',
+    justifyContent:'center',
     backgroundColor:"#212121",
   },
+  goBack:{
+    position:"absolute",
+    top:20,
+  },
+
 });
 
 
