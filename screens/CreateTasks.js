@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 
 // const task = (props) => {
 //   return (
@@ -16,17 +16,24 @@ const CreateTasks = ({navigation}) => {
       <View style={styles.container}>
         <View style={styles.buffer}>
           <Text style={[styles.sectionTitle]}>Tasks</Text>
-          <View style={styles.addTask}> 
+          {/* <View style={styles.addTask}> 
             <Text style={styles.addTaskText}>New Task</Text>
-          </View>
+          </View> */}
+          <TouchableOpacity style={styles.addTask} onPress={()=>console.log("Pressed")}>
+            <Text style={styles.addTaskText}>New Task</Text>
+          </TouchableOpacity>
+
           {/* <App.task c="Java" h="Practical 4" s="4pm today | 1.5 hours"></App.task> */}
 
-          <View style={[styles.taskCard]}>
-            <Text style={[styles.taskCategory]}>Java</Text>
-            <Text style={[styles.taskHeader]}>Practical 4</Text>
-            <Text style={[styles.taskSubHeader]}>4pm today | 1.5 hours</Text>
-          </View>
+          <ScrollView style={[styles.list]}>
+            <View style={[styles.taskCard]}>
+              <Text style={[styles.taskCategory]}>Java</Text>
+              <Text style={[styles.taskHeader]}>Practical 4</Text>
+              <Text style={[styles.taskSubHeader]}>4pm today | 1.5 hours</Text>
+            </View> 
+            <View style={styles.toSee}></View>
 
+          </ScrollView>
         </View>
       </View>
     );
@@ -60,7 +67,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    bottom: 0, 
+    bottom: '10%', 
+    zIndex: 100
   },
   addTaskText: {
     color: '#fff',
@@ -69,10 +77,14 @@ const styles = StyleSheet.create({
   },
 
   // For Tasks
+  toSee: {
+    marginBottom: "40%",
+  },
   taskCard: {
-    top: "3%",
+    marginTop: "3%",
     width: '100%',
-    height: '15%',
+    paddingBottom: '7.5%',
+    paddingTop: '7.5%',
     borderRadius: 10,
     backgroundColor: '#8758FF',
     justifyContent: 'center',
