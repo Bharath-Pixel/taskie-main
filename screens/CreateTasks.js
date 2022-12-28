@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, Button, StyleSheet, TouchableOpacity, ScrollView, Modal } from 'react-native';
 
 // const task = (props) => {
 //   return (
@@ -19,11 +19,11 @@ const CreateTasks = ({navigation}) => {
           {/* <View style={styles.addTask}> 
             <Text style={styles.addTaskText}>New Task</Text>
           </View> */}
-          <TouchableOpacity style={styles.addTask} onPress={()=>console.log("Pressed")}>
+          <TouchableOpacity style={styles.addTask} onPress={()=>setVisible(true)}>
             <Text style={styles.addTaskText}>New Task</Text>
           </TouchableOpacity>
 
-          {/* <App.task c="Java" h="Practical 4" s="4pm today | 1.5 hours"></App.task> */}
+          {/* <task c="Java" h="Practical 4" s="4pm today | 1.5 hours"></task> */}
 
           <ScrollView style={[styles.list]}>
             <View style={[styles.taskCard]}>
@@ -31,7 +31,6 @@ const CreateTasks = ({navigation}) => {
               <Text style={[styles.taskHeader]}>Practical 4</Text>
               <Text style={[styles.taskSubHeader]}>4pm today | 1.5 hours</Text>
             </View> 
-            <View style={styles.toSee}></View>
 
           </ScrollView>
         </View>
@@ -107,4 +106,18 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: "Poppins",
   },
+
+  // For adding task
+  addTaskBG: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    justifyContent: "center",
+    alignContent: "center"
+  },
+  addTaskContainer: {
+    width: "80%",
+    backgroundColor: "white",
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+  }
 });
