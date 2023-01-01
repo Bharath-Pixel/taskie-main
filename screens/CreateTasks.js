@@ -1,14 +1,14 @@
 import React from 'react';
 import { TextInput, View, Text, Button, StyleSheet, TouchableOpacity, ScrollView, Modal, useState, KeyboardAvoidingView, Platform } from 'react-native';
-import {TaskCard, handleAddTask} from '../props/TaskCard.js';
+import TaskCard from '../props/TaskCard.js';
 
 
 
 const CreateTasks = ({navigation}) => { 
-  const [task, setTask] = useState()
-  const handleAddTask = () => {
-    console.log("Task")
-  }
+  // const [task, setTask] = useState()
+  // const handleAddTask = () => {
+  //   console.log("Task")
+  // }
   
     return (
       <View style={styles.container}>
@@ -29,7 +29,7 @@ const CreateTasks = ({navigation}) => {
 
           </ScrollView>
 
-          <KeyboardAvoidingView 
+          {/* <KeyboardAvoidingView 
             behaviour={Platform.OS === "ios" ? "padding": "height"}
             style={styles.writeTaskWrapper}>
               <TextInput style = {styles.taskInput} placeholder={'Write a Task'} value={task} onChangeText={text=>setTask(text)} />
@@ -39,7 +39,7 @@ const CreateTasks = ({navigation}) => {
                   <Text style={styles.addText}>+</Text>
                 </View>
               </TouchableOpacity>
-          </KeyboardAvoidingView>
+          </KeyboardAvoidingView> */}
         </View>
       </View>
     );
