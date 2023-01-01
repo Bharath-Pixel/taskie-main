@@ -1,17 +1,15 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity, ScrollView, Modal } from 'react-native';
+import { TextInput, View, Text, Button, StyleSheet, TouchableOpacity, ScrollView, Modal, useState, KeyboardAvoidingView, Platform } from 'react-native';
+import {TaskCard, handleAddTask} from '../props/TaskCard.js';
 
-// const task = (props) => {
-//   return (
-//     <View style={styles.taskCard}>
-//       <Text style={styles.taskCategory}>{props.c}</Text>
-//       <Text style={styles.taskHeader}>{props.h}</Text>
-//       <Text style={styles.taskSubHeader}>{props.s}</Text>
-//     </View>
-//   )
-// }
+
 
 const CreateTasks = ({navigation}) => { 
+  const [task, setTask] = useState()
+  const handleAddTask = () => {
+    console.log("Task")
+  }
+  
     return (
       <View style={styles.container}>
         <View style={styles.buffer}>
@@ -19,20 +17,29 @@ const CreateTasks = ({navigation}) => {
           {/* <View style={styles.addTask}> 
             <Text style={styles.addTaskText}>New Task</Text>
           </View> */}
-          <TouchableOpacity style={styles.addTask} onPress={()=>setVisible(true)}>
-            <Text style={styles.addTaskText}>New Task</Text>
-          </TouchableOpacity>
+          
 
-          {/* <task c="Java" h="Practical 4" s="4pm today | 1.5 hours"></task> */}
+          {/* <TouchableOpacity style={styles.addTask} onPress={()=>console.log(true)}>
+            <Text style={styles.addTaskText}>New Task</Text>
+          </TouchableOpacity> */}
 
           <ScrollView style={[styles.list]}>
-            <View style={[styles.taskCard]}>
-              <Text style={[styles.taskCategory]}>Java</Text>
-              <Text style={[styles.taskHeader]}>Practical 4</Text>
-              <Text style={[styles.taskSubHeader]}>4pm today | 1.5 hours</Text>
-            </View> 
+
+            <TaskCard c="Java" h="Practical 4" s="4pm today | 1.5 hours" />
 
           </ScrollView>
+
+          <KeyboardAvoidingView 
+            behaviour={Platform.OS === "ios" ? "padding": "height"}
+            style={styles.writeTaskWrapper}>
+              <TextInput style = {styles.taskInput} placeholder={'Write a Task'} value={task} onChangeText={text=>setTask(text)} />
+
+              <TouchableOpacity onPress={() => handleAddTask()}>
+                <View style={styles.addWrapper}>
+                  <Text style={styles.addText}>+</Text>
+                </View>
+              </TouchableOpacity>
+          </KeyboardAvoidingView>
         </View>
       </View>
     );
@@ -75,38 +82,6 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins",
   },
 
-  // For Tasks
-  toSee: {
-    marginBottom: "40%",
-  },
-  taskCard: {
-    marginTop: "3%",
-    width: '100%',
-    paddingBottom: '7.5%',
-    paddingTop: '7.5%',
-    borderRadius: 10,
-    backgroundColor: '#8758FF',
-    justifyContent: 'center',
-  },
-  taskCategory: {
-    color: '#fff',
-    left: "10%",
-    fontSize: 13,
-    fontFamily: "Poppins",
-  },
-  taskHeader: {
-    color: '#fff',
-    left: "10%",
-    fontSize: 25,
-    fontFamily: "Poppins",
-  },
-  taskSubHeader: {
-    color: '#fff',
-    left: "10%",
-    fontSize: 15,
-    fontFamily: "Poppins",
-  },
-
   // For adding task
   addTaskBG: {
     flex: 1,
@@ -119,5 +94,37 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingHorizontal: 20,
     paddingVertical: 30,
+  },
+  writeTaskWrapper: {
+    paddingVertical: 30,
+    position: "absolute",
+    bottom: 60,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  taskInput: {
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    backgroundColor: "#8758FF",
+    borderRadius: 20,
+    borderColor: "#FFF",
+    borderWidth: 1,
+    width: "80%"
+  },
+  addWrapper: {
+    width:50,
+    height:50,
+    backgroundColor: "#8758FF",
+    borderColor: "#FFF",
+    borderWidth: 1,
+    borderRadius: 60,
+    justifyContent: "center",
+    alignItems: "center",
+
+  },
+  addText: {
+
   }
 });
