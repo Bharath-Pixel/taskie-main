@@ -1,42 +1,481 @@
-import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
-const FlashCards = ({navigation}) => {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.flashcardsTxt}>Flashcards Screen</Text>
-        <Button
-            title="Go to details screen...again"
-            onPress={() => navigation.push("Details")}
-        />
-        <Button
-            title="Go to home"
-            onPress={() => navigation.navigate("Home")}
-        />
-        <Button style={styles.goBack}
-            title="Go back"
-            onPress={() => navigation.goBack()}
-        />
+const FlashCards = ({}) => {
+  return (
+    <View style={styles.iphone1313Pro1}>
+      {/* <Image
+        style={styles.iconsaxlinearhome3}
+        resizeMode="cover"
+        source={require("../assets/iconsaxlinearhome3.png")}
+      />
+      <Image
+        style={styles.iconsaxlineartasksquare}
+        resizeMode="cover"
+        source={require("../assets/iconsaxlineartasksquare.png")}
+      />
+      <Image
+        style={styles.unionIcon}
+        resizeMode="cover"
+        source={require("../assets/union.png")}
+      /> */}
+      <View style={[styles.themedarkComponentnavbar, styles.autoFlexBox]}>
+        <View style={[styles.autoLayoutHorizontal, styles.autoFlexBox]}>
+          <View style={styles.typelogoDefaultComponentl}>
+            <LinearGradient
+              style={styles.rectangle}
+              locations={[0, 1]}
+              colors={["#246bfd", "#6f9eff"]}
+            />
+            {/* <Image
+              style={[styles.vectorIcon, styles.vectorIconLayout]}
+              resizeMode="cover"
+              source={require("../assets/vector.png")}
+            /> */}
+          </View>
+          {/* <Image
+            style={[styles.iconlylightsearchLayout, styles.ml16]}
+            resizeMode="cover"
+            source={require("../assets/iconlylightoutlinearrow--left.png")}
+          /> */}
+        </View>
+        <View
+          style={[
+            styles.autoLayoutHorizontal1,
+            styles.ml12,
+            styles.autoFlexBox,
+          ]}
+        >
+          {/* <Image
+            style={[styles.iconlylightsearch, styles.iconlylightsearchLayout]}
+            resizeMode="cover"
+            source={require("../assets/iconlylightsearch.png")}
+          />
+          <Image
+            style={[
+              styles.iconlylightsearch,
+              styles.ml20,
+              styles.iconlylightsearchLayout,
+            ]}
+            resizeMode="cover"
+            source={require("../assets/iconlyboldstar.png")}
+          /> */}
+          {/* <Image
+            style={[styles.iconlylightsearchLayout, styles.ml20]}
+            resizeMode="cover"
+            source={require("../assets/iconlylightmore-circle.png")}
+          /> */}
+        </View>
       </View>
-    );
+      <View style={[styles.iphone1313Pro1Child, styles.iphone1313Position]} />
+      <Text style={[styles.text, styles.textFlexBox]}>3/14</Text>
+      <Text style={[styles.tapTheCardToFlipIt, styles.textFlexBox]}>
+        Tap the Card to flip it
+      </Text>
+      <View style={[styles.iphone1313Pro1Item, styles.iphone1313Position]} />
+      <View style={styles.iphone1313Pro1Inner} />
+      <Text style={[styles.question1, styles.question1Typo]}>
+        <Text style={styles.question11}>Question 1</Text>
+        <Text style={styles.blankLine}> </Text>
+      </Text>
+      <Text style={[styles.loremIpsumDolorSitAmetCo, styles.question1Typo]}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </Text>
+      {/* <Image
+        style={[styles.vectorIcon1, styles.vectorIconLayout]}
+        resizeMode="cover"
+        source={require("../assets/vector1.png")}
+      /> */}
+      {/* <Image
+        style={styles.gridiconscrossCircle}
+        resizeMode="cover"
+        source={require("../assets/gridiconscrosscircle.png")}
+      /> */}
+    </View>
+  );
 };
+
+const styles = StyleSheet.create({
+  Text: {
+    fontFamily: "Poppins",
+  },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: "#212121",
+  },
+  goBack: {
+    position: "absolute",
+    top: 20,
+  },
+
+  autoFlexBox: {
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  vectorIconLayout: {
+    maxHeight: "100%",
+    maxWidth: "100%",
+    position: "absolute",
+    overflow: "hidden",
+  },
+  iconlylightsearchLayout: {
+    height: 28,
+    width: 28,
+  },
+  iphone1313Position: {
+    height: 20,
+    top: 113,
+    position: "absolute",
+  },
+  textFlexBox: {
+    textAlign: "center",
+    color: "white",
+    position: "absolute",
+  },
+  question1Typo: {
+    textAlign: "center",
+    lineHeight: 29,
+    position: "absolute",
+  },
+  iconsaxlinearhome3: {
+    left: 37,
+    height: 31,
+    width: 33,
+    top: 763,
+    position: "absolute",
+    overflow: "hidden",
+  },
+  iconsaxlineartasksquare: {
+    left: 173,
+    height: 31,
+    width: 33,
+    top: 763,
+    position: "absolute",
+    overflow: "hidden",
+  },
+  unionIcon: {
+    width: 29,
+    height: 27,
+  },
+  rectangle: {
+    height: "100%",
+    top: "0%",
+    right: "0%",
+    bottom: "0%",
+    left: "0%",
+    position: "absolute",
+    width: "100%",
+  },
+  vectorIcon: {
+    height: "66.67%",
+    width: "53.92%",
+    top: "18.33%",
+    right: "22.75%",
+    bottom: "15%",
+    left: "23.33%",
+  },
+  typelogoDefaultComponentl: {
+    width: 32,
+    height: 32,
+    display: "none",
+  },
+  autoLayoutHorizontal: {
+    flex: 1,
+  },
+  iconlylightsearch: {
+    display: "none",
+  },
+  autoLayoutHorizontal1: {
+    justifyContent: "flex-end",
+  },
+  themedarkComponentnavbar: {
+    top: 28,
+    left: 5,
+    width: 380,
+    height: 48,
+    paddingHorizontal: 0,
+
+    position: "absolute",
+  },
+  iphone1313Pro1Child: {
+    left: -4,
+    backgroundColor: "#dabcf9",
+    width: 400,
+  },
+  text: {
+    top: 76,
+    fontWeight: "700",
+
+    lineHeight: 29,
+
+    textAlign: "center",
+
+    left: 173,
+  },
+  tapTheCardToFlipIt: {
+    fontFamily: "Poppins",
+    top: 695,
+    left: 79,
+    lineHeight: 24,
+    width: 235,
+    height: 44,
+  },
+  iphone1313Pro1Item: {
+    left: 0,
+    backgroundColor: "#c290e9",
+    width: 120,
+  },
+  iphone1313Pro1Inner: {
+    top: 220,
+    left: 29,
+    backgroundColor: "#e4daff",
+    width: 329,
+    height: 454,
+    position: "absolute",
+  },
+  question11: {
+    marginBlockStart: 0,
+    marginBlockEnd: 0,
+    fontFamily: "Poppins",
+  },
+  blankLine: {
+    margin: 0,
+  },
+  question1: {
+    top: 315,
+    left: 136,
+  },
+  loremIpsumDolorSitAmetCo: {
+    fontFamily: "Poppins",
+    marginTop: -58,
+    marginLeft: -108,
+    top: "50%",
+    left: "50%",
+    width: 210,
+  },
+  vectorIcon1: {
+    height: "5.33%",
+    width: "11.54%",
+    top: "19.19%",
+    right: "3.85%",
+    bottom: "75.47%",
+    left: "84.62%",
+  },
+  gridiconscrossCircle: {
+    top: 157,
+    left: 19,
+    width: 55,
+    height: 55,
+    position: "absolute",
+    overflow: "hidden",
+  },
+  iphone1313Pro1: {
+    height: 844,
+    overflow: "hidden",
+    width: "100%",
+    flex: 1,
+    backgroundColor: "#212121",
+    fontFamily: "Poppins",
+  },
+});
 
 export default FlashCards;
 
-const styles = StyleSheet.create({
-  flashcardsTxt:{
-    color:'white'
-  },
-  container: {
-    flex: 1, 
-    justifyContent:'center',
-    backgroundColor:"#212121",
-  },
-  goBack:{
-    position:"absolute",
-    top:20,
-  },
+/*import * as React from "react";
+import { Image, StyleSheet, View, Text } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import GlobalStyles from "../GlobalStyles";
 
+
+
+const styles = StyleSheet.create({
+  ml16: {
+    marginLeft: GlobalStyles.Margin.margin_md,
+  },
+  ml20: {
+    marginLeft: GlobalStyles.Margin.margin_lg,
+  },
+  ml12: {
+    marginLeft: GlobalStyles.Margin.margin_sm,
+  },
+  autoFlexBox: {
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  vectorIconLayout: {
+    maxHeight: "100%",
+    maxWidth: "100%",
+    position: "absolute",
+    overflow: "hidden",
+  },
+  iconlylightsearchLayout: {
+    height: 28,
+    width: 28,
+  },
+  iphone1313Position: {
+    height: 20,
+    top: 113,
+    position: "absolute",
+  },
+  textFlexBox: {
+    textAlign: "center",
+    color: GlobalStyles.Color.white,
+    position: "absolute",
+  },
+  question1Typo: {
+    color: GlobalStyles.Color.black,
+    fontFamily: GlobalStyles.FontFamily.dMSans,
+    textAlign: "center",
+    lineHeight: 29,
+    fontSize: GlobalStyles.FontSize.h4Bold_size,
+    position: "absolute",
+  },
+  iconsaxlinearhome3: {
+    left: 37,
+    height: 31,
+    width: 33,
+    top: 763,
+    position: "absolute",
+    overflow: "hidden",
+  },
+  iconsaxlineartasksquare: {
+    left: 173,
+    height: 31,
+    width: 33,
+    top: 763,
+    position: "absolute",
+    overflow: "hidden",
+  },
+  unionIcon: {
+    width: 29,
+    height: 27,
+  },
+  rectangle: {
+    height: "100%",
+    top: "0%",
+    right: "0%",
+    bottom: "0%",
+    left: "0%",
+    borderRadius: GlobalStyles.Border.br_xs,
+    backgroundColor: GlobalStyles.Color.gradientsGradientBlue,
+    position: "absolute",
+    width: "100%",
+  },
+  vectorIcon: {
+    height: "66.67%",
+    width: "53.92%",
+    top: "18.33%",
+    right: "22.75%",
+    bottom: "15%",
+    left: "23.33%",
+  },
+  typelogoDefaultComponentl: {
+    borderRadius: GlobalStyles.Border.br_3xl,
+    width: 32,
+    height: 32,
+    display: "none",
+  },
+  autoLayoutHorizontal: {
+    flex: 1,
+  },
+  iconlylightsearch: {
+    display: "none",
+  },
+  autoLayoutHorizontal1: {
+    justifyContent: "flex-end",
+  },
+  themedarkComponentnavbar: {
+    top: 28,
+    left: 5,
+    width: 380,
+    height: 48,
+    paddingHorizontal: 0,
+    paddingVertical: GlobalStyles.Padding.padding_sm,
+    position: "absolute",
+  },
+  iphone1313Pro1Child: {
+    left: -4,
+    backgroundColor: "#dabcf9",
+    width: 400,
+  },
+  text: {
+    top: 76,
+    fontWeight: "700",
+    fontFamily: GlobalStyles.FontFamily.h6Bold,
+    lineHeight: 29,
+    fontSize: GlobalStyles.FontSize.h4Bold_size,
+    textAlign: "center",
+    color: GlobalStyles.Color.white,
+    left: 173,
+  },
+  tapTheCardToFlipIt: {
+    top: 695,
+    left: 79,
+    fontSize: GlobalStyles.FontSize.h5Bold_size,
+    lineHeight: 24,
+    fontFamily: GlobalStyles.FontFamily.poppins,
+    width: 235,
+    height: 44,
+  },
+  iphone1313Pro1Item: {
+    left: 0,
+    backgroundColor: "#c290e9",
+    width: 120,
+  },
+  iphone1313Pro1Inner: {
+    top: 220,
+    left: 29,
+    borderRadius: GlobalStyles.Border.br_md,
+    backgroundColor: "#e4daff",
+    width: 329,
+    height: 454,
+    position: "absolute",
+  },
+  question11: {
+    marginBlockStart: 0,
+    marginBlockEnd: 0,
+  },
+  blankLine: {
+    margin: 0,
+  },
+  question1: {
+    top: 315,
+    left: 136,
+  },
+  loremIpsumDolorSitAmetCo: {
+    marginTop: -58,
+    marginLeft: -108,
+    top: "50%",
+    left: "50%",
+    width: 210,
+  },
+  vectorIcon1: {
+    height: "5.33%",
+    width: "11.54%",
+    top: "19.19%",
+    right: "3.85%",
+    bottom: "75.47%",
+    left: "84.62%",
+  },
+  gridiconscrossCircle: {
+    top: 157,
+    left: 19,
+    width: 55,
+    height: 55,
+    position: "absolute",
+    overflow: "hidden",
+  },
+  iphone1313Pro1: {
+    backgroundColor: GlobalStyles.Color.gray_300,
+    height: 844,
+    overflow: "hidden",
+    width: "100%",
+    flex: 1,
+  },
 });
 
-
+export default IPhone1313Pro1;
+*/
