@@ -1,35 +1,47 @@
-import React from 'react';
-import { TextInput, View, Text, Button, StyleSheet, TouchableOpacity, ScrollView, Modal, useState, KeyboardAvoidingView, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { TextInput, View, Text, Button, StyleSheet, TouchableOpacity, ScrollView, Modal, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 import TaskCard from '../props/TaskCard.js';
 
 
 
 const CreateTasks = ({navigation}) => { 
-  // const [task, setTask] = useState()
-  // const handleAddTask = () => {
-  //   console.log("Task")
-  // }
-  
+  const [task, setTask] = useState();
+  const [taskItems, setTaskItems] = useState([]);
+
+  const handleAddTask = () => {
+    Keyboard.dismiss();
+    setTaskItems([...taskItems, task]);
+    setTask(null);
+  }
+
+  const completeTask = (index) => {
+    let itemsCopy = [...taskItems];
+    itemsCopy. splice (index, 1);
+    setTaskItems(itemsCopy);
+  }
+
     return (
       <View style={styles.container}>
         <View style={styles.buffer}>
           <Text style={[styles.sectionTitle]}>Tasks</Text>
-          {/* <View style={styles.addTask}> 
-            <Text style={styles.addTaskText}>New Task</Text>
-          </View> */}
-          
-
-          {/* <TouchableOpacity style={styles.addTask} onPress={()=>console.log(true)}>
-            <Text style={styles.addTaskText}>New Task</Text>
-          </TouchableOpacity> */}
 
           <ScrollView style={[styles.list]}>
 
-            <TaskCard c="Java" h="Practical 4" s="4pm today | 1.5 hours" />
+            {/* <TaskCard c="Java" h="Practical 4" s="4pm today | 1.5 hours" /> */}
+            {
+              taskItems.map((item, index)=> {
+                return (
+                  <TouchableOpacity key={index} onPress={()=>completeTask(index)}>
+                    <TaskCard c=" " h={item} s=" " />
+                  </TouchableOpacity>
+                )
+              })
+            }
+            <View style={[styles.toSee]}></View>
 
           </ScrollView>
 
-          {/* <KeyboardAvoidingView 
+          <KeyboardAvoidingView 
             behaviour={Platform.OS === "ios" ? "padding": "height"}
             style={styles.writeTaskWrapper}>
               <TextInput style = {styles.taskInput} placeholder={'Write a Task'} value={task} onChangeText={text=>setTask(text)} />
@@ -39,7 +51,7 @@ const CreateTasks = ({navigation}) => {
                   <Text style={styles.addText}>+</Text>
                 </View>
               </TouchableOpacity>
-          </KeyboardAvoidingView> */}
+          </KeyboardAvoidingView>
         </View>
       </View>
     );
@@ -124,7 +136,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
 
   },
-  addText: {
-
+  toSee: {
+    height: 150,
   }
 });
