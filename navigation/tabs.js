@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5"
 
 import Homepage from "../screens/Homepage";
 import CreateTasks from "../screens/CreateTasks";
@@ -34,13 +35,34 @@ const Tabs = () => {
             ...styles.container,
             ...styles.shadow
         },
+        
       }}
     >
-      <Tab.Screen name="Home" component={Homepage} />
-      <Tab.Screen name="Flashcards" component={FlashCards} />
-      <Tab.Screen name="Tasks" component={CreateTasks} />
-      <Tab.Screen name="Progress" component={Progresspage} />
-      <Tab.Screen name="Manage" component={TaskManager} />
+      <Tab.Screen name="Home" component={Homepage} options={({}) => ({
+          tabBarIcon: ({color, size}) => (
+            <AntDesign name="home" color={color} size={size} />
+          ),
+        })} />
+      <Tab.Screen name="Flashcards" component={FlashCards} options={({}) => ({
+          tabBarIcon: ({color, size}) => (
+            <AntDesign name="book" color={color} size={size} />
+          ),
+        })}/>
+      <Tab.Screen name="Tasks" component={CreateTasks} options={({}) => ({
+          tabBarIcon: ({color, size}) => (
+            <FontAwesome5 name="tasks" color={color} size={size} />
+          ),
+        })} />
+      <Tab.Screen name="Progress" component={Progresspage} options={({}) => ({
+          tabBarIcon: ({color, size}) => (
+            <AntDesign name="profile" color={color} size={size} />
+          ),
+        })}/>
+      {/* <Tab.Screen name="Manage" component={TaskManager} options={({}) => ({
+          tabBarIcon: ({color, size}) => (
+            <AntDesign name="home" color={color} size={size} />
+          ),
+        })}/> */}
     </Tab.Navigator>
   );
 };

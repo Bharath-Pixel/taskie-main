@@ -1,80 +1,20 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import AntDesign from "react-native-vector-icons/AntDesign"
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const FlashCards = ({}) => {
   return (
-    <View style={styles.iphone1313Pro1}>
-      {/* <Image
-        style={styles.iconsaxlinearhome3}
-        resizeMode="cover"
-        source={require("../assets/iconsaxlinearhome3.png")}
-      />
-      <Image
-        style={styles.iconsaxlineartasksquare}
-        resizeMode="cover"
-        source={require("../assets/iconsaxlineartasksquare.png")}
-      />
-      <Image
-        style={styles.unionIcon}
-        resizeMode="cover"
-        source={require("../assets/union.png")}
-      /> */}
-      <View style={[styles.themedarkComponentnavbar, styles.autoFlexBox]}>
-        <View style={[styles.autoLayoutHorizontal, styles.autoFlexBox]}>
-          <View style={styles.typelogoDefaultComponentl}>
-            <LinearGradient
-              style={styles.rectangle}
-              locations={[0, 1]}
-              colors={["#246bfd", "#6f9eff"]}
-            />
-            {/* <Image
-              style={[styles.vectorIcon, styles.vectorIconLayout]}
-              resizeMode="cover"
-              source={require("../assets/vector.png")}
-            /> */}
-          </View>
-          {/* <Image
-            style={[styles.iconlylightsearchLayout, styles.ml16]}
-            resizeMode="cover"
-            source={require("../assets/iconlylightoutlinearrow--left.png")}
-          /> */}
-        </View>
-        <View
-          style={[
-            styles.autoLayoutHorizontal1,
-            styles.ml12,
-            styles.autoFlexBox,
-          ]}
-        >
-          {/* <Image
-            style={[styles.iconlylightsearch, styles.iconlylightsearchLayout]}
-            resizeMode="cover"
-            source={require("../assets/iconlylightsearch.png")}
-          />
-          <Image
-            style={[
-              styles.iconlylightsearch,
-              styles.ml20,
-              styles.iconlylightsearchLayout,
-            ]}
-            resizeMode="cover"
-            source={require("../assets/iconlyboldstar.png")}
-          /> */}
-          {/* <Image
-            style={[styles.iconlylightsearchLayout, styles.ml20]}
-            resizeMode="cover"
-            source={require("../assets/iconlylightmore-circle.png")}
-          /> */}
-        </View>
-      </View>
-      <View style={[styles.iphone1313Pro1Child, styles.iphone1313Position]} />
+    <View style={styles.containerFlashCard}>
+      <View style={[styles.containerFlashCardChild, styles.iphone1313Position]} />
       <Text style={[styles.text, styles.textFlexBox]}>3/14</Text>
       <Text style={[styles.tapTheCardToFlipIt, styles.textFlexBox]}>
-        Tap the Card to flip it
+        Tap the Card to view answers
       </Text>
-      <View style={[styles.iphone1313Pro1Item, styles.iphone1313Position]} />
-      <View style={styles.iphone1313Pro1Inner} />
+      <View style={[styles.containerFlashCardItem, styles.iphone1313Position]} />
+      
+      <View style={styles.containerFlashCardInner} />
       <Text style={[styles.question1, styles.question1Typo]}>
         <Text style={styles.question11}>Question 1</Text>
         <Text style={styles.blankLine}> </Text>
@@ -83,16 +23,9 @@ const FlashCards = ({}) => {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </Text>
-      {/* <Image
-        style={[styles.vectorIcon1, styles.vectorIconLayout]}
-        resizeMode="cover"
-        source={require("../assets/vector1.png")}
-      /> */}
-      {/* <Image
-        style={styles.gridiconscrossCircle}
-        resizeMode="cover"
-        source={require("../assets/gridiconscrosscircle.png")}
-      /> */}
+      <AntDesign name='arrowright' style={{ color: 'white', fontSize: 40 , top:155, left:315}}/>
+      <AntDesign name='arrowleft' style={{ color: 'white', fontSize: 40 , top:115, left:20}}/>
+      <FontAwesome5 name='smile-beam' style={{ color: 'white', fontSize: 40 , top:80, left:170}}/>
     </View>
   );
 };
@@ -191,17 +124,8 @@ const styles = StyleSheet.create({
   autoLayoutHorizontal1: {
     justifyContent: "flex-end",
   },
-  themedarkComponentnavbar: {
-    top: 28,
-    left: 5,
-    width: 380,
-    height: 48,
-    paddingHorizontal: 0,
-
-    position: "absolute",
-  },
-  iphone1313Pro1Child: {
-    left: -4,
+  containerFlashCardChild: {
+    left: 10,
     backgroundColor: "#dabcf9",
     width: 400,
   },
@@ -217,20 +141,20 @@ const styles = StyleSheet.create({
   },
   tapTheCardToFlipIt: {
     fontFamily: "Poppins",
-    top: 695,
-    left: 79,
-    lineHeight: 24,
-    width: 235,
-    height: 44,
+    // top: 690,
+    // left: 115,
+    top:"85%",
+    left:"25%"
   },
-  iphone1313Pro1Item: {
+  containerFlashCardItem: {
     left: 0,
     backgroundColor: "#c290e9",
     width: 120,
   },
-  iphone1313Pro1Inner: {
+  containerFlashCardInner: {
     top: 220,
-    left: 29,
+    left: 22,
+    borderRadius:20,
     backgroundColor: "#e4daff",
     width: 329,
     height: 454,
@@ -245,8 +169,9 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   question1: {
-    top: 315,
-    left: 136,
+    top: "35%",
+    left: "35%",
+    fontSize:20
   },
   loremIpsumDolorSitAmetCo: {
     fontFamily: "Poppins",
@@ -272,7 +197,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     overflow: "hidden",
   },
-  iphone1313Pro1: {
+  containerFlashCard: {
     height: 844,
     overflow: "hidden",
     width: "100%",
@@ -396,7 +321,7 @@ const styles = StyleSheet.create({
     paddingVertical: GlobalStyles.Padding.padding_sm,
     position: "absolute",
   },
-  iphone1313Pro1Child: {
+  containerFlashCardChild: {
     left: -4,
     backgroundColor: "#dabcf9",
     width: 400,
@@ -420,12 +345,12 @@ const styles = StyleSheet.create({
     width: 235,
     height: 44,
   },
-  iphone1313Pro1Item: {
+  containerFlashCardItem: {
     left: 0,
     backgroundColor: "#c290e9",
     width: 120,
   },
-  iphone1313Pro1Inner: {
+  containerFlashCardInner: {
     top: 220,
     left: 29,
     borderRadius: GlobalStyles.Border.br_md,
@@ -468,7 +393,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     overflow: "hidden",
   },
-  iphone1313Pro1: {
+  containerFlashCard: {
     backgroundColor: GlobalStyles.Color.gray_300,
     height: 844,
     overflow: "hidden",
@@ -477,5 +402,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default IPhone1313Pro1;
+export default containerFlashCard;
 */

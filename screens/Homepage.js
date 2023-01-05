@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, Alert,Animated,TouchableOpacity } from "
 import Svg, { Circle, Path } from "react-native-svg"; 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const Tab= createBottomTabNavigator();
 
@@ -15,7 +15,9 @@ const Homepage = () => {
       <Text style={[styles.sectionTitle]}>Taskie</Text>
       <View style={styles.projectbg}></View>
       <View style={styles.quizzesbg}></View>
-      <View style={styles.addTasksbg}></View>
+      <View style={styles.addTasksbg}>
+      <AntDesign name='plus' style={{ color: 'white', fontSize: 25,left:7, }}/>
+      </View>
       <Text style={[styles.projects]}>Projects</Text>
       <Text style={[styles.quizzes]}>Quizzes</Text>
       <Text style={styles.progressiontxt}>In progress :</Text>
