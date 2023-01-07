@@ -16,7 +16,7 @@ import Homepage from "../screens/Homepage";
 import CreateTasks from "../screens/CreateTasks";
 import FlashCards from "../screens/Flashcards";
 import Progresspage from "../screens/ProgressPage";
-import TaskManager from "../screens/Taskmanager";
+import AddTask from "../screens/ViewTasks";
 
 const Tab = createBottomTabNavigator();
 
@@ -35,8 +35,9 @@ const Tabs = () => {
             ...styles.container,
             ...styles.shadow
         },
-        
-      }}
+      }
+      
+    }
     >
       <Tab.Screen name="Home" component={Homepage} options={({}) => ({
           tabBarIcon: ({color, size}) => (
@@ -48,14 +49,23 @@ const Tabs = () => {
             <AntDesign name="book" color={color} size={size} />
           ),
         })}/>
-      <Tab.Screen name="Tasks" component={CreateTasks} options={({}) => ({
+         
+      <Tab.Screen name="Add" component={CreateTasks} options={({}) => ({
+          tabBarIcon: ({color, size}) => (
+            <AntDesign name="pluscircle" color={color} size={40} />
+          ),
+        })} />
+        <Tab.Screen name="Tasks" style={{Text:false}} component={AddTask} options={({}) => ({
+          
           tabBarIcon: ({color, size}) => (
             <FontAwesome5 name="tasks" color={color} size={size} />
           ),
-        })} />
-      <Tab.Screen name="Progress" component={Progresspage} options={({}) => ({
+          headerShown:false
+        })}/>
+
+      <Tab.Screen name="Timer" component={Progresspage} options={({}) => ({
           tabBarIcon: ({color, size}) => (
-            <AntDesign name="profile" color={color} size={size} />
+            <FontAwesome5 name="stopwatch" color={color} size={size} />
           ),
         })}/>
       {/* <Tab.Screen name="Manage" component={TaskManager} options={({}) => ({

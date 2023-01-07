@@ -1,31 +1,40 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import AntDesign from "react-native-vector-icons/AntDesign"
+import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const FlashCards = ({}) => {
   return (
     <View style={styles.containerFlashCard}>
-      <View style={[styles.containerFlashCardChild, styles.iphone1313Position]} />
+      <View
+        style={[styles.containerFlashCardChild, styles.iphone1313Position]}
+      />
       <Text style={[styles.text, styles.textFlexBox]}>3/14</Text>
+      <AntDesign
+        name="arrowright"
+        style={{ color: "white", fontSize: 40, top: 155, left: 315 }}
+      />
+      <AntDesign
+        name="arrowleft"
+        style={{ color: "white", fontSize: 40, top: 115, left: 20 }}
+      />
+      <FontAwesome5
+        name="smile-beam"
+        style={{ color: "white", fontSize: 40, top: 80, left: 170 }}
+      />
       <Text style={[styles.tapTheCardToFlipIt, styles.textFlexBox]}>
         Tap the Card to view answers
       </Text>
-      <View style={[styles.containerFlashCardItem, styles.iphone1313Position]} />
-      
+      <View
+        style={[styles.containerFlashCardItem, styles.iphone1313Position]}
+      />
+
       <View style={styles.containerFlashCardInner} />
-      <Text style={[styles.question1, styles.question1Typo]}>
-        <Text style={styles.question11}>Question 1</Text>
-        <Text style={styles.blankLine}> </Text>
-      </Text>
+        <Text style={styles.question1}>Question 1</Text>
       <Text style={[styles.loremIpsumDolorSitAmetCo, styles.question1Typo]}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        What color is an orange? 
       </Text>
-      <AntDesign name='arrowright' style={{ color: 'white', fontSize: 40 , top:155, left:315}}/>
-      <AntDesign name='arrowleft' style={{ color: 'white', fontSize: 40 , top:115, left:20}}/>
-      <FontAwesome5 name='smile-beam' style={{ color: 'white', fontSize: 40 , top:80, left:170}}/>
     </View>
   );
 };
@@ -68,27 +77,12 @@ const styles = StyleSheet.create({
     color: "white",
     position: "absolute",
   },
-  question1Typo: {
-    textAlign: "center",
-    lineHeight: 29,
-    position: "absolute",
-  },
-  iconsaxlinearhome3: {
-    left: 37,
-    height: 31,
-    width: 33,
-    top: 763,
-    position: "absolute",
-    overflow: "hidden",
-  },
-  iconsaxlineartasksquare: {
-    left: 173,
-    height: 31,
-    width: 33,
-    top: 763,
-    position: "absolute",
-    overflow: "hidden",
-  },
+  // question1Typo: {
+  //   textAlign: "center",
+  //   lineHeight: 29,
+  //   position: "absolute",
+  // },
+
   unionIcon: {
     width: 29,
     height: 27,
@@ -132,19 +126,14 @@ const styles = StyleSheet.create({
   text: {
     top: 76,
     fontWeight: "700",
-
     lineHeight: 29,
-
     textAlign: "center",
-
     left: 173,
   },
   tapTheCardToFlipIt: {
     fontFamily: "Poppins",
-    // top: 690,
-    // left: 115,
-    top:"85%",
-    left:"25%"
+    top: "85%",
+    left: "25%",
   },
   containerFlashCardItem: {
     left: 0,
@@ -154,32 +143,28 @@ const styles = StyleSheet.create({
   containerFlashCardInner: {
     top: 220,
     left: 22,
-    borderRadius:20,
+    borderRadius: 20,
     backgroundColor: "#e4daff",
     width: 329,
     height: 454,
     position: "absolute",
-  },
-  question11: {
-    marginBlockStart: 0,
-    marginBlockEnd: 0,
-    fontFamily: "Poppins",
-  },
-  blankLine: {
-    margin: 0,
+    justifyContent:'center',
+    alignItems:'center',
   },
   question1: {
-    top: "35%",
-    left: "35%",
-    fontSize:20
+    top: "25%",
+    left: "38%",
+    fontSize: 20,
+    fontFamily: "Poppins",
   },
   loremIpsumDolorSitAmetCo: {
     fontFamily: "Poppins",
-    marginTop: -58,
-    marginLeft: -108,
-    top: "50%",
-    left: "50%",
+    top: "35%",
+    left: "23%",
     width: 210,
+    justifyContent:'center',
+    alignItems:'center',
+    textAlign:'center',
   },
   vectorIcon1: {
     height: "5.33%",

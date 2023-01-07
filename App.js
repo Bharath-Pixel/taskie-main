@@ -25,19 +25,4 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#212121",
-  },
-  tasksWrapper: {
-    paddingTop: 55,
-    paddingHorizontal: 21,
-  },
-  sectionTitle: {
-    fontSize: 30,
-    fontWeight: "bold",
-    color: "white",
-    fontFamily: "Poppins",
-  },
-  items: {},
-});
+

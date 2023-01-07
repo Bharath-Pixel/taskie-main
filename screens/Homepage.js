@@ -16,7 +16,7 @@ const Homepage = () => {
       <View style={styles.projectbg}></View>
       <View style={styles.quizzesbg}></View>
       <View style={styles.addTasksbg}>
-      <AntDesign name='plus' style={{ color: 'white', fontSize: 25,left:7, }}/>
+      <AntDesign name='plus' style={{ color: 'white', fontSize: 25,left:8, }}/>
       </View>
       <Text style={[styles.projects]}>Projects</Text>
       <Text style={[styles.quizzes]}>Quizzes</Text>
@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     left:25,
     top:30,
     backgroundColor:"#212121",
+    marginTop:10
   },
   sectionTitle: {
     top:10,
