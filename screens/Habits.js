@@ -83,7 +83,7 @@ const Task = ({ task, stamp }) => {
   );
 };
 
-export default function AddTask(props) {
+export default function Habits(props) {
   return (
     <View
       style={{
@@ -113,7 +113,7 @@ export default function AddTask(props) {
               textAlign: "center",
             }}
           >
-            {"Tasks"}
+            {"Habits"}
           </Text>
         </View>
       </View>

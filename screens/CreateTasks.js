@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { TextInput, View, Text, Button, StyleSheet, TouchableOpacity, ScrollView, Modal, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 import TaskCard from '../props/TaskCard.js';
 
-
-
 const CreateTasks = ({navigation}) => { 
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
@@ -26,8 +24,7 @@ const CreateTasks = ({navigation}) => {
           <Text style={[styles.sectionTitle]}>Tasks</Text>
 
           <ScrollView style={[styles.list]}>
-
-            {/* <TaskCard c="Java" h="Practical 4" s="4pm today | 1.5 hours" /> */}
+            <Text style={[styles.instructions]}>Create new task with the add button. Tap on tasks to clear</Text>
             {
               taskItems.map((item, index)=> {
                 return (
@@ -92,6 +89,10 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontFamily: "Poppins",
+  },
+  instructions: {
+    color: "white",
+    fontSize: 15,
   },
 
   // For adding task

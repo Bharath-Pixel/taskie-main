@@ -19,10 +19,8 @@ const styles = StyleSheet.create({
   taskCard: {
     marginTop: "3%",
     width: '100%',
-    // paddingBottom: '7.5%',
-    // paddingTop: '7.5%',
-    paddingBottom: '1%',
-    paddingTop: '1%',
+    paddingBottom: '7.5%',
+    paddingTop: '7.5%',
     borderRadius: 10,
     backgroundColor: '#8758FF',
     justifyContent: 'center',

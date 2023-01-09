@@ -15,8 +15,9 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5"
 import Homepage from "../screens/Homepage";
 import CreateTasks from "../screens/CreateTasks";
 import FlashCards from "../screens/Flashcards";
-import Progresspage from "../screens/ProgressPage";
-import AddTask from "../screens/ViewTasks";
+import Pomo from "../screens/Pomo";
+import Habits from "../screens/Habits";
+import stats from "../screens/stats";
 
 const Tab = createBottomTabNavigator();
 
@@ -55,7 +56,7 @@ const Tabs = () => {
             <AntDesign name="pluscircle" color={color} size={40} />
           ),
         })} />
-        <Tab.Screen name="Tasks" style={{Text:false}} component={AddTask} options={({}) => ({
+        <Tab.Screen name="Habits" style={{Text:false}} component={Habits} options={({}) => ({
           
           tabBarIcon: ({color, size}) => (
             <FontAwesome5 name="tasks" color={color} size={size} />
@@ -63,7 +64,7 @@ const Tabs = () => {
           headerShown:false
         })}/>
 
-      <Tab.Screen name="Timer" component={Progresspage} options={({}) => ({
+      <Tab.Screen name="Timer" component={Pomo} options={({}) => ({
           tabBarIcon: ({color, size}) => (
             <FontAwesome5 name="stopwatch" color={color} size={size} />
           ),
