@@ -55,7 +55,7 @@ const Task = ({ task, stamp }) => {
         shadowOpacity: 5,
         shadowRadius: 1,
         shadowOffset: { height: 2, width: 2 },
-        shadowColor: "#A07AFF",
+        shadowColor: "#000000",
         flexDirection: "row",
         marginHorizontal: 16,
         marginVertical: 5,
@@ -68,15 +68,18 @@ const Task = ({ task, stamp }) => {
     >
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <View>
-          <Text style={{ fontFamily: "Poppins", fontSize: 18 }}>{task}</Text>
+          <Text style={[styles.taskText]}>{task}</Text>
           <Text style={{ fontFamily: "Poppins", color: colors.greyish }}>
             {stamp}
           </Text>
-          {/* <Checkbox
+          <Checkbox
+          style={[styles.checkBoxStyle]}
             disabled={false}
+            color="#7B51E7"
             value={toggleCheckBox}
             onValueChange={(newValue) => setToggleCheckBox(newValue)}
-          /> */}
+            
+          />
         </View>
       </View>
     </View>
@@ -129,7 +132,7 @@ export default function Habits(props) {
         }}
       >
         <Text style={{ fontFamily: "Poppins", fontSize: 22, color: "white" }}>
-          Incomplete
+          Tasks (4)
         </Text>
         <AntDesign
           name="plus" //
@@ -166,7 +169,18 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins",
     color: "white",
   },
+  taskText: {
+    fontFamily: "Poppins",
+    fontSize:18,
+
+  },
   backButton: {
     top: 10,
   },
+  checkBoxStyle:{
+    borderRadius:5,
+    position:"absolute",
+    bottom:10,
+    left:270
+  }
 });

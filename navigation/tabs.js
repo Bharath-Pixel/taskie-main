@@ -69,7 +69,8 @@ const Tabs = () => {
             <FontAwesome5 name="stopwatch" color={color} size={size} />
           ),
         })}/>
-      {/* <Tab.Screen name="Manage" component={TaskManager} options={({}) => ({
+        
+      {/* <Tab.Screen name="Stats" component={stats} options={({}) => ({
           tabBarIcon: ({color, size}) => (
             <AntDesign name="home" color={color} size={size} />
           ),

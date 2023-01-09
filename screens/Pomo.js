@@ -4,6 +4,18 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import Clock from "../props/Clock.js"
 import stats from "../screens/stats.js"
 
+
+function ViewStackScreen(){
+return (
+<Stack.Navigator>
+<Stack.Screen name="Stats" component={stats}
+options={{
+headerShown: false,
+}}
+/>
+</Stack.Navigator>
+)
+}
 const Pomo = ({navigation}) => {
 
   return (
@@ -14,7 +26,7 @@ const Pomo = ({navigation}) => {
         <Clock/>
         <Button
              title="See Stats"
-             onPress={() => navigation.navigate(stats)}
+             onPress={() => navigation.navigate('Stats')}
          />
       </View>
     </View>

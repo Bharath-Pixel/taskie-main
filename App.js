@@ -12,6 +12,7 @@ export default function App() {
 
   let [fontsLoaded] = useFonts({
     Poppins: require("./assets/fonts/Poppins-Regular.ttf"),
+    Urbanist: require("./assets/fonts/Urbanist-Regular.ttf"),
   });
 
   if (!fontsLoaded) {
