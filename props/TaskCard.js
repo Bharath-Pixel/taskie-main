@@ -28,18 +28,21 @@ const styles = StyleSheet.create({
   taskCategory: {
     color: '#fff',
     left: "10%",
+    width: "80%",
     fontSize: 13,
     fontFamily: "Poppins",
   },
   taskHeader: {
     color: '#fff',
     left: "10%",
+    width: "80%",
     fontSize: 25,
     fontFamily: "Poppins",
   },
   taskSubHeader: {
     color: '#fff',
     left: "10%",
+    width: "80%",
     fontSize: 15,
     fontFamily: "Poppins",
   },

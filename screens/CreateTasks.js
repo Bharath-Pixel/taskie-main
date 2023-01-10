@@ -14,7 +14,7 @@ const CreateTasks = ({navigation}) => {
 
   const completeTask = (index) => {
     let itemsCopy = [...taskItems];
-    itemsCopy. splice (index, 1);
+    itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
   }
 
@@ -25,6 +25,8 @@ const CreateTasks = ({navigation}) => {
 
           <ScrollView style={[styles.list]}>
             <Text style={[styles.instructions]}>Create new task with the add button. Tap on tasks to clear</Text>
+            <TaskCard c="Tutorial" h="Write your tasks down one by one" s="No due date" />
+            <TaskCard c=" " h="" s=" " />
             {
               taskItems.map((item, index)=> {
                 return (
@@ -139,5 +141,15 @@ const styles = StyleSheet.create({
   },
   toSee: {
     height: 150,
+  },
+  dailyStat: {
+    marginTop: "3%",
+    width: '100%',
+    paddingBottom: '7.5%',
+    paddingTop: '7.5%',
+    borderRadius: 10,
+    borderColor: '#8758FF',
+    borderWidth: 1,
+    justifyContent: 'center',
   }
 });

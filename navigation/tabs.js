@@ -56,7 +56,7 @@ const Tabs = () => {
             <AntDesign name="pluscircle" color={color} size={40} />
           ),
         })} />
-        <Tab.Screen name="Habits" style={{Text:false}} component={Habits} options={({}) => ({
+        <Tab.Screen name="Habits" style={{Text:false}} component={stats} options={({}) => ({
           
           tabBarIcon: ({color, size}) => (
             <FontAwesome5 name="tasks" color={color} size={size} />
