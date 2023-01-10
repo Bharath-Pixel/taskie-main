@@ -6,15 +6,15 @@ import stats from "../screens/stats.js"
 
 
 function ViewStackScreen(){
-return (
-<Stack.Navigator>
-<Stack.Screen name="Stats" component={stats}
-options={{
-headerShown: false,
-}}
-/>
-</Stack.Navigator>
-)
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Stats" component={stats}
+        options={{
+        headerShown: false,
+        }}
+      />
+    </Stack.Navigator>
+  )
 }
 const Pomo = ({navigation}) => {
 
