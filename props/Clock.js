@@ -34,9 +34,11 @@ function Clock(props) {
                     <Text style={[styles.icons]}>+</Text>
                 </TouchableOpacity>
             </View> 
+            <Text style={styles.range}>16:25 - 16:55</Text>
             <TouchableOpacity style={[styles.starter]} onPress={() => click(start+1)}>
                 <Text style={[styles.stfont]}> Start</Text>
             </TouchableOpacity>
+
         </>
     )
 }
@@ -76,6 +78,12 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 100,
     },
+    range: {
+        color: "white",
+        fontSize: 25,
+        top: "28%",
+        left: "30%",
+    }
 })
 
 export default Clock

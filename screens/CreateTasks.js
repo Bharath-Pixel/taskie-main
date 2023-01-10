@@ -22,11 +22,20 @@ const CreateTasks = ({navigation}) => {
       <View style={styles.container}>
         <View style={styles.buffer}>
           <Text style={[styles.sectionTitle]}>Tasks</Text>
+          <Text style={[styles.instructions]}>Create new task with the add button. Tap on tasks to clear</Text>
+
+          <View style={styles.clearedTdy}>
+              <Text style={styles.t1}>5</Text>
+              <Text style={styles.t2}>Completed Today</Text>
+            </View>
+            <View style={styles.totalRemaining}>
+              <Text style={styles.t1}>7</Text>
+              <Text style={styles.t2}>Total Remaining</Text>
+            </View>
 
           <ScrollView style={[styles.list]}>
-            <Text style={[styles.instructions]}>Create new task with the add button. Tap on tasks to clear</Text>
+
             <TaskCard c="Tutorial" h="Write your tasks down one by one" s="No due date" />
-            <TaskCard c=" " h="" s=" " />
             {
               taskItems.map((item, index)=> {
                 return (
@@ -140,16 +149,39 @@ const styles = StyleSheet.create({
 
   },
   toSee: {
-    height: 150,
+    height: 20,
   },
-  dailyStat: {
-    marginTop: "3%",
-    width: '100%',
-    paddingBottom: '7.5%',
-    paddingTop: '7.5%',
+  clearedTdy: {
+    backgroundColor: "#FEB47B",
+    height: "20%",
+    top: "2%",
+    width: "47%",
     borderRadius: 10,
-    borderColor: '#8758FF',
-    borderWidth: 1,
-    justifyContent: 'center',
+  },
+  totalRemaining: {
+    backgroundColor: "#FEB47B",
+    height: "20%",
+    width: "47%",
+    left: "53%",
+    top: "-18%",
+    borderRadius: 10,
+  },
+  t1: {
+    color: "white",
+    fontSize: 50,
+    left: "20%",
+    top: "25%",
+    position: "absolute",
+  },
+  t2: {
+    color: "white",
+    fontSize: 20,
+    left: "20%",
+    top: "55%",
+    position: "absolute",
+    width: "60%"
+  },
+  list: {
+    top: "-16%"
   }
 });
