@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 50,
     left: "20%",
-    top: "25%",
+    top: "20%",
     position: "absolute",
   },
   t2: {
