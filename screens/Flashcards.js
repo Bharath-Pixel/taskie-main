@@ -1,39 +1,100 @@
-import React from "react";
+import {React,useEffect} from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import { ProgressBar, MD3Colors } from "react-native-paper";
+import GlobalFont from 'react-native-global-font'
 
 const FlashCards = ({}) => {
+  
   return (
-    <View style={styles.containerFlashCard}>
-      <View
-        style={[styles.containerFlashCardChild, styles.iphone1313Position]}
-      />
-      <Text style={[styles.text, styles.textFlexBox]}>3/14</Text>
-      <AntDesign
-        name="arrowright"
-        style={{ color: "white", fontSize: 40, top: 155, left: 315 }}
-      />
-      <AntDesign
-        name="arrowleft"
-        style={{ color: "white", fontSize: 40, top: 115, left: 20 }}
-      />
-      <FontAwesome5
-        name="smile-beam"
-        style={{ color: "white", fontSize: 40, top: 80, left: 170 }}
-      />
-      <Text style={[styles.tapTheCardToFlipIt, styles.textFlexBox]}>
-        Tap the Card to view answers
-      </Text>
-      <View
-        style={[styles.containerFlashCardItem, styles.iphone1313Position]}
-      />
+    // <View style={styles.containerFlashCard}>
+    //   <View
+    //     style={[styles.containerFlashCardChild, styles.iphone1313Position]}
+    //   />
+    //   <Text style={[styles.text, styles.textFlexBox]}>3/14</Text>
+    //   <AntDesign
+    //     name="arrowright"
+    //     style={{ color: "white", fontSize: 40, top: 155, left: 315 }}
+    //   />
+    //   <AntDesign
+    //     name="arrowleft"
+    //     style={{ color: "white", fontSize: 40, top: 115, left: 20 }}
+    //   />
+    //   <FontAwesome5
+    //     name="smile-beam"
+    //     style={{ color: "white", fontSize: 40, top: 80, left: 170 }}
+    //   />
+    //   <Text style={[styles.tapTheCardToFlipIt, styles.textFlexBox]}>
+    //     Tap the Card to view answers
+    //   </Text>
+    //   <View
+    //     style={[styles.containerFlashCardItem, styles.iphone1313Position]}
+    //   />
 
-      <View style={styles.containerFlashCardInner} />
-        <Text style={styles.question1}>Question 1</Text>
-      <Text style={[styles.loremIpsumDolorSitAmetCo, styles.question1Typo]}>
-        What color is an orange? 
+    //   <View style={styles.containerFlashCardInner} />
+    //     <Text style={styles.question1}>Question 1</Text>
+    //   <Text style={[styles.loremIpsumDolorSitAmetCo, styles.question1Typo]}>
+    //     What color is an orange?
+    //   </Text>
+    // </View>
+    <View
+      style={{
+        backgroundColor: "#212121",
+        width: "100%",
+        height: "100%",
+        justifyContent: "center",
+      }}
+    >
+      <View
+        style={{
+          flex: 1 / 10,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-around",
+        }}
+      >
+        <AntDesign name="arrowleft" color={"white"} size={24} />
+        <Text
+          style={{
+            paddingVertical: "5%",
+            textAlign: "center",
+            color: "white",
+            fontSize: 24,
+          }}
+        >
+          3/15
+        </Text>
+        <AntDesign name="arrowright" color={"white"} size={24} />
+      </View>
+      <ProgressBar progress={0.3} color={MD3Colors.primary40} />
+      <View
+        style={{
+          marginTop: "10%",
+          flex: 0.7,
+          backgroundColor: "#dabcf9",
+          width: "80%",
+          marginLeft: "10%",
+          marginBottom: "10%",
+          borderRadius: 30,
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ fontSize: 20, paddingVertical: "5%" }}>Question 1</Text>
+        <Text style={{ fontSize: 16, paddingVertical: "15%" }}>
+          What Color is an Orange?
+        </Text>
+      </View>
+      <Text
+        style={{
+          marginBottom: "20%",
+          color: "white",
+          textAlign: "center",
+          fontSize: 16,
+        }}
+      >
+        Tap Card to see answers
       </Text>
     </View>
   );
@@ -148,8 +209,8 @@ const styles = StyleSheet.create({
     width: 329,
     height: 454,
     position: "absolute",
-    justifyContent:'center',
-    alignItems:'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   question1: {
     top: "25%",
@@ -162,9 +223,9 @@ const styles = StyleSheet.create({
     top: "35%",
     left: "23%",
     width: 210,
-    justifyContent:'center',
-    alignItems:'center',
-    textAlign:'center',
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
   },
   vectorIcon1: {
     height: "5.33%",
