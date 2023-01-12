@@ -97,9 +97,6 @@ export default function Habits(props) {
           }}
         ></View>
         <View style={{ padding: 16, bottom: 10 }}>
-          <View style={{ flexDirection: "column" }}>
-            <AntDesign name="back" size={30} style={{ color: colors.white }} />
-          </View>
           <Text
             style={{
               fontFamily: "Poppins",

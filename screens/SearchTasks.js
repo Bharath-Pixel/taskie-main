@@ -32,6 +32,27 @@ const DATA = [
   },
 ];
 
+const cards = [
+  {
+    id: 1,
+    title: "Study",
+    uri: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+  },
+  {
+    id: 1,
+    title: "Study",
+    uri: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+  },
+  {
+    id: 3,
+    content: "Projects",
+  },
+  {
+    id: 4,
+    content: "Tests",
+  },
+];
+
 function Item({ item }) {
   const [active, setActive] = React.useState(0);
   return (
@@ -52,6 +73,26 @@ function Item({ item }) {
   );
 }
 
+function cardItem({ item }) {
+  const [active, setActive] = React.useState(0);
+  return (
+    <View style={{ padding: 8, paddingTop: 15 }}>
+      <TouchableOpacity
+        onPress={() => {
+          if (active == 1) {
+            setActive(0);
+          } else {
+            setActive(1);
+          }
+        }}
+        style={active === 1 ? styles.cardbtnActive : styles.cardbtn}
+      >
+        <Text>{cards.title}</Text>
+        <Image>{cards.uri}</Image>
+      </TouchableOpacity>
+    </View>
+  );
+}
 const Search = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = React.useState("");
 
@@ -64,7 +105,7 @@ const Search = ({ navigation }) => {
         <Searchbar
           style={[styles.searchbar]}
           placeholder="Search..."
-          placeholderTextColor="black"
+          placeholderTextColor="gray"
           onChangeText={onChangeSearch}
           value={searchQuery}
         />
@@ -82,6 +123,8 @@ const Search = ({ navigation }) => {
           showsHorizontalScrollIndicator={false}
         >
           <Text style={cardTitleText}> Tasks </Text>
+          <View  style={{flexDirection:"row"}}>
+          <ScrollView  >
           <TouchableOpacity style={card}>
             <Image
               style={cardImage}
@@ -91,7 +134,8 @@ const Search = ({ navigation }) => {
             ></Image>
             <Text style={cardText}> Study FOP </Text>
           </TouchableOpacity>
-
+          </ScrollView>
+        </View>
           <Text style={cardTitleText}> Flashcards </Text>
           <TouchableOpacity style={card}>
             <Image
@@ -102,6 +146,7 @@ const Search = ({ navigation }) => {
             ></Image>
             <Text style={cardText}> Chemistry </Text>
           </TouchableOpacity>
+          
         </ScrollView>
       </View>
     </View>
@@ -135,7 +180,7 @@ const styles = StyleSheet.create({
   },
 
   searchbar: {
-    backgroundColor: "#A9A9A9",
+    backgroundColor: "#3D3D3D",
     borderRadius: 10,
     borderColor: "black",
     borderRadius: 15,
@@ -183,8 +228,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowOffset: { width: 3, height: 3 },
     borderRadius: 20,
+
   },
   cardImage: {
+    
     width: "100%",
     height: 200,
     resizeMode: "cover",

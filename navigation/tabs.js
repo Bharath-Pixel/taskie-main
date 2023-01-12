@@ -18,7 +18,7 @@ import FlashCards from "../screens/Flashcards";
 import Pomo from "../screens/Pomo";
 import Habits from "../screens/Habits";
 import stats from "../screens/stats";
-import Welcome from "../screens/welcome";
+import Welcome from "../screens/Welcome";
 import login from "../screens/login";
 import signup from "../screens/signup";
 import Search from "../screens/SearchTasks";
@@ -56,7 +56,7 @@ const Tabs = () => {
           ),
         })}/>
          
-      <Tab.Screen name="Add" component={Pomo} options={({}) => ({
+      <Tab.Screen name="Add" component={CreateTasks} options={({}) => ({
           tabBarIcon: ({color, size}) => (
             <AntDesign name="pluscircle" color={color} size={40} />
           ),

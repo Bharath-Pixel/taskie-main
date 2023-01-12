@@ -17,34 +17,38 @@ const styles = StyleSheet.create({
     marginBottom: "40%",
   },
   taskCard: {
-    marginTop: "3%",
+    marginTop: "5%",
     width: '100%',
     paddingBottom: '5%',
     paddingTop: '5%',
     borderRadius: 10,
-    backgroundColor: '#8758FF',
+    backgroundColor: 'gray',
     justifyContent: 'center',
   },
   taskCategory: {
-    color: '#fff',
+    color: 'black',
     left: "10%",
     width: "80%",
-    fontSize: 13,
+    fontSize: 14,
     fontFamily: "Poppins",
+    paddingBottom:10,
+    textAlign:"center"
   },
   taskHeader: {
-    color: '#fff',
     left: "10%",
     width: "80%",
+    paddingBottom:10,
     fontSize: 20,
     fontFamily: "Poppins",
+    textAlign:"center"
   },
   taskSubHeader: {
-    color: '#fff',
+    color: 'black',
     left: "10%",
     width: "80%",
-    fontSize: 15,
+    fontSize: 14,
     fontFamily: "Poppins",
+    textAlign:"center"
   },
 })
 

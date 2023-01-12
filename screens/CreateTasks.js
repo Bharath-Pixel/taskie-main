@@ -23,8 +23,7 @@ const CreateTasks = ({navigation}) => {
       <View style={styles.container}>
         <View style={styles.buffer}>
           <Text style={[styles.sectionTitle]}>Tasks</Text>
-          <Text style={[styles.instructions]}>Create new task with the add button. Tap on tasks to clear</Text>
-
+          <Text style={[styles.instructions]}>Add button creates new task. Tap to clear Task</Text>
           <View style={styles.clearedTdy}>
               <Text style={styles.t1}>5</Text>
               <Text style={styles.t2}>Completed Today</Text>
@@ -33,6 +32,7 @@ const CreateTasks = ({navigation}) => {
               <Text style={styles.t1}>7</Text>
               <Text style={styles.t2}>Total Remaining</Text>
             </View>
+            
 
           <ScrollView style={[styles.list]}>
 
@@ -103,8 +103,10 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins",
   },
   instructions: {
+    fontFamily:"Poppins",
     color: "white",
-    fontSize: 15,
+    paddingTop:10,
+    fontSize: 16,
   },
 
   // For adding task
@@ -153,7 +155,7 @@ const styles = StyleSheet.create({
     height: "20%",
     top: "2%",
     width: "47%",
-    borderRadius: 10,
+    borderRadius: 20,
   },
   totalRemaining: {
     backgroundColor: "#FEB47B",
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
     width: "47%",
     left: "53%",
     top: "-18%",
-    borderRadius: 10,
+    borderRadius: 20,
   },
   t1: {
     color: "white",

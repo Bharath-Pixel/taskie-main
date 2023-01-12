@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     bottom: 275,
     width: "100%",
     height: 100,
-    borderRadius: 20,
+    borderRadius: 30,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-between",
