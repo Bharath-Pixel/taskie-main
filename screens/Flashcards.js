@@ -4,7 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { ProgressBar, MD3Colors } from "react-native-paper";
-import GlobalFont from 'react-native-global-font'
+// import GlobalFont from 'react-native-global-font'
 
 const FlashCards = ({}) => {
   
@@ -77,7 +77,7 @@ const FlashCards = ({}) => {
           width: "80%",
           marginLeft: "10%",
           marginBottom: "10%",
-          borderRadius: 30,
+          borderRadius: 15,
           alignItems: "center",
         }}
       >

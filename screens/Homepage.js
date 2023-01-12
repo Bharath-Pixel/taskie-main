@@ -13,51 +13,53 @@ const Homepage = () => {
 
     <View style={styles.container}>
       <View style={styles.buffer}>
-      <Text style={[styles.sectionTitle]}>Taskie</Text>
-      <View style={styles.projectbg}></View>
-      <View style={styles.quizzesbg}></View>
-      <View style={styles.addTasksbg}>
-      <AntDesign name='plus' style={{ color: 'white', fontSize: 25,left:8, }}/>
-      </View>
-      <Text style={[styles.projects]}>Projects</Text>
-      <Text style={[styles.quizzes]}>Quizzes</Text>
-      <Text style={styles.progressiontxt}>In progress :</Text>
-      <View style={styles.bedbg}></View>
-      <View style={styles.fopbg}></View>
-      <Text style={[styles.bED, styles.bedTypo, styles.bedTypo1]}>BED   {'>>'}</Text>
-      <Text style={[styles.fOP, styles.bedTypo, styles.bedTypo1]}>FOP   {'>>'}</Text>
-      <Image
-        style={[styles.progressbarIcon, styles.groupIconLayout]}
-        resizeMode="cover"
-        source={require("../assets/images/progressbar1.png")}
-      />
-      <Image
-        style={[styles.progressbarIcon1, styles.groupIconLayout]}
-        resizeMode="cover"
-        source={require("../assets/images/progressbar2.png")}
-      />
-      <View style={styles.flashcardsbg}></View>
-      <Text
-        style={[styles.flashCards]}
-      >
-        Flash cards
-      </Text>
-      <Text style={[styles.testYourKnowledgeHere, styles.bedTypo]}>
-        Test your knowledge here {'>>'}
-      </Text>
-      <Image
-        style={[styles.iconsaxLinearbook1, styles.flashCardsPosition]}
-        resizeMode="cover"
-        source={require("../assets/images/flashcardBookIcon.png")}
-      />
-      <Text
-        style={[styles.upcomingDeadlines, styles.bedTypo1, styles.taskieTypo]}
-      >
-        Upcoming deadlines
-      </Text>
-      <View style={styles.upcomingDeadlinesbg}><View style={styles.verticleLine}></View></View>
-      <Text style={[styles.fOP1]}>FOP</Text>
-      <Text style={[styles.deadlineDate]}>22 August 2022</Text>
+        <Text style={[styles.sectionTitle]}>Taskie</Text>
+        <View style={styles.projectbg}></View>
+        <View style={styles.quizzesbg}></View>
+        <View style={styles.addTasksbg}>
+          <AntDesign name='plus' style={{ color: 'white', fontSize: 25,left:8, }}/>
+        </View>
+        <Text style={[styles.projects]}>Projects</Text>
+        <Text style={[styles.quizzes]}>Quizzes</Text>
+        <Text style={styles.progressiontxt}>In progress :</Text>
+        <View style={styles.bedbg}></View>
+        <View style={styles.fopbg}></View>
+        <Text style={[styles.bED, styles.bedTypo, styles.bedTypo1]}>BED   {'>>'}</Text>
+        <Text style={[styles.fOP, styles.bedTypo, styles.bedTypo1]}>FOP   {'>>'}</Text>
+        <Image
+          style={[styles.progressbarIcon, styles.groupIconLayout]}
+          resizeMode="cover"
+          source={require("../assets/images/progressbar1.png")}
+        />
+        <Image
+          style={[styles.progressbarIcon1, styles.groupIconLayout]}
+          resizeMode="cover"
+          source={require("../assets/images/progressbar2.png")}
+        />
+        <View style={styles.flashcardsbg}>
+          <Text style={[styles.flashCards]}>
+            Flash cards
+          </Text>
+          <Text style={[styles.testYourKnowledgeHere, styles.bedTypo]}>
+            Test your knowledge here {'>>'}
+          </Text>
+          <Image
+            style={[styles.iconsaxLinearbook1, styles.flashCardsPosition]}
+            resizeMode="cover"
+            source={require("../assets/images/flashcardBookIcon.png")}
+          />
+        </View>
+        
+        <Text
+          style={[styles.upcomingDeadlines, styles.bedTypo1, styles.taskieTypo]}
+        >
+          Upcoming deadlines
+        </Text>
+        <View style={styles.upcomingDeadlinesbg}>
+          <Text style={[styles.fOP1]}>FOP</Text>
+          <View style={styles.verticleLine}></View>
+          <Text style={[styles.deadlineDate]}>22 August 2022</Text>
+        </View>
       </View>
     </View>
 
@@ -71,6 +73,13 @@ const styles = StyleSheet.create({
   container1: {
     left:25,
     top:30,
+    backgroundColor:"#212121",
+  },
+  buffer: { // provides buffer
+    top: "8%",
+    left: "5%",
+    width: "90%",
+    height:'95%',
     backgroundColor:"#212121",
   },
   sectionTitle: {
@@ -149,7 +158,7 @@ const styles = StyleSheet.create({
     bottom: 90,
     width: 129,
     height: 170,
-    borderRadius: 30,
+    borderRadius: 20,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-between",
@@ -161,7 +170,7 @@ const styles = StyleSheet.create({
     bottom: 285,
     width: 129,
     height: 170,
-    borderRadius: 30,
+    borderRadius: 20,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-between",
@@ -192,9 +201,9 @@ const styles = StyleSheet.create({
   flashcardsbg: {
     backgroundColor: "#FEB47B",
     bottom: 275,
-    width: 313,
+    width: "100%",
     height: 100,
-    borderRadius: 40,
+    borderRadius: 20,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-between",
@@ -203,9 +212,9 @@ const styles = StyleSheet.create({
   upcomingDeadlinesbg: {
     backgroundColor: "#A07AFF",
     bottom: 245,
-    width: 313,
+    width: "100%",
     height: 70,
-    borderRadius: 40,
+    borderRadius: 20,
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-between",
@@ -218,8 +227,8 @@ const styles = StyleSheet.create({
   },
   fOP1: {
     position: "absolute",
-    top: 590,
-    left: 30,
+    top: "30%",
+    left: "10%",
     fontSize: 20,
     fontFamily: "Poppins",
     textAlign: "center",
@@ -227,12 +236,12 @@ const styles = StyleSheet.create({
   },
   deadlineDate: {
     position: "absolute",
-    top: 580,
-    left: 183,
+    top: "30%",
+    left: "35%",
     fontSize: 20,
     fontFamily: "Poppins",
     textAlign: "center",
-    width: 98,
+    width: 300,
   },
 
   rectangleIcon1: {
@@ -322,7 +331,7 @@ const styles = StyleSheet.create({
   },
   flashCards: {
     position: "absolute",
-    top: 435,
+    top: "25%",
     left: 25,
     fontSize: 24,
     fontFamily: "Poppins",
@@ -333,7 +342,7 @@ const styles = StyleSheet.create({
   },
   testYourKnowledgeHere: {
     position: "absolute",
-    top: 465,
+    top: "55%",
     left: 25,
     fontSize: 16,
     fontFamily: "Poppins",
@@ -344,8 +353,8 @@ const styles = StyleSheet.create({
   },
   iconsaxLinearbook1: {
     position: "absolute",
-    top: 435,
-    left: 240,
+    top: "30%",
+    left: "80%",
     width: 50,
     height: 50,
     overflow: "hidden",
