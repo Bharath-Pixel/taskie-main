@@ -1,6 +1,6 @@
 import * as React from "react";
 import { StyleSheet, Text, View, Image, Alert,Animated,TouchableOpacity } from "react-native";
-import Svg, { Circle, Path } from "react-native-svg"; 
+import Svg, { Circle, Path } from "react-native-svg";
 import { NavigationContainer } from '@react-navigation/native';
 import { Agenda } from "react-native-calendars";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -9,9 +9,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 const Tab= createBottomTabNavigator();
 
 const Homepage = () => {
-  
   return (
-    
+
     <View style={styles.container}>
       <View style={styles.buffer}>
       <Text style={[styles.sectionTitle]}>Taskie</Text>
@@ -41,7 +40,7 @@ const Homepage = () => {
       <Text
         style={[styles.flashCards]}
       >
-        Flash cards   
+        Flash cards
       </Text>
       <Text style={[styles.testYourKnowledgeHere, styles.bedTypo]}>
         Test your knowledge here {'>>'}
@@ -61,7 +60,7 @@ const Homepage = () => {
       <Text style={[styles.deadlineDate]}>22 August 2022</Text>
       </View>
     </View>
-    
+
   );
 };
 
@@ -69,11 +68,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor:"#212121",
   },
-  buffer: {
+  container1: {
     left:25,
     top:30,
     backgroundColor:"#212121",
-    marginTop:10
   },
   sectionTitle: {
     top:10,
@@ -307,7 +305,7 @@ const styles = StyleSheet.create({
     width: 330,
     height: 70,
   },
-  
+
   progressbarIcon: {
     position: "absolute",
     top: 275,
@@ -364,97 +362,189 @@ const styles = StyleSheet.create({
 
 export default Homepage;
 
-// const Homepage = () => {
+
+// import * as React from "react";
+// import {
+//   StyleSheet,
+//   Text,
+//   View,
+//   Image,
+//   Alert,
+//   Animated,
+//   TouchableOpacity,
+// } from "react-native";
+// import Svg, { Circle, Path } from "react-native-svg";
+// import { NavigationContainer } from "@react-navigation/native";
+// import { Agenda } from "react-native-calendars";
+// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// import AntDesign from "react-native-vector-icons/AntDesign";
+// import { FlatList } from "react-native-gesture-handler";
+
+// const Tab = createBottomTabNavigator();
+
+// const DATA = [
+//   {
+//     id: 1,
+//     content: "FOP",
+//   },
+//   {
+//     id: 2,
+//     content: "BED",
+//   },
+//   {
+//     id: 3,
+//     content: "JPRG",
+//   },
+// ];
+
+// const Item = ({ item }) => {
 //   return (
-//     <View style={styles.homepage}>
-//       <Text style={[styles.taskie, styles.taskieTypo]}>Taskie</Text>
-//       <Image
-//         style={[styles.homepageChild, styles.homepageLayout]}
-//         resizeMode="cover"
-//         source={require("../assets/rectangle-1.png")}
-//       />
-//       <Image
-//         style={[styles.homepageItem, styles.homepageLayout]}
-//         resizeMode="cover"
-//         source={require("../assets/rectangle-1.png")}
-//       />
-//       <View style={[styles.homepageInner, styles.homepageInnerShadowBox]} />
-//       <View style={[styles.rectangleView, styles.homepageInnerShadowBox]} />
-//       <Text
-//         style={[styles.upcomingDeadlines, styles.bedTypo1, styles.taskieTypo]}
+//     <View
+//       style={{ flex: 1, paddingHorizontal: 10, height: "100%", width: "35%" }}
+//     >
+//       <View
+//         style={{
+//           flex: 1,
+//           flexDirection: "row",
+//           backgroundColor: "white",
+//           borderRadius: 15,
+//           justifyContent: "space-around",
+//           width: 100,
+//           alignItems: "center",
+//           paddingLeft: "10%",
+//         }}
 //       >
-//         Upcoming deadlines
-//       </Text>
-//       <View style={[styles.homepageChild1, styles.homepageChildShadowBox]} />
-//       <View style={[styles.homepageChild2, styles.homepageChildShadowBox]} />
-//       <Text style={[styles.projects, styles.quizzesTypo]}>Projects</Text>
-//       <Text style={[styles.quizzes, styles.quizzesTypo]}>Quizzes</Text>
-//       <Text style={[styles.bed, styles.bedTypo, styles.bedTypo1]}>BED</Text>
-//       <Text style={[styles.fop, styles.bedTypo, styles.bedTypo1]}>FOP</Text>
-//       <Text style={[styles.fop1, styles.fop1Typo]}>FOP</Text>
-//       <Image
-//         style={styles.ellipseIcon}
-//         resizeMode="cover"
-//         source={require("../assets/ellipse-1.png")}
-//       />
-//       <Image
-//         style={styles.iconsaxlinearadd}
-//         resizeMode="cover"
-//         source={require("../assets/iconsaxlinearadd.png")}
-//       />
-//       <Text style={[styles.august2022, styles.augustTypo1]}>August 2022</Text>
-//       <Text style={[styles.august20221, styles.augustTypo1]}>August 2022</Text>
-//       <Image
-//         style={[styles.groupIcon, styles.groupIconLayout]}
-//         resizeMode="cover"
-//         source={require("../assets/group-1436.png")}
-//       />
-//       <Image
-//         style={[styles.homepageChild3, styles.groupIconLayout]}
-//         resizeMode="cover"
-//         source={require("../assets/group-1439.png")}
-//       />
-//       <View style={styles.homepageChild4} />
-//       <Text style={[styles.cprQuiz, styles.fop1Typo]}>CPR Quiz</Text>
-//       <View style={[styles.lineView, styles.lineViewLayout]} />
-//       <View style={[styles.homepageChild5, styles.lineViewLayout]} />
-//       <Text style={[styles.august20222, styles.augustTypo]}>
-//         22 August 2022
-//       </Text>
-//       <Text style={[styles.august20223, styles.augustTypo]}>
-//         31 August 2022
-//       </Text>
-//       <Image
-//         style={[styles.iconsaxlinearhome3, styles.iconsaxlinearhome3Layout]}
-//         resizeMode="cover"
-//         source={require("../assets/iconsaxlinearhome3.png")}
-//       />
-//       <Image
-//         style={[
-//           styles.iconsaxlineartasksquare,
-//           styles.iconsaxlinearhome3Layout,
-//         ]}
-//         resizeMode="cover"
-//         source={require("../assets/iconsaxlineartasksquare.png")}
-//       />
-//       <Image
-//         style={styles.unionIcon}
-//         resizeMode="cover"
-//         source={require("../assets/union.png")}
-//       />
-//       <Text
-//         style={[styles.flashCards, styles.flashCardsPosition, styles.bedTypo]}
-//       >
-//         Flash cards
-//       </Text>
-//       <Text style={[styles.testYourKnowledgeHere, styles.bedTypo]}>
-//         Test your knowledge here
-//       </Text>
-//       <Image
-//         style={[styles.iconsaxlinearbook1, styles.flashCardsPosition]}
-//         resizeMode="cover"
-//         source={require("../assets/iconsaxlinearbook1.png")}
-//       />
+//         <Text style={{ fontSize: 18 }}>{item.content}</Text>
+//         <Text style={{ fontSize: 18 }}>{">>"}</Text>
+//       </View>
 //     </View>
 //   );
 // };
+
+// const Homepage = () => {
+//   return (
+//     <View style={styles.container}>
+//       <Text
+//         style={{
+//           fontSize: 36,
+//           paddingTop: "20%",
+//           color: "white",
+//           textAlign: "left",
+//           paddingHorizontal: "10%",
+//         }}
+//       >
+//         Taskie
+//       </Text>
+//       <View
+//         style={{
+//           flex: 1 / 5,
+//           flexDirection: "row",
+//           paddingHorizontal: "10%",
+//           justifyContent: "flex-start",
+//         }}
+//       >
+//         <TouchableOpacity style={styles.projectbg}>
+//           <Text styles={{fontFamily:"Poppins",fontSize: 25}}>Projects</Text>
+//         </TouchableOpacity>
+//         <TouchableOpacity style={styles.projectbg}>
+//           <Text>Quizzes</Text>
+//         </TouchableOpacity>
+//         <TouchableOpacity style={styles.addTasksbg}>
+//         <AntDesign name='plus' style={{  fontSize: 25 }}/>
+//         </TouchableOpacity>
+//       </View>
+//       <Text
+//         style={{
+//           fontSize: 30,
+//           paddingVertical: "10%",
+//           color: "white",
+//           textAlign: "center",
+//           paddingHorizontal: "10%",
+//           fontFamily:"Poppins"
+//         }}
+//       >
+//         In progress :
+//       </Text>
+//       <View
+//         style={{
+//           flex: 1 / 10,
+//           flexDirection: "row",
+//           paddingHorizontal: "10%",
+//           justifyContent: "flex-start",
+//           paddingBottom: "20%",
+//         }}
+//       >
+//         <FlatList
+//           horizontal={true}
+//           showsHorizontalScrollIndicator={false}
+//           data={DATA}
+//           style={{ height: 60, width: "80%" ,fontFamily:"Poppins"}}
+//           renderItem={({ item }) => <Item item={item} />}
+//         />
+        
+//       </View>
+//       <TouchableOpacity
+//         style={{
+//           flexDirection: "row",
+//           borderRadius: 20,
+//           backgroundColor: "#FEB47B",
+//           width: "80%",
+//           height: "10%",
+//           marginLeft: "10%",
+//           justifyContent: "space-between",
+//           alignItems: "center",
+//         }}
+//       >
+//         <Text style={{ fontSize: 24, paddingLeft: "5%", fontFamily:"Poppins" }}>FlashCards</Text>
+//         <AntDesign
+//           name="book"
+//           color={"black"}
+//           size={24}
+//           style={{ paddingRight: "5%" }}
+//         />
+//       </TouchableOpacity>
+//       <Text
+//         style={{
+//           fontSize: 24,
+//           fontFamily:"Poppins",
+//           paddingVertical: "5%",
+//           color: "white",
+//           textAlign: "left",
+//           paddingHorizontal: "10%",
+//         }}
+//       >
+//         Upcoming Deadlines :{" "}
+//       </Text>
+//       <TouchableOpacity
+//         style={{
+//           flexDirection: "row",
+//           borderRadius: 20,
+//           backgroundColor: "#d9d9d9",
+//           width: "80%",
+//           height: "10%",
+//           marginLeft: "10%",
+//           justifyContent: "space-between",
+//           alignItems: "center",
+//         }}
+//       >
+//         <Text style={{ fontSize: 24, paddingLeft: "5%",fontFamily:"Poppins" }}>FOP</Text>
+//         <View style={styles.verticleLine}></View>
+//         <Text style={{ fontSize: 24, paddingRight: "5%" }}>22 August 2022</Text>
+//       </TouchableOpacity>
+//     </View>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   base: {
+//     backgroundColor: "#212121",
+//   },
+//   container: {
+//     flex: 1,
+//     backgroundColor: "#212121",
+//     justifyContent: 'flex-start',
+//   },
+  
+// });
+
+// export default Homepage;
