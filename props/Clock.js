@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-evenly",
     },
     icons: {
-        color: "black",
+        color: "white",
         fontSize: 30,
     },
     buttons: {
@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 25,
         backgroundColor: "white",
         borderRadius: 90,
+        backgroundColor: "#A07AFF",
     },
     starter: {
         top: "10%",
@@ -70,9 +71,11 @@ const styles = StyleSheet.create({
         borderRadius: 90,
         top: 220,
         width: "20%",
+        backgroundColor: "#FEB47B",
     },
     stfont:{
         fontSize: 20,
+        color:"white",
     },
     timer: {
         color: "white",

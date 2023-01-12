@@ -134,16 +134,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     backgroundColor: "#A07AFF",
     borderRadius: 20,
-    borderColor: "#8758FF",
-    borderWidth: 2,
     width: "80%"
   },
   addWrapper: {
     width:50,
     height:50,
     backgroundColor: "#A07AFF",
-    borderColor: "#8758FF",
-    borderWidth: 2,
     borderRadius: 60,
     justifyContent: "center",
     alignItems: "center",

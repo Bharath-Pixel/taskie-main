@@ -18,7 +18,7 @@ import FlashCards from "../screens/Flashcards";
 import Pomo from "../screens/Pomo";
 import Habits from "../screens/Habits";
 import stats from "../screens/stats";
-import welcome from "../screens/Welcome";
+import welcome from "../screens/welcome";
 import login from "../screens/login";
 import signup from "../screens/signup";
 import Search from "../screens/SearchTasks";
