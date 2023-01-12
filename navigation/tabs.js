@@ -56,7 +56,7 @@ const Tabs = () => {
           ),
         })}/>
          
-      <Tab.Screen name="Add" component={CreateTasks} options={({}) => ({
+      <Tab.Screen name="Add" component={Pomo} options={({}) => ({
           tabBarIcon: ({color, size}) => (
             <AntDesign name="pluscircle" color={color} size={40} />
           ),
