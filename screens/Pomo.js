@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import Clock from "../props/Clock.js"
-import stats from "../screens/stats.js"
+import stats from "./stats.js"
 
 
 function ViewStackScreen(){

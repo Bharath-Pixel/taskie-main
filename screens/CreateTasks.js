@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TextInput, View, Text, Button, StyleSheet, TouchableOpacity, ScrollView, Modal, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 import TaskCard from '../props/TaskCard.js';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const CreateTasks = ({navigation}) => { 
   const [task, setTask] = useState();
@@ -52,11 +53,11 @@ const CreateTasks = ({navigation}) => {
           <KeyboardAvoidingView 
             behaviour={Platform.OS === "ios" ? "padding": "height"}
             style={styles.writeTaskWrapper}>
-              <TextInput style = {styles.taskInput} placeholder={'Write a Task'} value={task} onChangeText={text=>setTask(text)} />
+              <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'Enter Task here...'} placeholderTextColor={"#d3d3d3"} value={task} onChangeText={text=>setTask(text)} />
 
               <TouchableOpacity onPress={() => handleAddTask()}>
                 <View style={styles.addWrapper}>
-                  <Text style={styles.addText}>+</Text>
+                <AntDesign name='plus' style={{ color: 'white', fontSize: 20 }}/>
                 </View>
               </TouchableOpacity>
           </KeyboardAvoidingView>
@@ -131,18 +132,18 @@ const styles = StyleSheet.create({
   taskInput: {
     paddingVertical: 15,
     paddingHorizontal: 15,
-    backgroundColor: "#8758FF",
+    backgroundColor: "#A07AFF",
     borderRadius: 20,
-    borderColor: "#FFF",
-    borderWidth: 1,
+    borderColor: "#8758FF",
+    borderWidth: 2,
     width: "80%"
   },
   addWrapper: {
     width:50,
     height:50,
-    backgroundColor: "#8758FF",
-    borderColor: "#FFF",
-    borderWidth: 1,
+    backgroundColor: "#A07AFF",
+    borderColor: "#8758FF",
+    borderWidth: 2,
     borderRadius: 60,
     justifyContent: "center",
     alignItems: "center",

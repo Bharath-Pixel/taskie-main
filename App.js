@@ -8,8 +8,14 @@ import * as SplashScreen from 'expo-splash-screen';
 import Homepage from "./screens/Homepage";
 import { NavigationContainer } from "@react-navigation/native";
 
+// SplashScreen.preventAutoHideAsync()
+//   .then(result => console.log(`SplashScreen.preventAutoHideAsync() succeeded: ${result}`))
+//   .catch(console.warn); 
+SplashScreen.preventAutoHideAsync();
+
 export default function App() {
 
+  
   let [fontsLoaded] = useFonts({
     Poppins: require("./assets/fonts/Poppins-Regular.ttf"),
     Urbanist: require("./assets/fonts/Urbanist-Regular.ttf"),

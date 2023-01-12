@@ -18,9 +18,10 @@ import FlashCards from "../screens/Flashcards";
 import Pomo from "../screens/Pomo";
 import Habits from "../screens/Habits";
 import stats from "../screens/stats";
-import welcome from "../screens/welcome";
+import welcome from "../screens/Welcome";
 import login from "../screens/login";
 import signup from "../screens/signup";
+import Search from "../screens/SearchTasks";
 
 const Tab = createBottomTabNavigator();
 
@@ -39,6 +40,7 @@ const Tabs = () => {
             ...styles.container,
             ...styles.shadow
         },
+        tabBarActiveTintColor:"#A07AFF"
       }
       
     }
@@ -59,7 +61,7 @@ const Tabs = () => {
             <AntDesign name="pluscircle" color={color} size={40} />
           ),
         })} />
-        <Tab.Screen name="Habits" style={{Text:false}} component={stats} options={({}) => ({
+        <Tab.Screen name="Habits" style={{Text:false}} component={Habits} options={({}) => ({
           
           tabBarIcon: ({color, size}) => (
             <FontAwesome5 name="tasks" color={color} size={size} />
@@ -67,9 +69,9 @@ const Tabs = () => {
           headerShown:false
         })}/>
 
-      <Tab.Screen name="Timer" component={Pomo} options={({}) => ({
+      <Tab.Screen name="Search" component={Search} options={({}) => ({
           tabBarIcon: ({color, size}) => (
-            <FontAwesome5 name="stopwatch" color={color} size={size} />
+            <AntDesign name="search1" color={color} size={size} />
           ),
         })}/>
         

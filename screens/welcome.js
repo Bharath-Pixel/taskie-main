@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextInput, View, Text, Button, StyleSheet, TouchableOpacity, ScrollView, Modal, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 
-const welcome = ({navigation}) => { 
+const Welcome = ({navigation}) => { 
     return(
         <View style={styles.container}>
             <View style={styles.buffer}>
@@ -18,7 +18,7 @@ const welcome = ({navigation}) => {
     )
 };
 
-export default welcome;
+export default Welcome;
 
 const styles = StyleSheet.create({
     container: {  // the whole screen

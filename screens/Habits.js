@@ -6,19 +6,6 @@ import { ScrollView } from "react-native-gesture-handler";
 import { color } from "react-native-reanimated";
 import { TouchableHighlight } from "react-native-web";
 
-// const AddTask = ({navigation}) => {
-//     return (
-//       <View style={styles.container}>
-//         <Text style={[styles.text]}>Task Manager</Text>
-//         <Button style={[styles.backButton]}
-//             title="Back"
-//             onPress={() => navigation.goBack()}
-//         />
-//       </View>
-//     );
-// };
-
-// export default AddTask;
 
 const colors = {
   themeColor: "black",
@@ -29,18 +16,22 @@ const colors = {
 
 const tasks = [
   {
+    id:1,
     task: "Morning Walk",
     stamp: "Today - 8am",
   },
   {
+    id:2,
     task: "Meet with HR",
     stamp: "Today - 12 noon",
   },
   {
+    id:3,
     task: "Study FOP",
     stamp: "Tomorrow - 3pm",
   },
   {
+    id:4,
     task: "Time for Gym",
     stamp: "Saturday - 4pm",
   },
@@ -50,6 +41,7 @@ const Task = ({ task, stamp }) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   return (
     <View
+    key={task.id}
       style={{
         backgroundColor: colors.appColor,
         shadowOpacity: 5,
@@ -151,7 +143,7 @@ export default function Habits(props) {
         }}
       >
         {tasks.map((taskie) => (
-          <Task task={taskie.task} stamp={taskie.stamp} />
+          <Task task={taskie.task} stamp={taskie.stamp} key={taskie.id} />
         ))}
       </ScrollView>
     </View>
