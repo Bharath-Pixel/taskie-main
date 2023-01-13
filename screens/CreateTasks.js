@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     color: "white",
+    textAlign:"center",
     fontFamily: "Poppins",
   },
   addTask: {
@@ -156,6 +157,7 @@ const styles = StyleSheet.create({
     top: "2%",
     width: "47%",
     borderRadius: 20,
+
   },
   totalRemaining: {
     backgroundColor: "#FEB47B",
@@ -171,6 +173,7 @@ const styles = StyleSheet.create({
     left: "20%",
     top: "20%",
     position: "absolute",
+    marginBottom:20
   },
   t2: {
     color: "white",

@@ -20,7 +20,7 @@ import Habits from "../screens/Habits";
 import stats from "../screens/stats";
 import Welcome from "../screens/Welcome";
 import login from "../screens/login";
-import signup from "../screens/signup";
+import signup from "../screens/Signup";
 import Search from "../screens/SearchTasks";
 
 const Tab = createBottomTabNavigator();
@@ -56,7 +56,7 @@ const Tabs = () => {
           ),
         })}/>
          
-      <Tab.Screen name="Add" component={CreateTasks} options={({}) => ({
+      <Tab.Screen name="Add" component={signup} options={({}) => ({
           tabBarIcon: ({color, size}) => (
             <AntDesign name="pluscircle" color={color} size={40} />
           ),

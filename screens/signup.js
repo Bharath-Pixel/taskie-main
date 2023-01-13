@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextInput, View, Text, Button, StyleSheet, TouchableOpacity, ScrollView, Modal, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 
-const signup = ({navigation}) => { 
+const Signup = ({navigation}) => { 
     return(
         <View style={styles.container}>
             <View style={styles.buffer}>
@@ -25,7 +25,7 @@ const signup = ({navigation}) => {
     )
 };
 
-export default signup;
+export default Signup;
 
 const styles = StyleSheet.create({
     container: {  // the whole screen
@@ -44,82 +44,94 @@ const styles = StyleSheet.create({
     header: {
         fontSize: 50,
         color: "white",
+        fontFamily:"Poppins",
+        textAlign:"center"
     },
     subheader: {
         fontSize: 20,
         color: "white",
+        fontFamily:"Poppins",
+        textAlign:"center",
+        marginTop:"3%"
     },
     b1: {
         backgroundColor: "#FEB47B",
-        borderRadius: 10,
+        borderRadius: 15,
         justifyContent: 'center', 
         alignItems: 'center',
         paddingVertical: 15,
-        top:"35%",
+        top:"26%",
     },
     t1: {
         backgroundColor: "#8758FF",
         alignContent: "center",
         justifyContent: "center",
-        borderRadius: 10,
+        borderRadius: 20,
         justifyContent: 'center', 
         alignItems: 'center',
         paddingVertical: 15,
-        top:"20%",
+        top:"10%",
         paddingLeft: "5%",
         color: "white",
+        fontFamily:"Poppins"
     },
     t2: {
         backgroundColor: "#8758FF",
         alignContent: "center",
         justifyContent: "center",
-        borderRadius: 10,
+        borderRadius: 20,
         justifyContent: 'center', 
         alignItems: 'center',
         paddingVertical: 15,
-        top:"23%",
+        top:"13%",
         paddingLeft: "5%",
         color: "white",
+        fontFamily:"Poppins"
     },
     t3: {
         backgroundColor: "#8758FF",
         alignContent: "center",
         justifyContent: "center",
-        borderRadius: 10,
+        borderRadius: 20,
         justifyContent: 'center', 
         alignItems: 'center',
         paddingVertical: 15,
-        top:"26%",
+        top:"16%",
         paddingLeft: "5%",
         color: "white",
+        fontFamily:"Poppins"
     },
     t4: {
         backgroundColor: "#8758FF",
         alignContent: "center",
         justifyContent: "center",
-        borderRadius: 10,
+        borderRadius: 20,
         justifyContent: 'center', 
         alignItems: 'center',
         paddingVertical: 15,
-        top:"29%",
+        top:"19%",
         paddingLeft: "5%",
         color: "white",
+        fontFamily:"Poppins"
     },
     t5: {
         backgroundColor: "#8758FF",
         alignContent: "center",
         justifyContent: "center",
-        borderRadius: 10,
+        borderRadius: 20,
         justifyContent: 'center', 
         alignItems: 'center',
         paddingVertical: 15,
-        top:"32%",
+        top:"22%",
         paddingLeft: "5%",
         color: "white",
+        fontFamily:"Poppins"
     },
     buttonText: {
         color: "white",
         fontSize: 20,
+        fontFamily:"Poppins",
+        top:"26%"
     }, 
     fp: {
         color: "red",

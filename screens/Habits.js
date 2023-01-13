@@ -103,6 +103,7 @@ export default function Habits(props) {
               color: colors.white,
               fontSize: 25,
               textAlign: "center",
+              marginTop:"5%"
             }}
           >
             {"Habits"}
@@ -170,6 +171,6 @@ const styles = StyleSheet.create({
     borderRadius:5,
     position:"absolute",
     bottom:10,
-    left:270
+    left:265
   }
 });

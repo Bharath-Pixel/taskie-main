@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Agenda } from "react-native-calendars";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { ScrollView } from "react-native-gesture-handler";
 
 const Tab= createBottomTabNavigator();
 
@@ -55,10 +56,10 @@ const Homepage = () => {
         >
           Upcoming deadlines
         </Text>
-        <View style={styles.upcomingDeadlinesbg}>
+     <View style={styles.upcomingDeadlinesbg}>
           <Text style={[styles.fOP1]}>FOP</Text>
           <View style={styles.verticleLine}></View>
-          <Text style={[styles.deadlineDate]}>22 August 2022</Text>
+          <Text style={[styles.deadlineDate]}>22 August</Text>
         </View>
       </View>
     </View>
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
     backgroundColor:"#212121",
   },
   sectionTitle: {
-    top:10,
+    top:"0.5%",
     fontSize: 30,
     fontWeight: "bold",
     color: "white",
@@ -211,7 +212,7 @@ const styles = StyleSheet.create({
   },
   upcomingDeadlinesbg: {
     backgroundColor: "#A07AFF",
-    bottom: 245,
+    bottom: "32.5%",
     width: "100%",
     height: 70,
     borderRadius: 20,
@@ -237,7 +238,7 @@ const styles = StyleSheet.create({
   deadlineDate: {
     position: "absolute",
     top: "30%",
-    left: "35%",
+    left: "30%",
     fontSize: 20,
     fontFamily: "Poppins",
     textAlign: "center",

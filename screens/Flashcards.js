@@ -81,9 +81,9 @@ const FlashCards = ({}) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ fontSize: 20, paddingVertical: "5%" }}>Question 1</Text>
-        <Text style={{ fontSize: 16, paddingVertical: "15%" }}>
-          What Color is an Orange?
+        <Text style={{ fontSize: 24,marginTop:"40%", paddingVertical: "5%",fontFamily:"Poppins" }}>Question 1</Text>
+        <Text style={{ fontSize: 16, paddingVertical: "15%",fontFamily:"Poppins",textAlign:"center" }}>
+          What Color is an Orange? 
         </Text>
       </View>
       <Text
