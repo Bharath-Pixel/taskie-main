@@ -9,9 +9,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import Clock from "../props/Clock.js";
-import stats from "./stats.js";
 import { Searchbar } from "react-native-paper";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import { useNavigation } from "@react-navigation/native";
+
 
 const DATA = [
   {
@@ -74,14 +75,18 @@ function cardItem({ item }) {
     </View>
   );
 }
-const Search = ({ navigation }) => {
+const Search = (navigation) => {
   const [searchQuery, setSearchQuery] = React.useState("");
-
+  // const navigation = useNavigation();
+  
   let { card, cardText, cardImage, cardTitleText } = styles;
   const onChangeSearch = (query) => setSearchQuery(query);
   return (
     <View style={styles.container}>
       <View style={styles.buffer}>
+      <AntDesign 
+      onPress={() => navigation.navigate('Habits')}
+      name='back' style={{ color: 'white', fontSize: 30,position:"absolute" }}/>
         <Text style={[styles.sectionTitle]}>Explore</Text>
         <Searchbar
           style={[styles.searchbar]}

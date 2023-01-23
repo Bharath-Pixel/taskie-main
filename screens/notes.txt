@@ -1,5 +1,0 @@
-some notes for consistency
-
-1 - for padding and margin use % instead of pixel values
-2 - all borderRadius fix to 10
-3 - when there is text include fontFamily: "Poppins",

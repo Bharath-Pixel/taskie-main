@@ -2,7 +2,7 @@ import React, { useState }   from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
-const stats = ({navigation}) => {
+const Stats = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.buffer}>
@@ -35,7 +35,7 @@ const stats = ({navigation}) => {
   );
 };
 
-export default stats;
+export default Stats;
 
 const styles = StyleSheet.create({
   container: {  // the whole screen

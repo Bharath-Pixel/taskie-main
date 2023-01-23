@@ -5,6 +5,9 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import { ScrollView } from "react-native-gesture-handler";
 import { color } from "react-native-reanimated";
 import { TouchableHighlight } from "react-native-web";
+import { NavigationContainer } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 
 const colors = {
@@ -16,32 +19,64 @@ const colors = {
 
 const tasks = [
   {
-    id:1,
+    id: 1,
     task: "Morning Walk",
     stamp: "Today - 8am",
   },
   {
-    id:2,
+    id: 2,
     task: "Meet with HR",
     stamp: "Today - 12 noon",
   },
   {
-    id:3,
+    id: 3,
     task: "Study FOP",
     stamp: "Tomorrow - 3pm",
   },
   {
-    id:4,
+    id: 4,
     task: "Time for Gym",
     stamp: "Saturday - 4pm",
   },
 ];
 
+const useTasks = () => {
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      task: "Morning Walk",
+      stamp: "Today - 8am",
+    },
+    {
+      id: 2,
+      task: "Meet with HR",
+      stamp: "Today - 12 noon",
+    },
+    {
+      id: 3,
+      task: "Study FOP",
+      stamp: "Tomorrow - 3pm",
+    },
+    {
+      id: 4,
+      task: "Time for Gym",
+      stamp: "Saturday - 4pm",
+    },
+  ]);
+
+  const addTask = (newTask) => {
+    setTasks([...tasks, newTask]);
+  }
+
+  return { tasks, addTask };
+}
+
+
 const Task = ({ task, stamp }) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   return (
     <View
-    key={task.id}
+      key={task.id}
       style={{
         backgroundColor: colors.appColor,
         shadowOpacity: 5,
@@ -65,12 +100,11 @@ const Task = ({ task, stamp }) => {
             {stamp}
           </Text>
           <Checkbox
-          style={[styles.checkBoxStyle]}
+            style={[styles.checkBoxStyle]}
             disabled={false}
             color="#7B51E7"
             value={toggleCheckBox}
             onValueChange={(newValue) => setToggleCheckBox(newValue)}
-            
           />
         </View>
       </View>
@@ -79,6 +113,8 @@ const Task = ({ task, stamp }) => {
 };
 
 export default function Habits(props) {
+
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -103,7 +139,7 @@ export default function Habits(props) {
               color: colors.white,
               fontSize: 25,
               textAlign: "center",
-              marginTop:"5%"
+              marginTop: "5%",
             }}
           >
             {"Habits"}
@@ -125,8 +161,11 @@ export default function Habits(props) {
           Tasks (4)
         </Text>
         <AntDesign
-          name="plus" //
-          size={40}
+          onPress={() =>
+            navigation.navigate('SearchScreen')
+          }
+          name="search1" //
+          size={30}
           style={{
             color: "white",
             borderRadius: 20,
@@ -161,16 +200,15 @@ const styles = StyleSheet.create({
   },
   taskText: {
     fontFamily: "Poppins",
-    fontSize:18,
-
+    fontSize: 18,
   },
   backButton: {
     top: 10,
   },
-  checkBoxStyle:{
-    borderRadius:5,
-    position:"absolute",
-    bottom:10,
-    left:265
-  }
+  checkBoxStyle: {
+    borderRadius: 5,
+    position: "absolute",
+    bottom: 10,
+    left: 265,
+  },
 });

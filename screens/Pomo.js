@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import Clock from "../props/Clock.js"
-import stats from "./stats.js"
+import Stats from "./Stats.js"
+
 
 
 function ViewStackScreen(){
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Stats" component={stats}
+      <Stack.Screen name="Stats" component={Stats}
         options={{
         headerShown: false,
         }}
@@ -26,7 +27,7 @@ const Pomo = ({navigation}) => {
         <Clock/>
         <Button
              title="See Stats"
-             onPress={() => navigation.navigate('Stats')}
+             onPress={() => navigation.navigate('StatsScreen')}
          />
       </View>
     </View>

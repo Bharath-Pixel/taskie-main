@@ -3,15 +3,13 @@ import { StyleSheet, Text, View, Image, Alert,Animated,TouchableOpacity } from "
 import Svg, { Circle, Path } from "react-native-svg";
 import { NavigationContainer } from '@react-navigation/native';
 import { Agenda } from "react-native-calendars";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { ScrollView } from "react-native-gesture-handler";
 
-const Tab= createBottomTabNavigator();
+
 
 const Homepage = () => {
   return (
-
     <View style={styles.container}>
       <View style={styles.buffer}>
         <Text style={[styles.sectionTitle]}>Taskie</Text>
