@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { TextInput, View, Text, Button, StyleSheet, TouchableOpacity, ScrollView, Modal, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
-import TaskCard from '../props/TaskCard.js';
+import {TaskCard, TutorialCard} from '../props/TaskCard.js';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const CreateTasks = ({navigation}) => { 
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
+  const [adv, setADV] = useState(false);
+
 
   const handleAddTask = () => {
     Keyboard.dismiss();
     setTaskItems([...taskItems, task]);
     setTask(null);
+    setADV(false);
   }
 
   const completeTask = (index) => {
@@ -35,31 +38,57 @@ const CreateTasks = ({navigation}) => {
             
 
           <ScrollView style={[styles.list]}>
+            <View>
+              {taskItems.length === 0 ? (
+                <TutorialCard c="Tutorial" h="Write your tasks down one by one" s="No due date" />
+              ) : (
+                taskItems.map((item, index)=> {
+                  return(
+                    <TouchableOpacity key={index} onPress={()=>completeTask(index)}>
+                      <TaskCard c=" " h={item} s=" " />
+                    </TouchableOpacity>
+                  )
+                })
+              )}
+            </View>
 
-            <TaskCard c="Tutorial" h="Write your tasks down one by one" s="No due date" />
-            {
-              taskItems.map((item, index)=> {
-                return (
-                  <TouchableOpacity key={index} onPress={()=>completeTask(index)}>
-                    <TaskCard c=" " h={item} s=" " />
-                  </TouchableOpacity>
-                )
-              })
-            }
             <View style={[styles.toSee]}></View>
-
           </ScrollView>
+
+          <View style={[styles.popup]}>
+            <Modal style={styles.modalContainer} animationType="fade" visible={adv} transparent={true} onRequestClose={() => setADV(false)}>
+              <View style={[styles.color]}>
+                  
+                  <TouchableOpacity onPress={() => setADV(false)}>
+                    <Text>test</Text>
+                  </TouchableOpacity>
+              </View>
+            </Modal>
+          </View>
 
           <KeyboardAvoidingView 
             behaviour={Platform.OS === "ios" ? "padding": "height"}
             style={styles.writeTaskWrapper}>
               <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'Enter Task here...'} placeholderTextColor={"#d3d3d3"} value={task} onChangeText={text=>setTask(text)} />
 
-              <TouchableOpacity onPress={() => handleAddTask()}>
+              <TouchableOpacity onPress={() => setADV(true)}>
                 <View style={styles.addWrapper}>
-                <AntDesign name='plus' style={{ color: 'white', fontSize: 20 }}/>
+                  <AntDesign name='setting' style={{ color: 'white', fontSize: 20 }}/>
                 </View>
               </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => handleAddTask()}>
+                <View style={styles.addWrapper}>
+                  <AntDesign name='plus' style={{ color: 'white', fontSize: 20 }}/>
+                </View>
+              </TouchableOpacity>
+              {/* <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'Enter Task here...'} placeholderTextColor={"#d3d3d3"} value={task} onChangeText={text=>setTask(text)} />
+
+              <TouchableOpacity onPress={() => handleAddTask()}>
+                <View style={styles.addWrapper}>
+                  <AntDesign name='plus' style={{ color: 'white', fontSize: 20 }}/>
+                </View>
+              </TouchableOpacity> */}
           </KeyboardAvoidingView>
         </View>
       </View>
@@ -137,7 +166,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     backgroundColor: "#A07AFF",
     borderRadius: 20,
-    width: "80%"
+    width: "70%"
   },
   addWrapper: {
     width:50,
@@ -185,5 +214,29 @@ const styles = StyleSheet.create({
   },
   list: {
     top: "-16%"
+  },
+  modalContainer: {
+    // backgroundColor: 'black',
+    width: '10%',
+    height: '10%',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  popup: {
+    // backgroundColor: 'white',
+    width: '100%',
+    height: '15%',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    bottom: "18%"
+  },
+  color: {
+    backgroundColor: "blue",
+    top: "68%",
+    left: "5%",
+    height: "14%",
+    width: "90%",
   }
 });

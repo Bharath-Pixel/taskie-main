@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from "react-native";
 
-function TaskCard({c,h,s}) {
+export function TaskCard({c,h,s}) {
     return(
         <View style={[styles.taskCard]}>
             <Text style={[styles.taskCategory]}>{c}</Text>
@@ -11,8 +11,18 @@ function TaskCard({c,h,s}) {
     )
 }
 
+export function TutorialCard({c,h,s}) {
+  return(
+      <View style={[styles.tutorialCard]}>
+          <Text style={[styles.taskCategory]}>{c}</Text>
+          <Text style={[styles.taskHeader]}>{h}</Text>
+          <Text style={[styles.taskSubHeader]}>{s}</Text>
+      </View> 
+  )
+}
+
 const styles = StyleSheet.create({
-    // For Tasks
+  // For Tasks
   toSee: {
     marginBottom: "40%",
   },
@@ -22,7 +32,7 @@ const styles = StyleSheet.create({
     paddingBottom: '5%',
     paddingTop: '5%',
     borderRadius: 20,
-    backgroundColor: 'gray',
+    backgroundColor: 'blue',
     justifyContent: 'center',
   },
   taskCategory: {
@@ -50,6 +60,15 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins",
     textAlign:"center"
   },
-})
 
-export default TaskCard
+  // Tutorial 
+  tutorialCard: {
+    marginTop: "5%",
+    width: '100%',
+    paddingBottom: '5%',
+    paddingTop: '5%',
+    borderRadius: 20,
+    backgroundColor: 'gray',
+    justifyContent: 'center',
+  },
+})
