@@ -1,18 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextInput, View, Text, Button, StyleSheet, TouchableOpacity, ScrollView, Modal, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 import {TaskCard, TutorialCard} from '../props/TaskCard.js';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const CreateTasks = ({navigation}) => { 
-  const [task, setTask] = useState();
+  const [title, setTitle] = useState();
+  const [tag, setTag] = useState();
+
+  var [date, setDate] = useState(new Date());
+  let forDate = ""
+
   const [taskItems, setTaskItems] = useState([]);
   const [adv, setADV] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+        setDate(new Date());
+    }, 86400000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    forDate = date.toLocaleDateString();
+    let formatDate = forDate + " | " + calculateDays();
+  }, [date]);
+
+
+  const calculateDays = () => {
+    const currentDate = new Date();
+    const timeDiff = date.getTime() - currentDate.getTime();
+    const diffDays = Math.round(timeDiff / (1000 * 3600 * 24));
+    if(date.setHours(0,0,0,0) == currentDate.setHours(0,0,0,0)){
+      return "Today";
+    }
+    else if (diffDays < 0) {
+      return Math.abs(diffDays) + " days ago";
+    } else {
+      return diffDays + " days left";
+    }
+  }
 
 
   const handleAddTask = () => {
     Keyboard.dismiss();
-    setTaskItems([...taskItems, task]);
-    setTask(null);
+    let formatDate = forDate + " | " + calculateDays()
+    setTaskItems([...taskItems, [title, tag, formatDate]]);
+    setTag(null); 
     setADV(false);
   }
 
@@ -45,7 +78,7 @@ const CreateTasks = ({navigation}) => {
                 taskItems.map((item, index)=> {
                   return(
                     <TouchableOpacity key={index} onPress={()=>completeTask(index)}>
-                      <TaskCard c=" " h={item} s=" " />
+                      <TaskCard c={item[1]} h={item[0]} s={item[2]} />
                     </TouchableOpacity>
                   )
                 })
@@ -59,9 +92,26 @@ const CreateTasks = ({navigation}) => {
             <Modal style={styles.modalContainer} animationType="fade" visible={adv} transparent={true} onRequestClose={() => setADV(false)}>
               <View style={[styles.color]}>
                   
-                  <TouchableOpacity onPress={() => setADV(false)}>
-                    <Text>test</Text>
-                  </TouchableOpacity>
+                  <Text>Add a Tag</Text>
+                  <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'Tags help with organisation'} placeholderTextColor={"#d3d3d3"} value={tag} onChangeText={text=>setTag(text)} />
+                  <Text>Due date</Text>
+                  <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'MM/DD/YYYY'} placeholderTextColor={"#d3d3d3"} value={date} onChangeText={text=>setDate(new Date(text))} />
+
+                  <KeyboardAvoidingView 
+                    behaviour={Platform.OS === "ios" ? "padding": "height"}
+                    style={styles.newWriteTaskWrapper}>
+                      <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'Enter Task here...'} placeholderTextColor={"#d3d3d3"} value={title} onChangeText={text=>setTitle(text)} />
+
+                      <TouchableOpacity 
+                        onPress={() => handleAddTask()} 
+                        onLongPress={() => setADV(true)}
+                      >
+                        <View style={styles.addWrapper}>
+                          <AntDesign name='plus' style={{ color: 'white', fontSize: 20 }}/>
+                        </View>
+                      </TouchableOpacity>
+
+                  </KeyboardAvoidingView>
               </View>
             </Modal>
           </View>
@@ -69,19 +119,24 @@ const CreateTasks = ({navigation}) => {
           <KeyboardAvoidingView 
             behaviour={Platform.OS === "ios" ? "padding": "height"}
             style={styles.writeTaskWrapper}>
-              <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'Enter Task here...'} placeholderTextColor={"#d3d3d3"} value={task} onChangeText={text=>setTask(text)} />
-
+            <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'Enter Task here...'} placeholderTextColor={"#d3d3d3"} value={title} onChangeText={text=>setTitle(text)} />
+{/* 
               <TouchableOpacity onPress={() => setADV(true)}>
                 <View style={styles.addWrapper}>
                   <AntDesign name='setting' style={{ color: 'white', fontSize: 20 }}/>
                 </View>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
 
-              <TouchableOpacity onPress={() => handleAddTask()}>
+              <TouchableOpacity 
+                onPress={() => handleAddTask()} 
+                onLongPress={() => setADV(true)}
+              >
                 <View style={styles.addWrapper}>
                   <AntDesign name='plus' style={{ color: 'white', fontSize: 20 }}/>
                 </View>
               </TouchableOpacity>
+
+
               {/* <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'Enter Task here...'} placeholderTextColor={"#d3d3d3"} value={task} onChangeText={text=>setTask(text)} />
 
               <TouchableOpacity onPress={() => handleAddTask()}>
@@ -161,17 +216,26 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center"
   },
+  newWriteTaskWrapper: {
+    paddingVertical: 30,
+    position: "absolute",
+    top: "83%",
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
   taskInput: {
     paddingVertical: 15,
     paddingHorizontal: 15,
     backgroundColor: "#A07AFF",
     borderRadius: 20,
-    width: "70%"
+    width: "80%"
   },
   addWrapper: {
     width:50,
     height:50,
-    backgroundColor: "#A07AFF",
+    backgroundColor: "#FEB47B",
     borderRadius: 60,
     justifyContent: "center",
     alignItems: "center",
@@ -213,10 +277,10 @@ const styles = StyleSheet.create({
     width: "60%"
   },
   list: {
-    top: "-16%"
+    top: "-16%",
+    marginBottom: "-30%"
   },
   modalContainer: {
-    // backgroundColor: 'black',
     width: '10%',
     height: '10%',
     alignSelf: 'center',
@@ -224,7 +288,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   popup: {
-    // backgroundColor: 'white',
     width: '100%',
     height: '15%',
     alignSelf: 'center',
@@ -233,7 +296,7 @@ const styles = StyleSheet.create({
     bottom: "18%"
   },
   color: {
-    backgroundColor: "blue",
+    backgroundColor: "#A07AFF",
     top: "68%",
     left: "5%",
     height: "14%",
