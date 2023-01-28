@@ -16,13 +16,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Homepage from "../screens/Homepage";
 import CreateTasks from "../screens/CreateTasks";
-import FlashCards from "../screens/FlashcardScreens/Flashcards";
 import Pomo from "../screens/Pomo";
 import Habits from "../screens/Habits";
 import Stats from "../screens/Stats";
-import Welcome from "../screens/Welcome";
 import Search from "../screens/SearchTasks";
 import Homepage2 from "../screens/Homepage2";
+// import {Homepage,CreateTasks,Pomo, Habits,Stats,Search} from '../screens'
+import FlashCards from "../screens/FlashcardScreens/Flashcards";
 
 const TimerStats = createNativeStackNavigator();
 
@@ -53,6 +53,26 @@ function HabitsStackScreen() {
     </HabitsScreenStack.Navigator>
   );
 }
+
+const CustomTabBarButton=({children,onPress})=>(
+  <TouchableOpacity style={{
+    top:"-8%",
+    justifyContent:"center",
+    alignItems:'center',
+    ...styles.shadow
+  }}
+  onPress={onPress}
+  >
+    <View style={{
+      width:60,
+      height:60,
+      borderRadius:35,
+      backgroundColor:"#A07AFF"
+    }}>{children}</View>
+
+  </TouchableOpacity>
+)
+
 
 const Tab = createBottomTabNavigator();
 
@@ -90,6 +110,7 @@ const Tabs = () => {
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="book" color={color} size={size} />
           ),
+         headerShown:false
         })}
       />
 
@@ -98,8 +119,13 @@ const Tabs = () => {
         component={CreateTasks}
         options={({}) => ({
           tabBarIcon: ({ color, size }) => (
-            <AntDesign name="pluscircle" color={color} size={40} />
+            <AntDesign name="plus" color={color} size={35} 
+            // style={{paddingTop:"12%"}}
+            />
           ),
+          // tabBarButton:(props) =>(
+          //   <CustomTabBarButton{...props}/>
+          //   ),
         })}
       />
 

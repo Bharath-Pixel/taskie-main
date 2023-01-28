@@ -1,10 +1,23 @@
 import {React,useEffect} from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { ProgressBar, MD3Colors } from "react-native-paper";
 // import GlobalFont from 'react-native-global-font'
+import Flashcard from "../../props/FlashcardFlip";
+
+const flashcards = [
+  {  
+      question: 'What is the capital of France?',
+      answer: 'Paris'
+  },
+  // {
+  //     question: 'What is the largest planet in our solar system?',
+  //     answer: 'Jupiter'
+  // },
+  // // Add more flashcards here
+]
 
 const FlashCards = ({}) => {
   return (
@@ -40,7 +53,7 @@ const FlashCards = ({}) => {
       <ProgressBar progress={0.3} color={MD3Colors.primary40} />
       <View
         style={{
-          marginTop: "10%",
+          marginTop: "12%",
           flex: 0.7,
           backgroundColor: "#dabcf9",
           width: "80%",
@@ -50,10 +63,13 @@ const FlashCards = ({}) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ fontSize: 28,marginTop:"40%", paddingVertical: "5%",fontFamily:"Urbanist" }}>Question 1</Text>
+        {/* <Text style={{ fontSize: 28,marginTop:"40%", paddingVertical: "5%",fontFamily:"Urbanist" }}>Question 1</Text>
         <Text style={{ fontSize: 18, paddingVertical: "15%",fontFamily:"Urbanist",textAlign:"center" }}>
           What Color is an Orange? 
-        </Text>
+        </Text> */}
+        {flashcards.map((flashcard, index) => {
+                return <Flashcard key={index} question={flashcard.question} answer={flashcard.answer} />
+            })}
       </View>
       <Text
         style={{
@@ -64,7 +80,7 @@ const FlashCards = ({}) => {
           fontFamily:"Urbanist"
         }}
       >
-        Tap Card to see answers
+        Tap Text to see answers
       </Text>
     </View>
   );

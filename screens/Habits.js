@@ -11,10 +11,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 
 const colors = {
-  themeColor: "black",
-  white: "#fff",
+  themeColor: "#0A0A0A",
+  white: "#DFDFDF",
   background: "#212121",
-  appColor: "#A07AFF",
+  appColor: "#1F222A",
 };
 
 const tasks = [
@@ -40,36 +40,36 @@ const tasks = [
   },
 ];
 
-const useTasks = () => {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      task: "Morning Walk",
-      stamp: "Today - 8am",
-    },
-    {
-      id: 2,
-      task: "Meet with HR",
-      stamp: "Today - 12 noon",
-    },
-    {
-      id: 3,
-      task: "Study FOP",
-      stamp: "Tomorrow - 3pm",
-    },
-    {
-      id: 4,
-      task: "Time for Gym",
-      stamp: "Saturday - 4pm",
-    },
-  ]);
+// const useTasks = () => {
+//   const [tasks, setTasks] = useState([
+//     {
+//       id: 1,
+//       task: "Morning Walk",
+//       stamp: "Today - 8am",
+//     },
+//     {
+//       id: 2,
+//       task: "Meet with HR",
+//       stamp: "Today - 12 noon",
+//     },
+//     {
+//       id: 3,
+//       task: "Study FOP",
+//       stamp: "Tomorrow - 3pm",
+//     },
+//     {
+//       id: 4,
+//       task: "Time for Gym",
+//       stamp: "Saturday - 4pm",
+//     },
+//   ]);
 
-  const addTask = (newTask) => {
-    setTasks([...tasks, newTask]);
-  }
+//   const addTask = (newTask) => {
+//     setTasks([...tasks, newTask]);
+//   }
 
-  return { tasks, addTask };
-}
+//   return { tasks, addTask };
+// }
 
 
 const Task = ({ task, stamp }) => {
@@ -79,9 +79,10 @@ const Task = ({ task, stamp }) => {
       key={task.id}
       style={{
         backgroundColor: colors.appColor,
+        color:colors.white,
         shadowOpacity: 5,
         shadowRadius: 1,
-        shadowOffset: { height: 2, width: 2 },
+        shadowOffset: { height: 1, width: 1 },
         shadowColor: "#000000",
         flexDirection: "row",
         marginHorizontal: 16,
@@ -96,7 +97,7 @@ const Task = ({ task, stamp }) => {
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <View>
           <Text style={[styles.taskText]}>{task}</Text>
-          <Text style={{ fontFamily: "Poppins", color: colors.greyish }}>
+          <Text style={{ fontFamily: "Poppins", color: colors.white,paddingTop:"3%" }}>
             {stamp}
           </Text>
           <Checkbox
@@ -136,7 +137,7 @@ export default function Habits(props) {
           <Text
             style={{
               fontFamily: "Poppins",
-              color: colors.white,
+              color: 'white',
               fontSize: 25,
               textAlign: "center",
               marginTop: "5%",
@@ -201,6 +202,7 @@ const styles = StyleSheet.create({
   taskText: {
     fontFamily: "Poppins",
     fontSize: 18,
+    color:'#DFDFDF'
   },
   backButton: {
     top: 10,

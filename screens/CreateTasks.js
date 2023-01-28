@@ -135,8 +135,6 @@ const CreateTasks = ({navigation}) => {
                   <AntDesign name='plus' style={{ color: 'white', fontSize: 20 }}/>
                 </View>
               </TouchableOpacity>
-
-
               {/* <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'Enter Task here...'} placeholderTextColor={"#d3d3d3"} value={task} onChangeText={text=>setTask(text)} />
 
               <TouchableOpacity onPress={() => handleAddTask()}>
@@ -192,6 +190,7 @@ const styles = StyleSheet.create({
     color: "white",
     paddingTop:10,
     fontSize: 16,
+    textAlign:"center"
   },
 
   // For adding task
