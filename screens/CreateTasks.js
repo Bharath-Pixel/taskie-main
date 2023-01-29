@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useState, useEffect, createContext } from 'react';
 import { TextInput, View, Text, Button, StyleSheet, TouchableOpacity, ScrollView, Modal, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 import {TaskCard, TutorialCard} from '../props/TaskCard.js';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const CreateTasks = ({navigation}) => { 
   const [title, setTitle] = useState();
-  const [tag, setTag] = useState();
+  const [tag, setTag] = useState("General");
 
   var [date, setDate] = useState(new Date());
   let forDate = ""
@@ -13,9 +14,12 @@ const CreateTasks = ({navigation}) => {
   const [taskItems, setTaskItems] = useState([]);
   const [adv, setADV] = useState(false);
 
+  let [totalTasksCompletedToday, completed] = useState(0);
+
   useEffect(() => {
     const interval = setInterval(() => {
         setDate(new Date());
+        completed(0);
     }, 86400000);
     return () => clearInterval(interval);
   }, []);
@@ -41,11 +45,19 @@ const CreateTasks = ({navigation}) => {
   }
 
 
-  const handleAddTask = () => {
+  const handleAddTask = async () => {
     Keyboard.dismiss();
+    if (forDate.length === 0) {
+      forDate = (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear();
+    }
     let formatDate = forDate + " | " + calculateDays()
+    
+    // await AsyncStorage.setItem('@tasklist', JSON.stringify(taskItems))
     setTaskItems([...taskItems, [title, tag, formatDate]]);
-    setTag(null); 
+    console.log(taskItems);
+    setTag("General");
+    setDate(new Date()); 
+    setTitle(null); 
     setADV(false);
   }
 
@@ -53,6 +65,7 @@ const CreateTasks = ({navigation}) => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
+    completed(totalTasksCompletedToday+=1)
   }
 
     return (
@@ -61,11 +74,11 @@ const CreateTasks = ({navigation}) => {
           <Text style={[styles.sectionTitle]}>Tasks</Text>
           <Text style={[styles.instructions]}>Add button creates new task. Tap to clear Task</Text>
           <View style={styles.clearedTdy}>
-              <Text style={styles.t1}>5</Text>
+              <Text style={styles.t1}>{totalTasksCompletedToday}</Text>
               <Text style={styles.t2}>Completed Today</Text>
             </View>
             <View style={styles.totalRemaining}>
-              <Text style={styles.t1}>7</Text>
+              <Text style={styles.t1}>{taskItems.length}</Text>
               <Text style={styles.t2}>Total Remaining</Text>
             </View>
             
@@ -75,7 +88,7 @@ const CreateTasks = ({navigation}) => {
               {taskItems.length === 0 ? (
                 <TutorialCard c="Tutorial" h="Write your tasks down one by one" s="No due date" />
               ) : (
-                taskItems.map((item, index)=> {
+                taskItems.sort((a, b) => new Date(a[2]).getTime() - new Date(b[2]).getTime()).map((item, index)=> {
                   return(
                     <TouchableOpacity key={index} onPress={()=>completeTask(index)}>
                       <TaskCard c={item[1]} h={item[0]} s={item[2]} />
@@ -95,7 +108,7 @@ const CreateTasks = ({navigation}) => {
                   <Text>Add a Tag</Text>
                   <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'Tags help with organisation'} placeholderTextColor={"#d3d3d3"} value={tag} onChangeText={text=>setTag(text)} />
                   <Text>Due date</Text>
-                  <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'MM/DD/YYYY'} placeholderTextColor={"#d3d3d3"} value={date} onChangeText={text=>setDate(new Date(text))} />
+                  <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'MM/DD/YYYY'} placeholderTextColor={"#d3d3d3"} value={date} onChangeText={text=>setDate(new Date(text))}/>
 
                   <KeyboardAvoidingView 
                     behaviour={Platform.OS === "ios" ? "padding": "height"}

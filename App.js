@@ -8,6 +8,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import Homepage from "./screens/Homepage";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigator from "./navigation/AuthNavigator";
+
 // SplashScreen.preventAutoHideAsync()
 //   .then(result => console.log(`SplashScreen.preventAutoHideAsync() succeeded: ${result}`))
 //   .catch(console.warn); 
