@@ -13,7 +13,6 @@ import { Searchbar } from "react-native-paper";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 
-
 const DATA = [
   {
     id: 1,
@@ -32,8 +31,6 @@ const DATA = [
     content: "Tests",
   },
 ];
-
-
 
 function Item({ item }) {
   const [active, setActive] = React.useState(0);
@@ -75,21 +72,23 @@ function cardItem({ item }) {
     </View>
   );
 }
-const Search = (navigation) => {
+const Search = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
   // const navigation = useNavigation();
-  
+  const navigation = useNavigation();
   let { card, cardText, cardImage, cardTitleText } = styles;
   const onChangeSearch = (query) => setSearchQuery(query);
   return (
     <View style={styles.container}>
       <View style={styles.buffer}>
-      <AntDesign 
-      onPress={() => navigation.navigate('Habits')}
-      name='back' style={{ color: 'white', fontSize: 30,position:"absolute" }}/>
+        <AntDesign
+          onPress={() => navigation.navigate('HabitsScreen')}
+          name="back"
+          style={{ color: "white", fontSize: 30 }}
+        />
         <Text style={[styles.sectionTitle]}>Explore</Text>
         <Searchbar
-          style={[styles.searchbar]}
+          style={[styles.searchbar]}  
           placeholder="Search..."
           placeholderTextColor="gray"
           onChangeText={onChangeSearch}
@@ -109,19 +108,19 @@ const Search = (navigation) => {
           showsHorizontalScrollIndicator={false}
         >
           <Text style={cardTitleText}> Tasks </Text>
-          <View  style={{flexDirection:"row"}}>
-          <ScrollView  >
-          <TouchableOpacity style={card}>
-            <Image
-              style={cardImage}
-              source={{
-                uri: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-              }}
-            ></Image>
-            <Text style={cardText}> Study FOP </Text>
-          </TouchableOpacity>
-          </ScrollView>
-        </View>
+          <View style={{ flexDirection: "row" }}>
+            <ScrollView>
+              <TouchableOpacity style={card}>
+                <Image
+                  style={cardImage}
+                  source={{
+                    uri: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+                  }}
+                ></Image>
+                <Text style={cardText}> Study FOP </Text>
+              </TouchableOpacity>
+            </ScrollView>
+          </View>
           <Text style={cardTitleText}> Flashcards </Text>
           <TouchableOpacity style={card}>
             <Image
@@ -132,7 +131,6 @@ const Search = (navigation) => {
             ></Image>
             <Text style={cardText}> Chemistry </Text>
           </TouchableOpacity>
-          
         </ScrollView>
       </View>
     </View>
@@ -214,10 +212,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowOffset: { width: 3, height: 3 },
     borderRadius: 20,
-
   },
   cardImage: {
-    
     width: "100%",
     height: 200,
     resizeMode: "cover",

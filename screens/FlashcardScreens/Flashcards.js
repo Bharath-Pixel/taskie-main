@@ -6,6 +6,7 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { ProgressBar, MD3Colors } from "react-native-paper";
 // import GlobalFont from 'react-native-global-font'
 import Flashcard from "../../props/FlashcardFlip";
+import { useNavigation } from "@react-navigation/native";
 
 const flashcards = [
   {  
@@ -20,6 +21,7 @@ const flashcards = [
 ]
 
 const FlashCards = ({}) => {
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -37,7 +39,8 @@ const FlashCards = ({}) => {
           justifyContent: "space-around",
         }}
       >
-        <AntDesign name="arrowleft" color={"white"} size={24} />
+        <AntDesign
+         name="arrowleft" color={"#212121"} size={24} />
         <Text
           style={{
             paddingVertical: "5%",
@@ -46,11 +49,15 @@ const FlashCards = ({}) => {
             fontSize: 24,
           }}
         >
-          3/15
+          1/2
         </Text>
-        <AntDesign name="arrowright" color={"white"} size={24} />
+        <AntDesign 
+        onPress={() =>
+          navigation.navigate('FlashcardsScreen1')
+        }
+        name="arrowright" color={"white"} size={24} />
       </View>
-      <ProgressBar progress={0.3} color={MD3Colors.primary40} />
+      <ProgressBar progress={0.5} color={MD3Colors.primary40} />
       <View
         style={{
           marginTop: "12%",

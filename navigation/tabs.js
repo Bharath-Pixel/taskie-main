@@ -13,16 +13,16 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-import Homepage from "../screens/Homepage";
 import CreateTasks from "../screens/CreateTasks";
 import Pomo from "../screens/Pomo";
 import Habits from "../screens/Habits";
 import Stats from "../screens/Stats";
 import Search from "../screens/SearchTasks";
 import Homepage2 from "../screens/Homepage2";
-// import {Homepage,CreateTasks,Pomo, Habits,Stats,Search} from '../screens'
 import FlashCards from "../screens/FlashcardScreens/Flashcards";
+import Flashcards1 from "../screens/FlashcardScreens/Flashcards1";
+
+
 
 const TimerStats = createNativeStackNavigator();
 
@@ -50,7 +50,23 @@ function HabitsStackScreen() {
     >
       <HabitsScreenStack.Screen name="HabitsScreen" component={Habits} />
       <HabitsScreenStack.Screen name="SearchScreen" component={Search} />
+      <HabitsScreenStack.Screen name="AddScreen" component={CreateTasks} />
     </HabitsScreenStack.Navigator>
+  );
+}
+
+const FlashcardsDisplay = createNativeStackNavigator();
+
+function FlashcardsScreenDisplay() {
+  return (
+    <FlashcardsDisplay.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <FlashcardsDisplay.Screen name="FlashcardsScreen" component={FlashCards} />
+      <FlashcardsDisplay.Screen name="FlashcardsScreen1" component={Flashcards1} />
+    </FlashcardsDisplay.Navigator>
   );
 }
 
@@ -105,7 +121,7 @@ const Tabs = () => {
       />
       <Tab.Screen
         name="Flashcards"
-        component={FlashCards}
+        component={FlashcardsScreenDisplay}
         options={({}) => ({
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="book" color={color} size={size} />

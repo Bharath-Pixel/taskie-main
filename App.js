@@ -5,7 +5,6 @@ import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import Tabs from "./navigation/tabs";
 import * as SplashScreen from 'expo-splash-screen';
-import Homepage from "./screens/Homepage";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigator from "./navigation/AuthNavigator";
 

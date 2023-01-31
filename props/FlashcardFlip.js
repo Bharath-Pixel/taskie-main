@@ -22,6 +22,7 @@ const Flashcard = (props) => {
               marginBottom: "10%",
               borderRadius: 15,
               alignItems: "center",
+              
             }}
           >
           </View>

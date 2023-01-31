@@ -1,6 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet} from "react-native";
 
+const colors = {
+  themeColor: "#0A0A0A",
+  white: "#DFDFDF",
+  background: "#212121",
+  appColor: "#1F222A",
+};
+
 export function TaskCard({c,h,s}) {
     return(
         <View style={[styles.taskCard]}>
@@ -32,8 +39,12 @@ const styles = StyleSheet.create({
     paddingBottom: '5%',
     paddingTop: '5%',
     borderRadius: 20,
-    backgroundColor: 'blue',
-    justifyContent: 'center',
+    backgroundColor: '#A07AFF',
+    shadowOpacity: 5,
+    shadowRadius: 1,
+    shadowOffset: { height: 2, width: 2 },
+    shadowColor: "#0A0A0A",
+    
   },
   taskCategory: {
     color: 'black',

@@ -16,12 +16,12 @@ function AuthNavigator() {
             gesturesEnabled: false
           }
     }} initialRouteName={ROUTES.LOGIN}>
-      <Stack.Screen
+      {/* <Stack.Screen
         name={ROUTES.LOGIN}
         component={Signup}
         options={{headerShown: false}}
         
-      />
+      /> */}
       {/* <Stack.Screen name={"RegisterScreen"} component={RegisterPage} /> */}
       <Stack.Screen
         name={"HomepageScreen"}

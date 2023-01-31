@@ -3,12 +3,12 @@ import { View, Text, Button, StyleSheet, StatusBar } from "react-native";
 import Checkbox from "expo-checkbox";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { ScrollView } from "react-native-gesture-handler";
-import { color } from "react-native-reanimated";
+import { abs, color } from "react-native-reanimated";
 import { TouchableHighlight } from "react-native-web";
 import { NavigationContainer } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-
+import CreateTasks from "./CreateTasks";
 
 const colors = {
   themeColor: "#0A0A0A",
@@ -21,23 +21,23 @@ const tasks = [
   {
     id: 1,
     task: "Morning Walk",
-    stamp: "Today - 8am",
+    stamp: "Today",
   },
   {
     id: 2,
     task: "Meet with HR",
-    stamp: "Today - 12 noon",
+    stamp: "Today",
   },
-  {
-    id: 3,
-    task: "Study FOP",
-    stamp: "Tomorrow - 3pm",
-  },
-  {
-    id: 4,
-    task: "Time for Gym",
-    stamp: "Saturday - 4pm",
-  },
+  // {
+  //   id: 3,
+  //   task: "Study FOP",
+  //   stamp: "Tomorrow - 3pm",
+  // },
+  // {
+  //   id: 4,
+  //   task: "Time for Gym",
+  //   stamp: "Saturday - 4pm",
+  // },
 ];
 
 // const useTasks = () => {
@@ -71,7 +71,6 @@ const tasks = [
 //   return { tasks, addTask };
 // }
 
-
 const Task = ({ task, stamp }) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   return (
@@ -79,7 +78,7 @@ const Task = ({ task, stamp }) => {
       key={task.id}
       style={{
         backgroundColor: colors.appColor,
-        color:colors.white,
+        color: colors.white,
         shadowOpacity: 5,
         shadowRadius: 1,
         shadowOffset: { height: 1, width: 1 },
@@ -97,7 +96,13 @@ const Task = ({ task, stamp }) => {
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <View>
           <Text style={[styles.taskText]}>{task}</Text>
-          <Text style={{ fontFamily: "Poppins", color: colors.white,paddingTop:"3%" }}>
+          <Text
+            style={{
+              fontFamily: "Poppins",
+              color: colors.white,
+              paddingTop: "3%",
+            }}
+          >
             {stamp}
           </Text>
           <Checkbox
@@ -114,7 +119,6 @@ const Task = ({ task, stamp }) => {
 };
 
 export default function Habits(props) {
-
   const navigation = useNavigation();
   return (
     <View
@@ -137,7 +141,7 @@ export default function Habits(props) {
           <Text
             style={{
               fontFamily: "Poppins",
-              color: 'white',
+              color: "white",
               fontSize: 25,
               textAlign: "center",
               marginTop: "5%",
@@ -162,9 +166,7 @@ export default function Habits(props) {
           Tasks (4)
         </Text>
         <AntDesign
-          onPress={() =>
-            navigation.navigate('SearchScreen')
-          }
+          onPress={() => navigation.navigate("SearchScreen")}
           name="search1" //
           size={30}
           style={{
@@ -183,6 +185,19 @@ export default function Habits(props) {
         {tasks.map((taskie) => (
           <Task task={taskie.task} stamp={taskie.stamp} key={taskie.id} />
         ))}
+        <AntDesign
+          onPress={() => navigation.navigate("AddScreen")}
+          name="pluscircle" //
+          size={50}
+          style={{
+            color: "#A07AFF",
+            position: "absolute",
+            borderRadius: 20,
+            right: "43%",
+            top: "100%",
+            marginTop: 40,
+          }}
+        />
       </ScrollView>
     </View>
   );
@@ -202,7 +217,7 @@ const styles = StyleSheet.create({
   taskText: {
     fontFamily: "Poppins",
     fontSize: 18,
-    color:'#DFDFDF'
+    color: "#DFDFDF",
   },
   backButton: {
     top: 10,

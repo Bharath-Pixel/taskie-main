@@ -1,12 +1,27 @@
 import {React,useEffect} from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { ProgressBar, MD3Colors } from "react-native-paper";
 // import GlobalFont from 'react-native-global-font'
+import Flashcard from "../../props/FlashcardFlip";
+import { useNavigation } from "@react-navigation/native";
+
+const flashcards = [
+  // {  
+  //     question: 'What is the capital of France?',
+  //     answer: 'Paris'
+  // },
+  {
+      question: 'What is the largest planet in our solar system?',
+      answer: 'Jupiter'
+  },
+  // // Add more flashcards here
+]
 
 const FlashCards1 = ({}) => {
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -24,7 +39,11 @@ const FlashCards1 = ({}) => {
           justifyContent: "space-around",
         }}
       >
-        <AntDesign name="arrowleft" color={"white"} size={24} />
+        <AntDesign 
+        onPress={() =>
+          navigation.navigate('FlashcardsScreen')
+        }
+        name="arrowleft" color={"white"} size={24} />
         <Text
           style={{
             paddingVertical: "5%",
@@ -33,14 +52,14 @@ const FlashCards1 = ({}) => {
             fontSize: 24,
           }}
         >
-          3/15
+          2/2
         </Text>
-        <AntDesign name="arrowright" color={"white"} size={24} />
+        <AntDesign name="arrowright" color={"#212121"} size={24} />
       </View>
-      <ProgressBar progress={0.3} color={MD3Colors.primary40} />
+      <ProgressBar progress={1.0} color={MD3Colors.primary40} />
       <View
         style={{
-          marginTop: "10%",
+          marginTop: "12%",
           flex: 0.7,
           backgroundColor: "#dabcf9",
           width: "80%",
@@ -50,10 +69,9 @@ const FlashCards1 = ({}) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ fontSize: 24,marginTop:"40%", paddingVertical: "5%",fontFamily:"Poppins" }}>Question 1</Text>
-        <Text style={{ fontSize: 16, paddingVertical: "15%",fontFamily:"Poppins",textAlign:"center" }}>
-          What Color is an Orange? 
-        </Text>
+        {flashcards.map((flashcard, index) => {
+                return <Flashcard key={index} question={flashcard.question} answer={flashcard.answer}  />
+            })}
       </View>
       <Text
         style={{
@@ -61,10 +79,10 @@ const FlashCards1 = ({}) => {
           color: "white",
           textAlign: "center",
           fontSize: 16,
-          fontFamily:"Poppins"
+          fontFamily:"Urbanist"
         }}
       >
-        Tap Card to see answers
+        Tap Text to see answers
       </Text>
     </View>
   );
