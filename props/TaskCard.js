@@ -8,12 +8,12 @@ const colors = {
   appColor: "#1F222A",
 };
 
-export function TaskCard({c,h,s}) {
+export function TaskCard({category, title, timestamp}) {
     return(
         <View style={[styles.taskCard]}>
-            <Text style={[styles.taskCategory]}>{c}</Text>
-            <Text style={[styles.taskHeader]}>{h}</Text>
-            <Text style={[styles.taskSubHeader]}>{s}</Text>
+            <Text style={[styles.taskCategory]}>{category}</Text>
+            <Text style={[styles.taskHeader]}>{title}</Text>
+            <Text style={[styles.taskSubHeader]}>{timestamp}</Text>
         </View> 
     )
 }

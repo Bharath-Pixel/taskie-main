@@ -15,10 +15,11 @@ import {
 } from "react-native";
 import { TaskCard, TutorialCard } from "../props/TaskCard.js";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import { useGlobalContext } from "../context.js";
 
-const CreateTasks = ({ navigation,route}) => {
-  console.log('elliott', route.params)
-  const { taskItems } = route.params
+const CreateTasks = ({ navigation}) => {
+  const { taskItems, setTaskItems } = useGlobalContext()
+
   const [title, setTitle] = useState();
   const [tag, setTag] = useState("General");
 
@@ -29,6 +30,7 @@ const CreateTasks = ({ navigation,route}) => {
   //Array for the items to add on
   const [adv, setADV] = useState(false);
 
+  // const [taskItems,setTaskItems] = useState([]);
   let [totalTasksCompletedToday, completed] = useState(0);
 
   //updates days remaining
@@ -45,6 +47,11 @@ const CreateTasks = ({ navigation,route}) => {
     forDate = date.toLocaleDateString();
     let formatDate = forDate + " | " + calculateDays();
   }, [date]);
+
+
+  useEffect(() => {
+    // console.log(taskItems)
+  }, [taskItems])
 
   //Date
   const calculateDays = () => {
@@ -67,10 +74,13 @@ const CreateTasks = ({ navigation,route}) => {
         date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
     }
     let formatDate = forDate + " | " + calculateDays();
-
     // await AsyncStorage.setItem('@tasklist', JSON.stringify(taskItems))
-    setTaskItems([...taskItems, [title, tag, formatDate]]);
-    console.log(taskItems);
+    setTaskItems([...taskItems, {
+      title: title,
+      category: tag,
+      timestamp: formatDate
+    }])
+    // console.log(taskItems);
     setTag("General");
     setDate(new Date());
     setTitle(null);
@@ -110,16 +120,16 @@ const CreateTasks = ({ navigation,route}) => {
               />
             ) : (
               taskItems
-                .sort(
-                  (a, b) => new Date(a[2]).getTime() - new Date(b[2]).getTime()
-                )
+                // .sort(
+                //   (a, b) => new Date(a[2]).getTime() - new Date(b[2]).getTime()
+                // )
                 .map((item, index) => {
                   return (
                     <TouchableOpacity
                       key={index}
                       onPress={() => completeTask(index)}
                     >
-                      <TaskCard c={item[1]} h={item[0]} s={item[2]} />
+                      <TaskCard category={item.category} timestamp={item.timestamp} title={item.title} key={index}/>
                     </TouchableOpacity>
                   );
                 })

@@ -9,7 +9,6 @@ const Stack = createStackNavigator();
 // Navigator, Screen, Group
 
 function AuthNavigator() {
-  console.log(Stack);
   return (
     <Stack.Navigator screenOptions={{
         defaultNavigationOptions: {

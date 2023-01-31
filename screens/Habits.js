@@ -9,6 +9,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import CreateTasks from "./CreateTasks";
+import { useGlobalContext } from "../context";
 
 const colors = {
   themeColor: "#0A0A0A",
@@ -18,16 +19,7 @@ const colors = {
 };
 
 const tasks = [
-  {
-    id: 1,
-    task: "Morning Walk",
-    stamp: "Today",
-  },
-  {
-    id: 2,
-    task: "Meet with HR",
-    stamp: "Today",
-  },
+ 
   // {
   //   id: 3,
   //   task: "Study FOP",
@@ -75,7 +67,7 @@ const Task = ({ task, stamp }) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   return (
     <View
-      key={task.id}
+      key={new Date().toString()}
       style={{
         backgroundColor: colors.appColor,
         color: colors.white,
@@ -95,7 +87,7 @@ const Task = ({ task, stamp }) => {
     >
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <View>
-          <Text style={[styles.taskText]}>{task}</Text>
+          <Text style={[styles.taskText]}>{task.title}</Text>
           <Text
             style={{
               fontFamily: "Poppins",
@@ -119,6 +111,7 @@ const Task = ({ task, stamp }) => {
 };
 
 export default function Habits(props) {
+  const {taskItems} = useGlobalContext()
   const navigation = useNavigation();
   return (
     <View
@@ -163,7 +156,7 @@ export default function Habits(props) {
         }}
       >
         <Text style={{ fontFamily: "Poppins", fontSize: 22, color: "white" }}>
-          Tasks (4)
+          Tasks ({taskItems.length})
         </Text>
         <AntDesign
           onPress={() => navigation.navigate("SearchScreen")}
@@ -182,22 +175,11 @@ export default function Habits(props) {
           backgroundColor: colors.background,
         }}
       >
-        {tasks.map((taskie) => (
-          <Task task={taskie.task} stamp={taskie.stamp} key={taskie.id} />
-        ))}
-        <AntDesign
-          onPress={() => navigation.navigate("AddScreen")}
-          name="pluscircle" //
-          size={50}
-          style={{
-            color: "#A07AFF",
-            position: "absolute",
-            borderRadius: 20,
-            right: "43%",
-            top: "100%",
-            marginTop: 40,
-          }}
-        />
+        {taskItems.map((task, id) => {
+          return (
+          <Task task={task} stamp={task.timestamp} key={id} />
+        )})}
+        
       </ScrollView>
     </View>
   );

@@ -96,7 +96,7 @@ const CustomTabBarButton=({children,onPress})=>(
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
-  const [taskItems, setTaskItems] = React.useState([])
+  const [taskItems, setTaskItems] = React.useState([["SEX", "General", "1/31/2023 | Today"]])
   return (
     <Tab.Navigator
       screenOptions={{
@@ -137,10 +137,6 @@ const Tabs = () => {
       <Tab.Screen
         name="Add"
         component={CreateTasks}
-        initialParams={{
-          taskItems: taskItems,
-          setTaskItems: setTaskItems
-        }}
         options={({}) => ({
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="plus" color={color} size={35} 
