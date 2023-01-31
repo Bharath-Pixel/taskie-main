@@ -41,7 +41,7 @@ function TimerStatsScreen() {
 
 const HabitsScreenStack = createNativeStackNavigator();
 
-function HabitsStackScreen() {
+function HabitsStackScreen({taskItems,setTaskItems}) {
   return (
     <HabitsScreenStack.Navigator
       screenOptions={{
@@ -50,7 +50,10 @@ function HabitsStackScreen() {
     >
       <HabitsScreenStack.Screen name="HabitsScreen" component={Habits} />
       <HabitsScreenStack.Screen name="SearchScreen" component={Search} />
-      <HabitsScreenStack.Screen name="AddScreen" component={CreateTasks} />
+      <HabitsScreenStack.Screen name="AddScreen" component={CreateTasks} initialParams={{
+        taskItems: taskItems,
+        // setTaskItems: setTaskItems
+      }} />
     </HabitsScreenStack.Navigator>
   );
 }
@@ -93,6 +96,7 @@ const CustomTabBarButton=({children,onPress})=>(
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
+  const [taskItems, setTaskItems] = React.useState([])
   return (
     <Tab.Navigator
       screenOptions={{
@@ -133,12 +137,17 @@ const Tabs = () => {
       <Tab.Screen
         name="Add"
         component={CreateTasks}
+        initialParams={{
+          taskItems: taskItems,
+          setTaskItems: setTaskItems
+        }}
         options={({}) => ({
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="plus" color={color} size={35} 
             // style={{paddingTop:"12%"}}
             />
           ),
+          
           // tabBarButton:(props) =>(
           //   <CustomTabBarButton{...props}/>
           //   ),
@@ -149,6 +158,10 @@ const Tabs = () => {
         name="Habits"
         style={{ Text: false }}
         component={HabitsStackScreen}
+        initialParams={{
+        taskItems: taskItems,
+        // setTaskItems: setTaskItems
+      }}
         options={({}) => ({
           tabBarIcon: ({ color, size }) => (
             <FontAwesome5 name="tasks" color={color} size={size} />

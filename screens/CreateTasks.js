@@ -16,7 +16,9 @@ import {
 import { TaskCard, TutorialCard } from "../props/TaskCard.js";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
-const CreateTasks = ({ navigation }) => {
+const CreateTasks = ({ navigation,route}) => {
+  console.log('elliott', route.params)
+  const { taskItems } = route.params
   const [title, setTitle] = useState();
   const [tag, setTag] = useState("General");
 
@@ -25,7 +27,6 @@ const CreateTasks = ({ navigation }) => {
   let forDate = "";
 
   //Array for the items to add on
-  const [taskItems, setTaskItems] = useState([]);
   const [adv, setADV] = useState(false);
 
   let [totalTasksCompletedToday, completed] = useState(0);
@@ -154,6 +155,42 @@ const CreateTasks = ({ navigation }) => {
                 value={date}
                 onChangeText={(text) => setDate(new Date(text))}
               />
+              <KeyboardAvoidingView
+                behaviour={Platform.OS === "ios" ? "padding" : "height"}
+                style={styles.newWriteTaskWrapper}
+              >
+                {/* Title */}
+                <TextInput
+                  keyboardAppearance="dark"
+                  style={styles.taskInput}
+                  placeholder={"Enter Task here..."}
+                  placeholderTextColor={"#d3d3d3"}
+                  value={title}
+                  onChangeText={(text) => setTitle(text)}
+                />
+                {/* 
+                    <TouchableOpacity onPress={() => setADV(true)}>
+                      <View style={styles.addWrapper}>
+                        <AntDesign name='setting' style={{ color: 'white', fontSize: 20 }}/>
+                      </View>
+                    </TouchableOpacity> */}
+
+                <TouchableOpacity
+                  onPress={() => handleAddTask()}
+                  onLongPress={() => setADV(true)}
+                >
+                  <View style={styles.addWrapper}>
+                    <AntDesign name="plus" style={{ color: "white", fontSize: 20 }} />
+                  </View>
+                </TouchableOpacity>
+                {/* <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'Enter Task here...'} placeholderTextColor={"#d3d3d3"} value={task} onChangeText={text=>setTask(text)} />
+
+                    <TouchableOpacity onPress={() => handleAddTask()}>
+                      <View style={styles.addWrapper}>
+                        <AntDesign name='plus' style={{ color: 'white', fontSize: 20 }}/>
+                      </View>
+                    </TouchableOpacity> */}
+              </KeyboardAvoidingView>
             </View>
           </Modal>
         </View>

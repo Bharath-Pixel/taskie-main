@@ -156,7 +156,6 @@
 // })
 
 // edit
-// an error was thrown saying that objects are not valid as a react child
 import {
   StyleSheet,
   Text,
@@ -293,4 +292,7 @@ const styles = StyleSheet.create({
     height: "60%",
     shadowOpacity: 1,
   },
+  vectorIcon: {
+    width: "100%",
+  }
 });
