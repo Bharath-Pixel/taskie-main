@@ -10,6 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import CreateTasks from "./CreateTasks";
 import { useGlobalContext } from "../context";
+import TouchableOpacity from "react-native-gesture-handler";
 
 const colors = {
   themeColor: "#0A0A0A",
@@ -18,53 +19,16 @@ const colors = {
   appColor: "#1F222A",
 };
 
-const tasks = [
- 
-  // {
-  //   id: 3,
-  //   task: "Study FOP",
-  //   stamp: "Tomorrow - 3pm",
-  // },
-  // {
-  //   id: 4,
-  //   task: "Time for Gym",
-  //   stamp: "Saturday - 4pm",
-  // },
-];
-
-// const useTasks = () => {
-//   const [tasks, setTasks] = useState([
-//     {
-//       id: 1,
-//       task: "Morning Walk",
-//       stamp: "Today - 8am",
-//     },
-//     {
-//       id: 2,
-//       task: "Meet with HR",
-//       stamp: "Today - 12 noon",
-//     },
-//     {
-//       id: 3,
-//       task: "Study FOP",
-//       stamp: "Tomorrow - 3pm",
-//     },
-//     {
-//       id: 4,
-//       task: "Time for Gym",
-//       stamp: "Saturday - 4pm",
-//     },
-//   ]);
-
-//   const addTask = (newTask) => {
-//     setTasks([...tasks, newTask]);
-//   }
-
-//   return { tasks, addTask };
-// }
-
-const Task = ({ task, stamp }) => {
+const Task = ({ task, stamp, index }) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const { taskItems, setTaskItems } = useGlobalContext();
+
+  const completeTask = () => {
+    let itemsCopy = [...taskItems];
+    itemsCopy.splice(index, 1);
+    setTaskItems(itemsCopy);
+  };
+
   return (
     <View
       key={new Date().toString()}
@@ -102,7 +66,10 @@ const Task = ({ task, stamp }) => {
             disabled={false}
             color="#7B51E7"
             value={toggleCheckBox}
-            onValueChange={(newValue) => setToggleCheckBox(newValue)}
+            onValueChange={(newValue) => {
+              setToggleCheckBox(newValue);
+              if (newValue) completeTask();
+            }}
           />
         </View>
       </View>
@@ -111,7 +78,7 @@ const Task = ({ task, stamp }) => {
 };
 
 export default function Habits(props) {
-  const {taskItems} = useGlobalContext()
+  const { taskItems } = useGlobalContext();
   const navigation = useNavigation();
   return (
     <View
@@ -175,11 +142,15 @@ export default function Habits(props) {
           backgroundColor: colors.background,
         }}
       >
-        {taskItems.map((task, id) => {
-          return (
-          <Task task={task} stamp={task.timestamp} key={id} />
-        )})}
-        
+        <View>
+          {taskItems.length === 0 ? (
+            <Text style={styles.emptyMessage}>No tasks available</Text>
+          ) : (
+            taskItems.map((task, id) => {
+              return <Task task={task} stamp={task.timestamp} key={id} />;
+            })
+          )}
+        </View>
       </ScrollView>
     </View>
   );
@@ -205,9 +176,16 @@ const styles = StyleSheet.create({
     top: 10,
   },
   checkBoxStyle: {
-    borderRadius: 5,
+    borderRadius: 6,
     position: "absolute",
     bottom: 10,
     left: 265,
+  },
+  emptyMessage: {
+    fontFamily: "Poppins",
+    color: "grey",
+    fontSize: 20,
+    textAlign: "center",
+    marginTop: "25%",
   },
 });

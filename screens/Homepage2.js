@@ -1,4 +1,3 @@
-
 // edit
 import {
   StyleSheet,
@@ -21,7 +20,6 @@ import { ScrollView } from "react-native-gesture-handler";
 import { TaskCard } from "../props/TaskCard";
 import { setTask } from "../props/taskHandler";
 import { useGlobalContext } from "../context";
-
 
 const colors = {
   themeColor: "#0A0A0A",
@@ -86,7 +84,7 @@ export default function App() {
   //     }
   //   })();
   // }, []);
-  const {taskItems} = useGlobalContext()
+  const { taskItems } = useGlobalContext();
 
   return (
     <View style={styles.container}>
@@ -109,38 +107,48 @@ export default function App() {
         >
           Welcome To {"\n"}Taskie
         </Text>
-        
-        <View
-          style={styles.inProgress}
-        >
+
+        <View style={styles.inProgress}>
           <Text
             style={{
               fontSize: 18,
               color: "white",
               textAlign: "center",
               justifyContent: "center",
-              paddingHorizontal: "15%",
+              paddingHorizontal: "10%",
               fontFamily: "Poppins",
             }}
           >
             In progress :
           </Text>
         </View>
-        <Text>
-          
-        </Text>
+        <Text></Text>
 
         <ScrollView
-        style={{
-          backgroundColor: colors.background,
-        }}
-      >
-        {taskItems.map((task, id) => {
-          return (
-          <Task task={task} stamp={task.timestamp} key={id} />
-        )})}
-        
-      </ScrollView>
+          style={{
+            backgroundColor: colors.background,
+          }}
+        >
+          <View>
+            {taskItems.length === 0 ? (
+              <Text
+                style={{
+                  fontFamily: "Poppins",
+                  color: "grey",
+                  fontSize: 20,
+                  textAlign: "center",
+                  marginTop: "15%",
+                }}
+              >
+                No tasks created
+              </Text>
+            ) : (
+              taskItems.map((task, id) => {
+                return <Task task={task} stamp={task.timestamp} key={id} />;
+              })
+            )}
+          </View>
+        </ScrollView>
       </View>
     </View>
   );
@@ -171,20 +179,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "white",
   },
-  inProgress:{
+  inProgress: {
     backgroundColor: "#2C2C2C",
     shadowOpacity: 5,
     shadowRadius: 1,
     shadowOffset: { height: 1, width: 1 },
     shadowColor: "#000000",
-    flexDirection: "row",
     marginHorizontal: 16,
     marginVertical: 35,
     borderRadius: 20,
     width: "40%",
-    left: "15%",
+    left: "26%",
     paddingVertical: 10,
     alignItems: "center",
     justifyContent: "space-between",
-  }
+  },
 });

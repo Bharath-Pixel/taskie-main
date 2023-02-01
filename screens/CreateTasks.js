@@ -17,8 +17,8 @@ import { TaskCard, TutorialCard } from "../props/TaskCard.js";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { useGlobalContext } from "../context.js";
 
-const CreateTasks = ({ navigation}) => {
-  const { taskItems, setTaskItems } = useGlobalContext()
+const CreateTasks = ({ navigation }) => {
+  const { taskItems, setTaskItems } = useGlobalContext();
 
   const [title, setTitle] = useState();
   const [tag, setTag] = useState("General");
@@ -27,7 +27,6 @@ const CreateTasks = ({ navigation}) => {
   var [date, setDate] = useState(new Date());
   let forDate = "";
 
-  //Array for the items to add on
   const [adv, setADV] = useState(false);
 
   // const [taskItems,setTaskItems] = useState([]);
@@ -48,10 +47,9 @@ const CreateTasks = ({ navigation}) => {
     let formatDate = forDate + " | " + calculateDays();
   }, [date]);
 
-
   useEffect(() => {
     // console.log(taskItems)
-  }, [taskItems])
+  }, [taskItems]);
 
   //Date
   const calculateDays = () => {
@@ -75,11 +73,14 @@ const CreateTasks = ({ navigation}) => {
     }
     let formatDate = forDate + " | " + calculateDays();
     // await AsyncStorage.setItem('@tasklist', JSON.stringify(taskItems))
-    setTaskItems([...taskItems, {
-      title: title,
-      category: tag,
-      timestamp: formatDate
-    }])
+    setTaskItems([
+      ...taskItems,
+      {
+        title: title,
+        category: tag,
+        timestamp: formatDate,
+      },
+    ]);
     // console.log(taskItems);
     setTag("General");
     setDate(new Date());
@@ -129,7 +130,12 @@ const CreateTasks = ({ navigation}) => {
                       key={index}
                       onPress={() => completeTask(index)}
                     >
-                      <TaskCard category={item.category} timestamp={item.timestamp} title={item.title} key={index}/>
+                      <TaskCard
+                        category={item.category}
+                        timestamp={item.timestamp}
+                        title={item.title}
+                        key={index}
+                      />
                     </TouchableOpacity>
                   );
                 })
@@ -190,7 +196,10 @@ const CreateTasks = ({ navigation}) => {
                   onLongPress={() => setADV(true)}
                 >
                   <View style={styles.addWrapper}>
-                    <AntDesign name="plus" style={{ color: "white", fontSize: 20 }} />
+                    <AntDesign
+                      name="plus"
+                      style={{ color: "white", fontSize: 20 }}
+                    />
                   </View>
                 </TouchableOpacity>
                 {/* <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'Enter Task here...'} placeholderTextColor={"#d3d3d3"} value={task} onChangeText={text=>setTask(text)} />
