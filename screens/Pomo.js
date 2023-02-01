@@ -25,10 +25,12 @@ const Pomo = ({navigation}) => {
         <Text style={[styles.sectionTitle]}>Pomodoro</Text>
         <Text style={[styles.des]}>Be more productive with a pomodoro timer</Text>
         <Clock/>
-        <Button
-             title="See Stats"
-             onPress={() => navigation.navigate('StatsScreen')}
-         />
+        <View style={styles.button}>
+          <Button
+            title="See Stats"
+            onPress={() => navigation.navigate('StatsScreen')}
+          />
+        </View>
       </View>
     </View>
   );
@@ -58,4 +60,7 @@ const styles = StyleSheet.create({
     color:"white",
     fontSize:15,
   },
+  button: {
+    top: "-5%"
+  }
 });
