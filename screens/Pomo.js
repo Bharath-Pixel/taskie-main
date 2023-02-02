@@ -2,35 +2,19 @@ import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import Clock from "../props/Clock.js"
-import Stats from "./Stats.js"
 
 
 
-function ViewStackScreen(){
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Stats" component={Stats}
-        options={{
-        headerShown: false,
-        }}
-      />
-    </Stack.Navigator>
-  )
-}
-const Pomo = ({navigation}) => {
+
+
+const Pomo = () => {
 
   return (
     <View style={styles.container}>
       <View style={styles.buffer}>
         <Text style={[styles.sectionTitle]}>Pomodoro</Text>
-        <Text style={[styles.des]}>Be more productive with a pomodoro timer</Text>
+        <Text style={[styles.des]}>Be more productive with this timer!</Text>
         <Clock/>
-        <View style={styles.button}>
-          <Button
-            title="See Stats"
-            onPress={() => navigation.navigate('StatsScreen')}
-          />
-        </View>
       </View>
     </View>
   );
@@ -55,12 +39,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
     fontFamily: "Poppins",
+    textAlign:"center",
   },
   des: {
     color:"white",
-    fontSize:15,
+    fontSize:16,
+    fontFamily: "Poppins",
+    paddingTop:"20%",
+    paddingLeft:"10%",
+    position:"absolute",
   },
-  button: {
-    top: "-5%"
-  }
 });

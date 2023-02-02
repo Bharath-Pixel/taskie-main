@@ -16,7 +16,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CreateTasks from "../screens/CreateTasks";
 import Pomo from "../screens/Pomo";
 import Habits from "../screens/Habits";
-import Stats from "../screens/Stats";
 import Search from "../screens/SearchTasks";
 import Homepage2 from "../screens/Homepage2";
 import FlashCards from "../screens/FlashcardScreens/Flashcards";
@@ -26,18 +25,17 @@ import Flashcards1 from "../screens/FlashcardScreens/Flashcards1";
 
 const TimerStats = createNativeStackNavigator();
 
-function TimerStatsScreen() {
-  return (
-    <TimerStats.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <TimerStats.Screen name="PomoScreen" component={Pomo} />
-      <TimerStats.Screen name="StatsScreen" component={Stats} />
-    </TimerStats.Navigator>
-  );
-}
+// function TimerStatsScreen() {
+//   return (
+//     <TimerStats.Navigator
+//       screenOptions={{
+//         headerShown: false,
+//       }}
+//     >
+//       <TimerStats.Screen name="PomoScreen" component={Pomo} />
+//     </TimerStats.Navigator>
+//   );
+// }
 
 const HabitsScreenStack = createNativeStackNavigator();
 
@@ -174,7 +172,7 @@ const Tabs = () => {
 
       <Tab.Screen
         name="Pomo"
-        component={TimerStatsScreen}
+        component={Pomo}
         options={({}) => ({
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="timer" color={color} size={30} />
