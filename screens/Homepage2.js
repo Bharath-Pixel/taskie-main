@@ -18,8 +18,8 @@ import React, { useState, useEffect, createContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView } from "react-native-gesture-handler";
 import { TaskCard } from "../props/TaskCard";
-import { setTask } from "../props/taskHandler";
 import { useGlobalContext } from "../context";
+import { useNavigation } from "@react-navigation/native";
 
 const colors = {
   themeColor: "#0A0A0A",
@@ -46,7 +46,7 @@ const Task = ({ task, stamp }) => {
         paddingVertical: 20,
         paddingHorizontal: 24,
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "center",
       }}
     >
       <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -67,7 +67,7 @@ const Task = ({ task, stamp }) => {
   );
 };
 
-export default function App() {
+export default function Homepage() {
   StatusBar.setHidden(true);
 
   // const [taskList, setTaskList] = useState([]);
@@ -85,6 +85,7 @@ export default function App() {
   //   })();
   // }, []);
   const { taskItems } = useGlobalContext();
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -125,30 +126,35 @@ export default function App() {
         <Text></Text>
 
         <ScrollView
-          style={{
-            backgroundColor: colors.background,
-          }}
-        >
-          <View>
-            {taskItems.length === 0 ? (
-              <Text
-                style={{
-                  fontFamily: "Poppins",
-                  color: "grey",
-                  fontSize: 20,
-                  textAlign: "center",
-                  marginTop: "15%",
-                }}
-              >
-                No tasks created
-              </Text>
-            ) : (
-              taskItems.map((task, id) => {
-                return <Task task={task} stamp={task.timestamp} key={id} />;
-              })
-            )}
-          </View>
-        </ScrollView>
+  style={{
+    backgroundColor: colors.background,
+  }}
+>
+  <View>
+    {taskItems.length === 0 ? (
+      <Text
+        style={{
+          fontFamily: "Poppins",
+          color: "grey",
+          fontSize: 20,
+          textAlign: "center",
+          marginTop: "15%",
+        }}
+      >
+        No tasks created
+      </Text>
+    ) : (
+      taskItems.slice(0, 1).map((task, id) => {
+        return <Task task={task} stamp={task.timestamp} key={id} />;
+      })
+    )}
+  </View>
+  {taskItems.length > 1 && (
+    <TouchableOpacity style={styles.b2} onPress={() => navigation.navigate("HabitsScreen")}>
+      <Text style={styles.buttonText}>View More</Text>
+    </TouchableOpacity>
+  )}
+</ScrollView>
       </View>
     </View>
   );
@@ -194,4 +200,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  b2: {
+    backgroundColor: "#2C2C2C",
+    shadowOpacity: 5,
+    shadowRadius: 1,
+    shadowOffset: { height: 1, width: 1 },
+    shadowColor: "#000000",
+    marginHorizontal: 16,
+    marginVertical: 35,
+    borderRadius: 20,
+    width: "40%",
+    left: "26%",
+    paddingVertical: 10,
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  buttonText: {
+    color: "white",
+    fontFamily: "Poppins",
+  }
 });

@@ -12,6 +12,8 @@ import {
   KeyboardAvoidingView,
   Platform,
   Keyboard,
+  Dimensions,
+  Alert,
 } from "react-native";
 import { TaskCard, TutorialCard } from "../props/TaskCard.js";
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -28,8 +30,17 @@ const CreateTasks = ({ navigation }) => {
   let forDate = "";
 
   const [adv, setADV] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   let [totalTasksCompletedToday, completed] = useState(0);
+
+  const handleOpenModal = () => {
+    setModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+  };
 
   //updates days remaining
   useEffect(() => {
@@ -65,6 +76,7 @@ const CreateTasks = ({ navigation }) => {
   };
 
   const handleAddTask = async () => {
+    handleCloseModal();
     Keyboard.dismiss();
     if (forDate.length === 0) {
       forDate =
@@ -118,121 +130,113 @@ const CreateTasks = ({ navigation }) => {
                 s="No due date"
               />
             ) : (
-              taskItems
-
-                .map((item, index) => {
-                  return (
-                    <TouchableOpacity
+              taskItems.map((item, index) => {
+                return (
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => completeTask(index)}
+                  >
+                    <TaskCard
+                      category={item.category}
+                      timestamp={item.timestamp}
+                      title={item.title}
                       key={index}
-                      onPress={() => completeTask(index)}
-                    >
-                      <TaskCard
-                        category={item.category}
-                        timestamp={item.timestamp}
-                        title={item.title}
-                        key={index}
-                      />
-                    </TouchableOpacity>
-                  );
-                })
+                    />
+                  </TouchableOpacity>
+                );
+              })
             )}
           </View>
           <View style={[styles.toSee]}></View>
         </ScrollView>
-
-        <View>
-          {adv === true ? (
-            <View style={[styles.popup]}>
-            <Modal
-              style={styles.modalContainer}
-              animationType="fade"
-              visible={adv}
-              transparent={true}
-              onRequestClose={() => setADV(false)}
-            >
-              <View style={[styles.color]}>
-                <Text>Add a Tag</Text>
-                <TextInput
-                  keyboardAppearance="dark"
-                  style={styles.taskInput}
-                  placeholder={"Tags help with organisation"}
-                  placeholderTextColor={"#d3d3d3"}
-                  value={tag}
-                  onChangeText={(text) => setTag(text)}
-                />
-                <Text>Due date</Text>
-                <TextInput
-                  keyboardAppearance="dark"
-                  style={styles.taskInput}
-                  placeholder={"MM/DD/YYYY"}
-                  placeholderTextColor={"#d3d3d3"}
-                  value={date}
-                  onChangeText={(text) => setDate(new Date(text))}
-                />
-                {/* so that u can still change title and press add task button */}
-                <KeyboardAvoidingView
-                  behaviour={Platform.OS === "ios" ? "padding" : "height"}
-                  style={styles.newWriteTaskWrapper}
-                >
-                  {/* Title */}
-                  <TextInput
-                    keyboardAppearance="dark"
-                    style={styles.taskInput}
-                    placeholder={"Enter Task here..."}
-                    placeholderTextColor={"#d3d3d3"}
-                    value={title}
-                    onChangeText={(text) => setTitle(text)}
-                  />
-  
-  
-                  <TouchableOpacity
-                    onPress={() => handleAddTask()}
-                    onLongPress={() => setADV(true)}
-                  >
-                    <View style={styles.addWrapper}>
-                      <AntDesign
-                        name="plus"
-                        style={{ color: "white", fontSize: 20 }}
-                      />
-                    </View>
-                  </TouchableOpacity>
-  
-                </KeyboardAvoidingView>
-              </View>
-            </Modal>
-          </View>
-          ) : (
-            <View></View>
-          )}
-        </View>
-        
-
         {/* Move content above keyboard */}
-        <KeyboardAvoidingView
-          behaviour={Platform.OS === "ios" ? "padding" : "height"}
-          style={styles.writeTaskWrapper}
-        >
-          {/* Title */}
-          <TextInput
-            keyboardAppearance="dark"
-            style={styles.taskInput}
-            placeholder={"Enter Task here..."}
-            placeholderTextColor={"#d3d3d3"}
-            value={title}
-            onChangeText={(text) => setTitle(text)}
+        <TouchableOpacity onPress={handleOpenModal}>
+          <AntDesign
+            name="pluscircle" //
+            size={60}
+            style={{
+              color: "#A07AFF",
+              position: "absolute",
+              bottom: 85,
+              right: "5%",
+            }}
           />
-
-
-          <TouchableOpacity
-            onPress={() => handleAddTask()}
-            onLongPress={() => setADV(true)}
-          >
-            <View style={styles.addWrapper}>
-              <AntDesign name="plus" style={{ color: "white", fontSize: 20 }} />
+        </TouchableOpacity>
+        <Modal animationType="fade" transparent={true} visible={modalVisible}>
+          <View style={styles.color}>
+            <Text style={styles.modalHeader}>Set new Task</Text>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignContent: "center",
+              }}
+            >
+              <Text style={styles.modalText}>New Task Title: </Text>
+              <View style={{ paddingLeft: 25 }}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter Title"
+                  onChangeText={(text) => setTitle(text)}
+                  value={title}
+                />
+              </View>
             </View>
-          </TouchableOpacity>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignContent: "center",
+              }}
+            >
+              <Text style={styles.modalText}> Category: </Text>
+              <View style={{ paddingLeft: 25 }}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter Tag"
+                  onChangeText={(text) => setTag(text)}
+                  value={tag}
+                />
+              </View>
+            </View>
 
-        </KeyboardAvoidingView>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                alignContent: "center",
+              }}
+            >
+              <Text style={styles.modalText}>Due: </Text>
+              <View style={{ paddingLeft: 25 }}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter Date"
+                  onChangeText={(text) => setDate(text)}
+                  value={date}
+                />
+              </View>
+            </View>
+            <View style={{ flexDirection: "row", paddingTop: 20 }}>
+              <TouchableOpacity style={styles.b1} onPress={handleCloseModal}>
+                <Text style={styles.buttonText}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.b2}
+                onPress={() => {
+                  if (!title) {
+                    Alert.alert("Please enter a title.");
+                    return;
+                  }
+                  handleAddTask();
+                  handleCloseModal();
+                }}
+              >
+                <Text style={styles.buttonText}>Confirm</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
       </View>
     </View>
   );
@@ -299,43 +303,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 30,
   },
-  writeTaskWrapper: {
-    paddingVertical: 30,
-    position: "absolute",
-    bottom: 60,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  newWriteTaskWrapper: {
-    paddingVertical: 30,
-    position: "absolute",
-    top: "83%",
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  taskInput: {
-    paddingVertical: 15,
-    paddingHorizontal: 15,
-    backgroundColor: "#A07AFF",
-    borderRadius: 20,
-    width: "80%",
-    fontFamily: "Urbanist",
-  },
-  addWrapper: {
-    width: 50,
-    height: 50,
-    backgroundColor: "#A07AFF",
-    borderRadius: 60,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  toSee: {
-    height: 20,
-  },
+
   clearedTdy: {
     backgroundColor: "#FEB47B",
     height: "20%",
@@ -371,28 +339,101 @@ const styles = StyleSheet.create({
     top: "-17%",
     // marginBottom: "-30%",
   },
-  modalContainer: {
-    width: "10%",
-    height: "10%",
-    alignSelf: "center",
-    justifyContent: "center",
-    alignItems: "center",
-
+  buttons: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "#A07AFF",
+    borderRadius: 90,
   },
-  popup: {
-    width: "100%",
-    height: "15%",
+  starter: {
+    // marginTop: 200,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    top: Dimensions.get("screen").height * 0.27,
+    backgroundColor: "#FEB47B",
+    borderRadius: 90,
     alignSelf: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    bottom: "18%",
+    // position: "absolute",
+  },
+  stfont: {
+    fontSize: 20,
+    color: "white",
+  },
+  timer: {
+    color: "white",
+    fontSize: 90,
+  },
+  // Modal
+  range: {
+    color: "white",
+    fontSize: 25,
+    top: Dimensions.get("screen").height * 0.25,
+    alignSelf: "center",
+    // top: "55%",
+    // left: "30%",
   },
   color: {
+    backgroundColor: "#222",
+    borderColor: "#A07AFF",
+    borderWidth: 1,
+    borderRadius: 10,
+    top: Dimensions.get("screen").height * 0.3,
+    left: Dimensions.get("screen").width * 0.05,
+    height: Dimensions.get("screen").height * 0.4,
+    width: Dimensions.get("screen").width * 0.9,
+  },
+  modalHeader: {
+    color: "white",
+    paddingTop: "5%",
+    paddingLeft: "5%",
+    fontSize: 30,
+    fontFamily: "Poppins",
+    textAlign: "center",
+  },
+  modalText: {
+    color: "white",
+    paddingTop: "5%",
+    paddingLeft: "5%",
+    fontSize: 18,
+    fontFamily: "Poppins",
+    textAlign: "center",
+  },
+  input: {
+    backgroundColor: "#222",
+    borderColor: "white",
+    borderWidth: 1,
+    borderRadius: 10,
+    height: Dimensions.get("screen").height * 0.04,
+    top: Dimensions.get("screen").height * 0.02,
+    width: Dimensions.get("screen").width * 0.3,
+    color: "white",
+    textAlign: "center",
+    fontFamily: "Urbanist",
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 16,
+    fontFamily: "Poppins",
+  },
+  b1: {
+    left: Dimensions.get("screen").width * 0.1,
+    top: Dimensions.get("screen").height * 0.03,
+    paddingVertical: Dimensions.get("screen").height * 0.015,
+    backgroundColor: "#8758FF",
+    borderRadius: 10,
+    paddingHorizontal: Dimensions.get("screen").width * 0.05,
+  },
+  b2: {
+    left: Dimensions.get("screen").width * 0.25,
+    top: Dimensions.get("screen").height * 0.03,
     backgroundColor: "#FEB47B",
-    top: "68%",
-    left: "5%",
-    height: "14%",
-    width: "90%",
+    paddingVertical: Dimensions.get("screen").height * 0.015,
+    borderRadius: 10,
+    paddingHorizontal: Dimensions.get("screen").width * 0.05,
+  },
+  details: {
+    color: "white",
+    top: Dimensions.get("screen").height * 0.25,
+    alignSelf: "center",
   },
 });
-

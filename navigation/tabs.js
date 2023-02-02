@@ -17,7 +17,7 @@ import CreateTasks from "../screens/CreateTasks";
 import Pomo from "../screens/Pomo";
 import Habits from "../screens/Habits";
 import Search from "../screens/SearchTasks";
-import Homepage2 from "../screens/Homepage2";
+import Homepage from "../screens/Homepage2";
 import FlashCards from "../screens/FlashcardScreens/Flashcards";
 import Flashcards1 from "../screens/FlashcardScreens/Flashcards1";
 
@@ -36,6 +36,22 @@ const TimerStats = createNativeStackNavigator();
 //     </TimerStats.Navigator>
 //   );
 // }
+
+const HomeScreenStack=createNativeStackNavigator();
+
+function HomeScreenStackScreen() {
+  return (
+    <HomeScreenStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <HomeScreenStack.Screen name="HomepageScreen" component={Homepage} />
+      <HomeScreenStack.Screen name="HabitsScreen" component={Habits} />
+    </HomeScreenStack.Navigator>
+  );
+}
+
 
 const HabitsScreenStack = createNativeStackNavigator();
 
@@ -114,7 +130,7 @@ const Tabs = () => {
     >
       <Tab.Screen
         name="Home"
-        component={Homepage2}
+        component={HomeScreenStackScreen}
         options={({}) => ({
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="home" color={color} size={size} />
