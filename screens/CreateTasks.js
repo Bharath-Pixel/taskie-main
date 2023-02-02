@@ -29,7 +29,6 @@ const CreateTasks = ({ navigation }) => {
 
   const [adv, setADV] = useState(false);
 
-  // const [taskItems,setTaskItems] = useState([]);
   let [totalTasksCompletedToday, completed] = useState(0);
 
   //updates days remaining
@@ -72,7 +71,6 @@ const CreateTasks = ({ navigation }) => {
         date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
     }
     let formatDate = forDate + " | " + calculateDays();
-    // await AsyncStorage.setItem('@tasklist', JSON.stringify(taskItems))
     setTaskItems([
       ...taskItems,
       {
@@ -121,9 +119,7 @@ const CreateTasks = ({ navigation }) => {
               />
             ) : (
               taskItems
-                // .sort(
-                //   (a, b) => new Date(a[2]).getTime() - new Date(b[2]).getTime()
-                // )
+
                 .map((item, index) => {
                   return (
                     <TouchableOpacity
@@ -144,75 +140,72 @@ const CreateTasks = ({ navigation }) => {
           <View style={[styles.toSee]}></View>
         </ScrollView>
 
-        <View style={[styles.popup]}>
-          <Modal
-            style={styles.modalContainer}
-            animationType="fade"
-            visible={adv}
-            transparent={true}
-            onRequestClose={() => setADV(false)}
-          >
-            <View style={[styles.color]}>
-              <Text>Add a Tag</Text>
-              <TextInput
-                keyboardAppearance="dark"
-                style={styles.taskInput}
-                placeholder={"Tags help with organisation"}
-                placeholderTextColor={"#d3d3d3"}
-                value={tag}
-                onChangeText={(text) => setTag(text)}
-              />
-              <Text>Due date</Text>
-              <TextInput
-                keyboardAppearance="dark"
-                style={styles.taskInput}
-                placeholder={"MM/DD/YYYY"}
-                placeholderTextColor={"#d3d3d3"}
-                value={date}
-                onChangeText={(text) => setDate(new Date(text))}
-              />
-              <KeyboardAvoidingView
-                behaviour={Platform.OS === "ios" ? "padding" : "height"}
-                style={styles.newWriteTaskWrapper}
-              >
-                {/* Title */}
+        <View>
+          {adv === true ? (
+            <View style={[styles.popup]}>
+            <Modal
+              style={styles.modalContainer}
+              animationType="fade"
+              visible={adv}
+              transparent={true}
+              onRequestClose={() => setADV(false)}
+            >
+              <View style={[styles.color]}>
+                <Text>Add a Tag</Text>
                 <TextInput
                   keyboardAppearance="dark"
                   style={styles.taskInput}
-                  placeholder={"Enter Task here..."}
+                  placeholder={"Tags help with organisation"}
                   placeholderTextColor={"#d3d3d3"}
-                  value={title}
-                  onChangeText={(text) => setTitle(text)}
+                  value={tag}
+                  onChangeText={(text) => setTag(text)}
                 />
-                {/* 
-                    <TouchableOpacity onPress={() => setADV(true)}>
-                      <View style={styles.addWrapper}>
-                        <AntDesign name='setting' style={{ color: 'white', fontSize: 20 }}/>
-                      </View>
-                    </TouchableOpacity> */}
-
-                <TouchableOpacity
-                  onPress={() => handleAddTask()}
-                  onLongPress={() => setADV(true)}
+                <Text>Due date</Text>
+                <TextInput
+                  keyboardAppearance="dark"
+                  style={styles.taskInput}
+                  placeholder={"MM/DD/YYYY"}
+                  placeholderTextColor={"#d3d3d3"}
+                  value={date}
+                  onChangeText={(text) => setDate(new Date(text))}
+                />
+                {/* so that u can still change title and press add task button */}
+                <KeyboardAvoidingView
+                  behaviour={Platform.OS === "ios" ? "padding" : "height"}
+                  style={styles.newWriteTaskWrapper}
                 >
-                  <View style={styles.addWrapper}>
-                    <AntDesign
-                      name="plus"
-                      style={{ color: "white", fontSize: 20 }}
-                    />
-                  </View>
-                </TouchableOpacity>
-                {/* <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'Enter Task here...'} placeholderTextColor={"#d3d3d3"} value={task} onChangeText={text=>setTask(text)} />
-
-                    <TouchableOpacity onPress={() => handleAddTask()}>
-                      <View style={styles.addWrapper}>
-                        <AntDesign name='plus' style={{ color: 'white', fontSize: 20 }}/>
-                      </View>
-                    </TouchableOpacity> */}
-              </KeyboardAvoidingView>
-            </View>
-          </Modal>
+                  {/* Title */}
+                  <TextInput
+                    keyboardAppearance="dark"
+                    style={styles.taskInput}
+                    placeholder={"Enter Task here..."}
+                    placeholderTextColor={"#d3d3d3"}
+                    value={title}
+                    onChangeText={(text) => setTitle(text)}
+                  />
+  
+  
+                  <TouchableOpacity
+                    onPress={() => handleAddTask()}
+                    onLongPress={() => setADV(true)}
+                  >
+                    <View style={styles.addWrapper}>
+                      <AntDesign
+                        name="plus"
+                        style={{ color: "white", fontSize: 20 }}
+                      />
+                    </View>
+                  </TouchableOpacity>
+  
+                </KeyboardAvoidingView>
+              </View>
+            </Modal>
+          </View>
+          ) : (
+            <View></View>
+          )}
         </View>
+        
 
         {/* Move content above keyboard */}
         <KeyboardAvoidingView
@@ -228,12 +221,7 @@ const CreateTasks = ({ navigation }) => {
             value={title}
             onChangeText={(text) => setTitle(text)}
           />
-          {/* 
-              <TouchableOpacity onPress={() => setADV(true)}>
-                <View style={styles.addWrapper}>
-                  <AntDesign name='setting' style={{ color: 'white', fontSize: 20 }}/>
-                </View>
-              </TouchableOpacity> */}
+
 
           <TouchableOpacity
             onPress={() => handleAddTask()}
@@ -243,13 +231,7 @@ const CreateTasks = ({ navigation }) => {
               <AntDesign name="plus" style={{ color: "white", fontSize: 20 }} />
             </View>
           </TouchableOpacity>
-          {/* <TextInput keyboardAppearance='dark' style = {styles.taskInput} placeholder={'Enter Task here...'} placeholderTextColor={"#d3d3d3"} value={task} onChangeText={text=>setTask(text)} />
 
-              <TouchableOpacity onPress={() => handleAddTask()}>
-                <View style={styles.addWrapper}>
-                  <AntDesign name='plus' style={{ color: 'white', fontSize: 20 }}/>
-                </View>
-              </TouchableOpacity> */}
         </KeyboardAvoidingView>
       </View>
     </View>
@@ -386,8 +368,8 @@ const styles = StyleSheet.create({
     width: "60%",
   },
   list: {
-    top: "-16%",
-    marginBottom: "-30%",
+    top: "-17%",
+    // marginBottom: "-30%",
   },
   modalContainer: {
     width: "10%",
@@ -395,6 +377,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
     alignItems: "center",
+
   },
   popup: {
     width: "100%",
@@ -405,7 +388,7 @@ const styles = StyleSheet.create({
     bottom: "18%",
   },
   color: {
-    backgroundColor: "#A07AFF",
+    backgroundColor: "#FEB47B",
     top: "68%",
     left: "5%",
     height: "14%",
