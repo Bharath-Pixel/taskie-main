@@ -14,10 +14,12 @@ import {
   Keyboard,
   Dimensions,
   Alert,
+  Animated
 } from "react-native";
 import { TaskCard, TutorialCard } from "../props/TaskCard.js";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { useGlobalContext } from "../context.js";
+import DatePicker from "react-native-datepicker";
 
 const CreateTasks = ({ navigation }) => {
   const { taskItems, setTaskItems } = useGlobalContext();
@@ -53,8 +55,8 @@ const CreateTasks = ({ navigation }) => {
 
   //date formatting
   useEffect(() => {
-    forDate = date.toLocaleDateString();
-    let formatDate = forDate + " | " + calculateDays();
+    // forDate = date.toLocaleDateString();
+    // let formatDate = forDate + " | " + calculateDays();
   }, [date]);
 
   useEffect(() => {
@@ -66,11 +68,11 @@ const CreateTasks = ({ navigation }) => {
     const currentDate = new Date();
     const timeDiff = date.getTime() - currentDate.getTime();
     const diffDays = Math.round(timeDiff / (1000 * 3600 * 24));
-      forDate = date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+    forDate = date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
     if (date.setHours(0, 0, 0, 0) == currentDate.setHours(0, 0, 0, 0)) {
       return "Today";
     } else if (diffDays < 0) {
@@ -108,6 +110,17 @@ const CreateTasks = ({ navigation }) => {
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
     completed((totalTasksCompletedToday += 1));
+  };
+
+  const [animation, setAnimation] = useState(new Animated.Value(0));
+
+  const startAnimation = () => {
+    Animated.timing(animation, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+
   };
 
   return (
@@ -217,12 +230,56 @@ const CreateTasks = ({ navigation }) => {
             >
               <Text style={styles.modalText}>Due: </Text>
               <View style={{ paddingLeft: 25 }}>
-                <TextInput
+                {/* <TextInput
                   style={styles.input}
                   placeholder="Enter Date"
                   onChangeText={(text) => setDate(text)}
                   value={date}
+                /> */}
+                <DatePicker
+                  style={{ width: 200 }}
+                  date={date}
+                  mode="date"
+                  placeholder="select date"
+                  format="MM-DD-YYYY"
+                  minDate="01-01-1900"
+                  maxDate="01-01-2999"
+                  confirmBtnText="Confirm"
+                  onPress={startAnimation()}
+                  useNativeDriver={true}
+
+                  cancelBtnText="Cancel"
+                  customStyles={{
+                    dateIcon: {
+                      position: 'absolute',
+                      right: (Dimensions.get("screen").width * 0.22),
+                      top: (Dimensions.get("screen").height * 0.025),
+                      marginLeft: 0
+                    },
+                    dateInput: {
+                      backgroundColor: '#333',
+                      color: '#fff',
+                      width: (Dimensions.get("screen").width * 0.1),
+                      top: (Dimensions.get("screen").height * 0.02),
+                      borderRadius: 10,
+                    },
+                    dateText: {
+                      color: '#fff',
+                      right: (Dimensions.get("screen").width * -0.1),
+                    },
+                    placeholderText: {
+                      color: '#fff'
+                    },
+                    btnTextConfirm: {
+                      color: '#fff'
+                    },
+                    btnTextCancel: {
+                      color: '#fff'
+                    }
+                  }}
+                  onDateChange={(date) => { setDate(date) }}
                 />
+
               </View>
             </View>
             <View style={{ flexDirection: "row", paddingTop: (Dimensions.get("screen").height * 0.05) }}>
@@ -400,5 +457,15 @@ const styles = StyleSheet.create({
     color: "white",
     top: Dimensions.get("screen").height * 0.25,
     alignSelf: "center",
+  },
+
+  dateContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 20,
+  },
+  text: {
+    fontSize: 18,
+    marginRight: 10,
   },
 });
