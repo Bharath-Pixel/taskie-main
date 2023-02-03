@@ -30,7 +30,6 @@ const colors = {
 
 const Task = ({ task, stamp }) => {
   return (
-    
     <View
       key={new Date().toString()}
       style={{
@@ -71,20 +70,6 @@ const Task = ({ task, stamp }) => {
 export default function Homepage() {
   StatusBar.setHidden(true);
 
-  // const [taskList, setTaskList] = useState([]);
-
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const list = await AsyncStorage.getItem("tasklist");
-  //       if (list !== null) {
-  //         setTaskList(JSON.parse(list));
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   })();
-  // }, []);
   const { taskItems } = useGlobalContext();
   const navigation = useNavigation();
 
@@ -178,6 +163,7 @@ const styles = StyleSheet.create({
   },
   vectorIcon: {
     width: Dimensions.get("screen").width,
+    height: Dimensions.get("screen").height * 0.45,
   },
   taskText: {
     textAlign: "center",
