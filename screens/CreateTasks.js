@@ -66,6 +66,11 @@ const CreateTasks = ({ navigation }) => {
     const currentDate = new Date();
     const timeDiff = date.getTime() - currentDate.getTime();
     const diffDays = Math.round(timeDiff / (1000 * 3600 * 24));
+      forDate = date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
     if (date.setHours(0, 0, 0, 0) == currentDate.setHours(0, 0, 0, 0)) {
       return "Today";
     } else if (diffDays < 0) {

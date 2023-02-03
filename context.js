@@ -13,7 +13,7 @@ const AppContextProvider = ({ children }) => {
       timestamp: "Today",
     },
   ]);
-
+  const [totalTasksCompletedToday, completed] = React.useState(0);
   React.useEffect(() => {
     // Load task items from AsyncStorage on initial render
     (async () => {
@@ -36,6 +36,8 @@ const AppContextProvider = ({ children }) => {
       value={{
         taskItems,
         setTaskItems,
+        totalTasksCompletedToday, 
+        completed
       }}
     >
       {children}

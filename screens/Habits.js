@@ -4,7 +4,6 @@ import Checkbox from "expo-checkbox";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { ScrollView } from "react-native-gesture-handler";
 import { abs, color } from "react-native-reanimated";
-import { TouchableHighlight } from "react-native-web";
 import { NavigationContainer } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";

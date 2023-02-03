@@ -63,13 +63,13 @@ const Clock = () => {
         let secs = (duration - mins * 60);
         secs = secs < 10 ? `0${secs}` : `${secs}`;
         time = `${mins}:${secs}`;
-        setNotificationSent(false);
+        // setNotificationSent(false);
     } 
     else{
         stopTimer()
         if (!notificationSent) {
             Alert.alert("Timer has finished!");
-            setNotificationSent(true);
+            // setNotificationSent(true);
         }
     }
 
@@ -175,6 +175,7 @@ const styles = StyleSheet.create({
     stfont: {
         fontSize: 20,
         color: "white",
+        fontFamily: "Urbanist",
     },
     timer: {
         color: "white",

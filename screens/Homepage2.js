@@ -13,10 +13,9 @@ import {
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import { FlatList } from "react-native-gesture-handler";
 import React, { useState, useEffect, createContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView,State, PanGestureHandler } from "react-native-gesture-handler";
 import { TaskCard } from "../props/TaskCard";
 import { useGlobalContext } from "../context";
 import { useNavigation } from "@react-navigation/native";
@@ -28,8 +27,10 @@ const colors = {
   appColor: "#2C2C2C",
 };
 
+
 const Task = ({ task, stamp }) => {
   return (
+    
     <View
       key={new Date().toString()}
       style={{
@@ -200,7 +201,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   b2: {
-    backgroundColor: "#2C2C2C",
+    backgroundColor: "#A07AFF",
     shadowOpacity: 5,
     shadowRadius: 1,
     shadowOffset: { height: 1, width: 1 },
