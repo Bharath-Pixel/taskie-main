@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Dimensions, Modal, TextInput,Alert } from "react-native";
 // import PushNotification from 'react-native-push-notification';
 import moment from 'moment';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 let total = 60*30;
 

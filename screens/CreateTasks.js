@@ -20,6 +20,7 @@ import { TaskCard, TutorialCard } from "../props/TaskCard.js";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { useGlobalContext } from "../context.js";
 import DatePicker from "react-native-datepicker";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const CreateTasks = ({ navigation }) => {
   const { taskItems, setTaskItems } = useGlobalContext();
@@ -33,8 +34,11 @@ const CreateTasks = ({ navigation }) => {
 
   const [adv, setADV] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
 
   let [totalTasksCompletedToday, completed] = useState(0);
+  let newDate;
 
   const handleOpenModal = () => {
     setModalVisible(true);
@@ -100,7 +104,7 @@ const CreateTasks = ({ navigation }) => {
     ]);
     // console.log(taskItems);
     setTag("General");
-    setDate(new Date());
+    setDate(newDate);
     setTitle(null);
     setADV(false);
   };
@@ -118,9 +122,22 @@ const CreateTasks = ({ navigation }) => {
     Animated.timing(animation, {
       toValue: 1,
       duration: 500,
-      useNativeDriver: true,
+      useNativeDriver: 'true',
     }).start();
 
+  };
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    setDate(date);
+    hideDatePicker();
   };
 
   return (
@@ -209,7 +226,7 @@ const CreateTasks = ({ navigation }) => {
                 width: (Dimensions.get("screen").width * 0.85),
               }}
             >
-              <Text style={styles.modalText}> Category: </Text>
+              <Text style={styles.modalText}>Category: </Text>
               <View style={{ paddingLeft: 25 }}>
                 <TextInput
                   style={styles.input}
@@ -236,49 +253,24 @@ const CreateTasks = ({ navigation }) => {
                   onChangeText={(text) => setDate(text)}
                   value={date}
                 /> */}
-                <DatePicker
-                  style={{ width: 200 }}
-                  date={date}
-                  mode="date"
-                  placeholder="select date"
-                  format="MM-DD-YYYY"
-                  minDate="01-01-1900"
-                  maxDate="01-01-2999"
-                  confirmBtnText="Confirm"
-                  onPress={startAnimation()}
-                  useNativeDriver={true}
-
-                  cancelBtnText="Cancel"
-                  customStyles={{
-                    dateIcon: {
-                      position: 'absolute',
-                      right: (Dimensions.get("screen").width * 0.22),
-                      top: (Dimensions.get("screen").height * 0.025),
-                      marginLeft: 0
-                    },
-                    dateInput: {
-                      backgroundColor: '#333',
-                      color: '#fff',
-                      width: (Dimensions.get("screen").width * 0.1),
-                      top: (Dimensions.get("screen").height * 0.02),
-                      borderRadius: 10,
-                    },
-                    dateText: {
-                      color: '#fff',
-                      right: (Dimensions.get("screen").width * -0.1),
-                    },
-                    placeholderText: {
-                      color: '#fff'
-                    },
-                    btnTextConfirm: {
-                      color: '#fff'
-                    },
-                    btnTextCancel: {
-                      color: '#fff'
-                    }
-                  }}
-                  onDateChange={(date) => { setDate(date) }}
-                />
+                <View style={{
+                  position: "absolute", right: (Dimensions.get("screen").width * 0.05), top: (Dimensions.get("screen").height * 0.015),
+                }} >
+                  <View>
+                    <Button
+                      title={
+                        date.toLocaleDateString()
+                      }
+                      onPress={showDatePicker}
+                    />
+                  </View>
+                  <DateTimePickerModal
+                    isVisible={isDatePickerVisible}
+                    mode="date"
+                    onConfirm={handleConfirm}
+                    onCancel={hideDatePicker}
+                  />
+                </View>
 
               </View>
             </View>
