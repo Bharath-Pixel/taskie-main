@@ -1,84 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Dimensions, Modal, TextInput,Alert } from "react-native";
+// import PushNotification from 'react-native-push-notification';
 import moment from 'moment';
 
-
-// const Clock = () => {
-//     const [duration, setDuration] = useState(60 * 30);
-//     const [intervalId, setIntervalId] = useState(null);
-//     const [timerRunning, setTimerRunning] = useState(false);
-//     const [adv, setADV] = useState(false);
-//     const [change, setChange] = useState("");
-//     const [totalTime, setTotalTime] = useState(0);
-//     const [showNotification, setShowNotification] = useState(false);
-  
-//     let time = "00:00";
-  
-//     const startTimer = () => {
-//       setTimerRunning(true);
-//       setIntervalId(
-//         setInterval(() => {
-//           if (duration <= 0) {
-//             clearInterval(intervalId);
-//             setTimerRunning(false);
-//             // setShowNotification(true);
-//             // Alert.alert("Timer has finished!");
-//           } else {
-//             setDuration(duration => duration - 1);
-//             setTotalTime(totalTime => totalTime + 1);
-//           }
-//         }, 1000)
-//       );
-//     };
-  
-//     const stopTimer = () => {
-//       setTimerRunning(false);
-//       clearInterval(intervalId);
-//     };
-  
-//     useEffect(() => {
-//       if (!timerRunning && intervalId) {
-//         clearInterval(intervalId);
-//         setIntervalId(null);
-//       }
-//     }, [timerRunning]);
-  
-//     // useEffect(() => {
-//     //   if (showNotification) {
-//     //     if ('Notification' in window) {
-//     //       Notification.requestPermission().then(permission => {
-//     //         if (permission === 'granted') {
-//     //           new Notification('Timer has finished!');
-//     //         }
-//     //       });
-//     //     }
-//     //     setShowNotification(false);
-//     //   }
-//     // }, [showNotification]);
-  
-//     const handleChange = () => {
-//       const duration = parseInt(change) * 60;
-//       setDuration(duration);
-//       setADV(false);
-//     };
-  
-//     time = "00:00";
-//     let mins = 0;
-//     if (duration > 0) {
-//       mins = Math.floor(duration / 60);
-//       mins = mins < 10 ? `0${mins}` : `${mins}`;
-//       let secs = (duration - mins * 60);
-//       secs = secs < 10 ? `0${secs}` : `${secs}`;
-//       time = `${mins}:${secs}`;
-//     }
-
-//     // else if(duration === 0){
-//     //     Alert.alert("Timer has finished!");
-//     // }
-  
-//     const totalTimeDisplay = moment.duration(totalTime, 'seconds');
-//     const hours = Math.floor(totalTimeDisplay.asHours());
-//     const minutes = totalTimeDisplay.minutes();
+let total = 60*30;
 
 const Clock = () => {
     const [duration, setDuration] = useState(60 * 30);
@@ -87,6 +12,7 @@ const Clock = () => {
     const [adv, setADV] = useState(false);
     const [change, setChange] = useState("");
     const [totalTime, setTotalTime] = useState(0);
+    const [notificationSent, setNotificationSent] = useState(false);
 
     let time = "00:00";
 
@@ -120,8 +46,14 @@ const Clock = () => {
     const handleChange = () => {
         const duration = parseInt(change) * 60;
         setDuration(duration);
+        total = duration
         setADV(false)
     };
+    
+    const reset = () => {
+        setDuration(total);
+        setNotificationSent(false);
+    }
 
     time = "00:00";
     let mins = 0;
@@ -131,6 +63,14 @@ const Clock = () => {
         let secs = (duration - mins * 60);
         secs = secs < 10 ? `0${secs}` : `${secs}`;
         time = `${mins}:${secs}`;
+        setNotificationSent(false);
+    } 
+    else{
+        stopTimer()
+        if (!notificationSent) {
+            Alert.alert("Timer has finished!");
+            setNotificationSent(true);
+        }
     }
 
     const totalTimeDisplay = moment.duration(totalTime, 'seconds');
@@ -194,9 +134,15 @@ const Clock = () => {
                 </TouchableOpacity>
             </View>
             <Text style={styles.details}>{hours}h {minutes}m</Text>
-            <TouchableOpacity style={styles.starter} onPress={timerRunning ? stopTimer : startTimer}>
-                <Text style={styles.stfont}>{timerRunning ? 'Stop' : 'Start'}</Text>
-            </TouchableOpacity>
+            <View style={{flexDirection: 'row', alignItems: "center", justifyContent: "center"}}>
+                <TouchableOpacity style={styles.starter} onPress={timerRunning ? stopTimer : startTimer}>
+                    <Text style={styles.stfont}>{timerRunning ? 'Stop' : 'Start'}</Text>
+                </TouchableOpacity>
+                <View style={styles.space}></View>
+                <TouchableOpacity style={styles.starter} onPress={reset}>
+                    <Text style={styles.stfont}>Reset</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
@@ -219,14 +165,12 @@ const styles = StyleSheet.create({
         borderRadius: 90,
     },
     starter: {
-        // marginTop: 200,
         paddingVertical: 10,
         paddingHorizontal: 20,
         top: (Dimensions.get("screen").height * 0.27),
         backgroundColor: "#FEB47B",
         borderRadius: 90,
         alignSelf: "center",
-        // position: "absolute",
     },
     stfont: {
         fontSize: 20,
@@ -242,31 +186,28 @@ const styles = StyleSheet.create({
         fontSize: 25,
         top: (Dimensions.get("screen").height * 0.25),
         alignSelf: "center",
-        // top: "55%",
-        // left: "30%",
     },
     color: {
         backgroundColor: "#222",
         borderColor: "#A07AFF",
         borderWidth: 1,
         borderRadius: 10,
-        top: (Dimensions.get("screen").height * 0.40),
+        top: (Dimensions.get("screen").height * 0.35),
         left: (Dimensions.get("screen").width * 0.05),
         height: (Dimensions.get("screen").height * 0.25),
         width: (Dimensions.get("screen").width * 0.9),
     },
     modalHeader: {
         color: "white",
-        paddingTop: "5%",
-        paddingLeft: "5%",
+        paddingTop: 20,
         fontSize: 30,
         fontFamily: "Poppins",
         textAlign: "center",
     },
     modalText: {
         color: "white",
-        paddingTop: "5%",
-        paddingLeft: "5%",
+        top: (Dimensions.get("screen").height * 0.02),
+        paddingLeft: 20,
         fontSize: 22,
         fontFamily: "Poppins",
         textAlign: "center",
@@ -286,6 +227,7 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 16,
         fontFamily: "Poppins",
+        // top: (Dimensions.get("screen").height * 0.02),
     },
     b1 : {
         left: (Dimensions.get("screen").width * 0.10),
@@ -293,6 +235,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#8758FF",
         borderRadius: 10,
         paddingHorizontal: (Dimensions.get("screen").width * 0.05),
+        top: (Dimensions.get("screen").height * 0.03),
     },
     b2 : {
         left: (Dimensions.get("screen").width * 0.25),
@@ -300,12 +243,16 @@ const styles = StyleSheet.create({
         paddingVertical: (Dimensions.get("screen").height * 0.01),
         borderRadius: 10,
         paddingHorizontal: (Dimensions.get("screen").width * 0.05),
+        top: (Dimensions.get("screen").height * 0.03),
     },
     details: {
         color: "white",
         top: (Dimensions.get("screen").height * 0.25),
         alignSelf: "center",
     },
+    space: {
+        width: (Dimensions.get("screen").width * 0.05),
+    }
 })
 
 export default Clock

@@ -7,6 +7,7 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
+  Dimensions
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Searchbar } from "react-native-paper";
@@ -147,10 +148,10 @@ const styles = StyleSheet.create({
   },
   buffer: {
     // provides buffer
-    top: "8%",
-    left: "5%",
-    width: "90%",
-    height: "80%",
+    top: (Dimensions.get("screen").height * 0.08),
+    left: (Dimensions.get("screen").width * 0.05),
+    width: (Dimensions.get("screen").width * 0.9),
+    height: (Dimensions.get("screen").height * 0.95),
     backgroundColor: "#212121",
   },
   sectionTitle: {
@@ -206,15 +207,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#36454F",
     marginTop: 5,
     marginBottom: 10,
-    marginLeft: "2%",
-    width: "65%",
     shadowColor: "#000",
     shadowOpacity: 1,
     shadowOffset: { width: 3, height: 3 },
     borderRadius: 20,
   },
   cardImage: {
-    width: "100%",
     height: 200,
     resizeMode: "cover",
   },

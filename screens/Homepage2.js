@@ -56,7 +56,7 @@ const Task = ({ task, stamp }) => {
             style={{
               fontFamily: "Poppins",
               color: colors.white,
-              paddingTop: "3%",
+              paddingTop: 10,
             }}
           >
             {stamp}
@@ -99,10 +99,10 @@ export default function Homepage() {
           style={{
             position: "absolute",
             fontSize: 34,
-            paddingTop: "25%",
+            paddingTop: (Dimensions.get("screen").height * 0.15),
             color: "white",
             textAlign: "left",
-            paddingHorizontal: "8%",
+            paddingHorizontal: (Dimensions.get("screen").width * 0.08),
             fontFamily: "Poppins",
           }}
         >
@@ -116,7 +116,6 @@ export default function Homepage() {
               color: "white",
               textAlign: "center",
               justifyContent: "center",
-              paddingHorizontal: "10%",
               fontFamily: "Poppins",
             }}
           >
@@ -138,7 +137,7 @@ export default function Homepage() {
           color: "grey",
           fontSize: 20,
           textAlign: "center",
-          marginTop: "15%",
+          marginTop: (Dimensions.get("screen").height * 0.05),
         }}
       >
         No tasks created
@@ -173,11 +172,11 @@ const styles = StyleSheet.create({
   },
   box: {
     backgroundColor: "#8758FF",
-    height: "60%",
+    // height: "60%",
     shadowOpacity: 1,
   },
   vectorIcon: {
-    width: "100%",
+    width: Dimensions.get("screen").width,
   },
   taskText: {
     textAlign: "center",
@@ -194,8 +193,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginVertical: 35,
     borderRadius: 20,
-    width: "40%",
-    left: "26%",
+    width: (Dimensions.get("screen").width*0.4),
+    alignSelf: "center",
     paddingVertical: 10,
     alignItems: "center",
     justifyContent: "space-between",
@@ -209,8 +208,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginVertical: 35,
     borderRadius: 20,
-    width: "40%",
-    left: "26%",
+    width: (Dimensions.get("screen").width*0.4),
+    alignSelf: "center",
     paddingVertical: 10,
     alignItems: "center",
     justifyContent: "space-between",

@@ -155,10 +155,10 @@ const CreateTasks = ({ navigation }) => {
             name="pluscircle" //
             size={60}
             style={{
-              color: "#A07AFF",
+              color: "#FEB47B",
               position: "absolute",
-              bottom: 85,
-              right: "5%",
+              bottom: (Dimensions.get("screen").height * 0.15),
+              right: (Dimensions.get("screen").width * 0.00),
             }}
           />
         </TouchableOpacity>
@@ -168,8 +168,9 @@ const CreateTasks = ({ navigation }) => {
             <View
               style={{
                 flexDirection: "row",
-                justifyContent: "center",
+                justifyContent: "space-between",
                 alignContent: "center",
+                width: (Dimensions.get("screen").width * 0.85),
               }}
             >
               <Text style={styles.modalText}>New Task Title: </Text>
@@ -185,8 +186,9 @@ const CreateTasks = ({ navigation }) => {
             <View
               style={{
                 flexDirection: "row",
-                justifyContent: "center",
+                justifyContent: "space-between",
                 alignContent: "center",
+                width: (Dimensions.get("screen").width * 0.85),
               }}
             >
               <Text style={styles.modalText}> Category: </Text>
@@ -203,8 +205,9 @@ const CreateTasks = ({ navigation }) => {
             <View
               style={{
                 flexDirection: "row",
-                justifyContent: "center",
+                justifyContent: "space-between",
                 alignContent: "center",
+                width: (Dimensions.get("screen").width * 0.85),
               }}
             >
               <Text style={styles.modalText}>Due: </Text>
@@ -217,7 +220,7 @@ const CreateTasks = ({ navigation }) => {
                 />
               </View>
             </View>
-            <View style={{ flexDirection: "row", paddingTop: 20 }}>
+            <View style={{ flexDirection: "row", paddingTop: (Dimensions.get("screen").height * 0.05) }}>
               <TouchableOpacity style={styles.b1} onPress={handleCloseModal}>
                 <Text style={styles.buttonText}>Cancel</Text>
               </TouchableOpacity>
@@ -252,10 +255,10 @@ const styles = StyleSheet.create({
   },
   buffer: {
     // provides buffer
-    top: "8%",
-    left: "5%",
-    width: "90%",
-    height: "90%",
+    top: (Dimensions.get("screen").height * 0.08),
+    left: (Dimensions.get("screen").width * 0.05),
+    width: (Dimensions.get("screen").width * 0.9),
+    height: (Dimensions.get("screen").height * 0.95),
     backgroundColor: "#212121",
   },
   sectionTitle: {
@@ -266,17 +269,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Poppins",
   },
-  addTask: {
-    width: "100%",
-    height: 50,
-    borderRadius: 10,
-    backgroundColor: "#8758FF",
-    justifyContent: "center",
-    alignItems: "center",
-    position: "absolute",
-    bottom: "10%",
-    zIndex: 100,
-  },
+
   addTaskText: {
     color: "#fff",
     fontSize: 18,
@@ -298,7 +291,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   addTaskContainer: {
-    width: "80%",
+    width: (Dimensions.get("screen").width * 0.8),
     backgroundColor: "white",
     paddingHorizontal: 20,
     paddingVertical: 30,
@@ -306,72 +299,40 @@ const styles = StyleSheet.create({
 
   clearedTdy: {
     backgroundColor: "#FEB47B",
-    height: "20%",
-    top: "2%",
-    width: "47%",
+    height: (Dimensions.get("screen").height * 0.18),
+    top: (Dimensions.get("screen").height * 0.02),
+    width: (Dimensions.get("screen").width * 0.43),
     borderRadius: 20,
   },
   totalRemaining: {
     backgroundColor: "#FEB47B",
-    height: "20%",
-    width: "47%",
-    left: "53%",
-    top: "-18%",
+    height: (Dimensions.get("screen").height * 0.18),
+    width: (Dimensions.get("screen").width * 0.43),
+    left: (Dimensions.get("screen").width * 0.47),
+    top: (Dimensions.get("screen").height * -0.16),
     borderRadius: 20,
   },
   t1: {
     color: "white",
     fontSize: 50,
-    left: "20%",
-    top: "20%",
+    left: 32,
+    top: 30,
     position: "absolute",
     marginBottom: 20,
   },
   t2: {
     color: "white",
     fontSize: 20,
-    left: "20%",
-    top: "55%",
+    left: 35,
+    top: 85,
     position: "absolute",
-    width: "60%",
+    width: (Dimensions.get("screen").width * 0.3),
   },
   list: {
-    top: "-17%",
-    // marginBottom: "-30%",
+    top: (Dimensions.get("screen").height * -0.15),
+    height: 400,
   },
-  buttons: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: "#A07AFF",
-    borderRadius: 90,
-  },
-  starter: {
-    // marginTop: 200,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    top: Dimensions.get("screen").height * 0.27,
-    backgroundColor: "#FEB47B",
-    borderRadius: 90,
-    alignSelf: "center",
-    // position: "absolute",
-  },
-  stfont: {
-    fontSize: 20,
-    color: "white",
-  },
-  timer: {
-    color: "white",
-    fontSize: 90,
-  },
-  // Modal
-  range: {
-    color: "white",
-    fontSize: 25,
-    top: Dimensions.get("screen").height * 0.25,
-    alignSelf: "center",
-    // top: "55%",
-    // left: "30%",
-  },
+
   color: {
     backgroundColor: "#222",
     borderColor: "#A07AFF",
@@ -384,16 +345,15 @@ const styles = StyleSheet.create({
   },
   modalHeader: {
     color: "white",
-    paddingTop: "5%",
-    paddingLeft: "5%",
+    paddingTop: 20,
     fontSize: 30,
     fontFamily: "Poppins",
     textAlign: "center",
   },
   modalText: {
     color: "white",
-    paddingTop: "5%",
-    paddingLeft: "5%",
+    paddingTop: 20,
+    paddingLeft: 15,
     fontSize: 18,
     fontFamily: "Poppins",
     textAlign: "center",

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, Dimensions } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import Clock from "../props/Clock.js"
 
@@ -27,12 +27,13 @@ const styles = StyleSheet.create({
     flex: 1, 
     backgroundColor:"#212121",
   },
-  buffer: { // provides buffer
-    top: "8%",
-    left: "5%",
-    width: "90%",
-    height:'80%',
-    backgroundColor:"#212121",
+  buffer: {
+    // provides buffer
+    top: (Dimensions.get("screen").height * 0.08),
+    left: (Dimensions.get("screen").width * 0.05),
+    width: (Dimensions.get("screen").width * 0.9),
+    height: (Dimensions.get("screen").height * 0.95),
+    backgroundColor: "#212121",
   },
   sectionTitle: { // header
     fontSize: 30,
@@ -45,8 +46,8 @@ const styles = StyleSheet.create({
     color:"white",
     fontSize:16,
     fontFamily: "Poppins",
-    paddingTop:"20%",
-    paddingLeft:"10%",
+    paddingTop:(Dimensions.get("screen").width * 0.15),
+    alignSelf: "center",
     position:"absolute",
   },
 });

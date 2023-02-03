@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Button, StyleSheet, StatusBar } from "react-native";
+import { View, Text, Button, StyleSheet, StatusBar, Dimensions } from "react-native";
 import Checkbox from "expo-checkbox";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { ScrollView } from "react-native-gesture-handler";
@@ -56,7 +56,7 @@ const Task = ({ task, stamp, index }) => {
             style={{
               fontFamily: "Poppins",
               color: colors.white,
-              paddingTop: "3%",
+              paddingTop: 5,
             }}
           >
             {stamp}
@@ -104,7 +104,7 @@ export default function Habits(props) {
               color: "white",
               fontSize: 25,
               textAlign: "center",
-              marginTop: "5%",
+              marginTop: (Dimensions.get("screen").height * 0.05),
             }}
           >
             {"Habits"}
@@ -186,6 +186,6 @@ const styles = StyleSheet.create({
     color: "grey",
     fontSize: 20,
     textAlign: "center",
-    marginTop: "25%",
+    marginTop: (Dimensions.get("screen").height * 0.12),
   },
 });
